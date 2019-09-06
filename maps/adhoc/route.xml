@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on gio 05 set 2019 13:07:45 CEST by Eclipse SUMO netedit Version 1.2.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <output>
+        <output-file value="/home/werer/ns-allinone-3.29/ns-3.29/maps/adhoc/adhoc.net.xml"/>
+    </output>
+
+    <processing>
+        <offset.disable-normalization value="true"/>
+    </processing>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+    </junctions>
+
+    <netedit>
+        <route-files value="/home/werer/ns-allinone-3.29/ns-3.29/maps/adhoc/route.xml"/>
+    </netedit>
+
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <trip id="trip_0" type="DEFAULT_VEHTYPE" depart="0.00" from="-gneE17" to="gneE15" via="-gneE5 gneE7"/>
+    <trip id="trip_1" type="DEFAULT_VEHTYPE" depart="0.00" from="gneE10" to="gneE10" via="-gneE17 -gneE16 gneE16"/>
+    <trip id="trip_10" type="DEFAULT_VEHTYPE" depart="0.00" from="-gneE10" to="gneE14"/>
+    <trip id="trip_11" type="DEFAULT_VEHTYPE" depart="0.00" from="-gneE16" to="gneE15" via="gneE17 -gneE9 -gneE8"/>
+    <trip id="trip_12" type="DEFAULT_VEHTYPE" depart="0.00" from="-gneE10" to="gneE15" via="-gneE17 -gneE5 gneE7"/>
+    <trip id="trip_13" type="DEFAULT_VEHTYPE" depart="0.00" from="-gneE14" to="gneE10" via="gneE7 gneE9"/>
+    <trip id="trip_14" type="DEFAULT_VEHTYPE" depart="0.00" from="gneE14" to="gneE14" via="-gneE12 -gneE11 gneE5 -gneE13"/>
+    <trip id="trip_15" type="DEFAULT_VEHTYPE" depart="0.00" from="gneE16" to="gneE11" via="gneE11 -gneE8 gneE16 -gneE10"/>
+    <trip id="trip_2" type="DEFAULT_VEHTYPE" depart="0.00" from="gneE10" to="-gneE16"/>
+    <trip id="trip_3" type="DEFAULT_VEHTYPE" depart="0.00" from="-gneE10" to="gneE15" via="-gneE9 -gneE8"/>
+    <trip id="trip_4" type="DEFAULT_VEHTYPE" depart="0.00" from="gneE14" to="-gneE6" via="-gneE13"/>
+    <trip id="trip_5" type="DEFAULT_VEHTYPE" depart="0.00" from="-gneE16" to="gneE10" via="gneE17"/>
+    <trip id="trip_6" type="DEFAULT_VEHTYPE" depart="0.00" from="-gneE10" to="gneE16" via="-gneE17"/>
+    <trip id="trip_7" type="DEFAULT_VEHTYPE" depart="0.00" from="-gneE16" to="gneE14" via="-gneE6 -gneE13"/>
+    <trip id="trip_8" type="DEFAULT_VEHTYPE" depart="0.00" from="-gneE14" to="gneE15"/>
+    <trip id="trip_9" type="DEFAULT_VEHTYPE" depart="0.00" from="-gneE15" to="gneE10"/>
+</routes>
