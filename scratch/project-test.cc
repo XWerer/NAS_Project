@@ -164,10 +164,21 @@ namespace ns3 {
 
       std::ostringstream msg; 
       msg << m_sumo_client->GetVehicleId(this->GetNode()) << "*"; //id
-      msg << std::to_string(m_velocity) << '\0'; //velocità 
-      //libsumo::TraCIPosition pos(TraCIAPI::getPosition(m_sumo_client->GetVehicleId(this->GetNode())));
+      msg << std::to_string(m_velocity) << "*"; //velocità 
 
-      //double *x = m_sumo_client->getPosition(m_sumo_client->GetVehicleId(this->GetNode())); 
+      Ptr<MobilityModel> mob = this->GetNode()->GetObject<MobilityModel>();
+      Vector pos = mob->GetPosition();
+      msg << std::to_string(pos.x) << "*" << std::to_string(pos.y) << "*"; //Position of the sender
+
+      /* Another way to get the position by sumo
+      libsumo::TraCIPosition p = m_sumo_client->vehicle.getPosition(m_sumo_client->GetVehicleId(this->GetNode()));
+      std::cout << p.x << " " << p.y << std::endl;
+      */
+
+      std::string laneid = m_sumo_client->vehicle.getLaneID(m_sumo_client->GetVehicleId(this->GetNode())); //lane/road id
+      //std::cout << "laneID:" << laneid << std::endl;
+      msg << laneid << '\0';
+      
       Ptr<Packet> packet = Create<Packet> ((uint8_t*) msg.str().c_str(), msg.str().length());
 
       Ptr<Ipv4> ipv4 = this->GetNode ()->GetObject<Ipv4> ();
@@ -179,7 +190,9 @@ namespace ns3 {
       NS_LOG_INFO("Packet sent at time " << Simulator::Now().GetSeconds()
                   << "s - [ip:" << ipAddr << "]"
                   << "[veh:" << m_sumo_client->GetVehicleId(this->GetNode()) << "]" 
-                  << "[tx vel:" << m_velocity << "m/s]");
+                  << "[tx vel:" << m_velocity << "m/s]"
+                  << "[pos x:" << pos.x << " y:" << pos.y << "]"
+                  << "[laneid:" << laneid << "]");
 
       ScheduleTransmit (m_interval);
     }
@@ -227,7 +240,9 @@ namespace ns3 {
           << "[ip:" << ipAddr << "]"
           << "[vel:" << m_sumo_client->TraCIAPI::vehicle.getSpeed(m_sumo_client->GetVehicleId(this->GetNode())) << "m/s]"
           << "[rx vel:" << velocity << "m/s]"
-          << "[sender:" << payload.at(0) << "]");
+          << "[s:" << payload.at(0) << "]"
+          << "[s_pos x:" << payload.at(2) << " y:" << payload.at(3) << "]"
+          << "[s_lane_id:" << payload.at(4) << "]");
       
       //NS_LOG_INFO("Set speed of: " << m_sumo_client->GetVehicleId(this->GetNode()) << " [" << ipAddr << "] to " << velocity << "m/s");
       m_sumo_client->TraCIAPI::vehicle.setSpeed (m_sumo_client->GetVehicleId (this->GetNode ()), velocity);
