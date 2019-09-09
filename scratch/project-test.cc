@@ -13,6 +13,7 @@
 #include "ns3/netanim-module.h"
 #include "ns3/packet.h"
 #include "ns3/socket.h"
+#include <boost/tokenizer.hpp>
 #include <functional>
 #include <stdlib.h>
 
@@ -161,9 +162,13 @@ namespace ns3 {
     void Send (void) {
       NS_LOG_FUNCTION(this << m_socket);
 
-      std::ostringstream msg;
-      msg << std::to_string (m_velocity) << '\0';
-      Ptr<Packet> packet = Create<Packet> ((uint8_t*) msg.str ().c_str (), msg.str ().length ());
+      std::ostringstream msg; 
+      msg << m_sumo_client->GetVehicleId(this->GetNode()) << "*"; //id
+      msg << std::to_string(m_velocity) << '\0'; //velocità 
+      //libsumo::TraCIPosition pos(TraCIAPI::getPosition(m_sumo_client->GetVehicleId(this->GetNode())));
+
+      //double *x = m_sumo_client->getPosition(m_sumo_client->GetVehicleId(this->GetNode())); 
+      Ptr<Packet> packet = Create<Packet> ((uint8_t*) msg.str().c_str(), msg.str().length());
 
       Ptr<Ipv4> ipv4 = this->GetNode ()->GetObject<Ipv4> ();
       Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
@@ -173,6 +178,7 @@ namespace ns3 {
       
       NS_LOG_INFO("Packet sent at time " << Simulator::Now().GetSeconds()
                   << "s - [ip:" << ipAddr << "]"
+                  << "[veh:" << m_sumo_client->GetVehicleId(this->GetNode()) << "]" 
                   << "[tx vel:" << m_velocity << "m/s]");
 
       ScheduleTransmit (m_interval);
@@ -193,13 +199,24 @@ namespace ns3 {
     void HandleRead (Ptr<Socket> socket) {
       NS_LOG_FUNCTION(this << socket);
 
+      //boost separetor to tokenize the string/payload of the udp packet
+      boost::char_separator<char> sep("*");
+      //vector containing al the string of the udp packet payload 
+      std::vector<std::string> payload;
+
       Ptr<Packet> packet;
       packet = m_socket->Recv();
-
+      //int size = packet->GetSize (); //debug only
       uint8_t *buffer = new uint8_t[packet->GetSize ()];
-      packet->CopyData (buffer, packet->GetSize ());
+      packet->CopyData(buffer, packet->GetSize ());
       std::string s = std::string ((char*) buffer);
-      double velocity = (double) std::stoi (s);
+      //tokenization 
+      boost::tokenizer<boost::char_separator<char>> tokens(s, sep);
+      for (const auto& t : tokens) {
+          payload.push_back(t);
+      }
+      //std::cout << "buffer: " << buffer << "\ns: " << s << "\nsize: " << size << "\n"; //debug only
+      double velocity = (double) std::stoi (payload.at(1));
 
       Ptr<Ipv4> ipv4 = this->GetNode ()->GetObject<Ipv4> ();
       Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
@@ -209,7 +226,8 @@ namespace ns3 {
           << "[id:" << m_sumo_client->GetVehicleId(this->GetNode()) << "]"
           << "[ip:" << ipAddr << "]"
           << "[vel:" << m_sumo_client->TraCIAPI::vehicle.getSpeed(m_sumo_client->GetVehicleId(this->GetNode())) << "m/s]"
-          << "[rx vel:" << velocity << "m/s]");
+          << "[rx vel:" << velocity << "m/s]"
+          << "[sender:" << payload.at(0) << "]");
       
       //NS_LOG_INFO("Set speed of: " << m_sumo_client->GetVehicleId(this->GetNode()) << " [" << ipAddr << "] to " << velocity << "m/s");
       m_sumo_client->TraCIAPI::vehicle.setSpeed (m_sumo_client->GetVehicleId (this->GetNode ()), velocity);
