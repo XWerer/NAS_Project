@@ -66,7 +66,7 @@ namespace ns3 {
                        MakeUintegerChecker<uint16_t> ())
         .AddAttribute ("Interval",
                        "The time to wait between packets",
-                       TimeValue (Seconds (0.03)),
+                       TimeValue (Seconds (0.1)),
                        MakeTimeAccessor (&TestProject::m_interval),
                        MakeTimeChecker ())
         .AddAttribute ("Velocity", "Velocity value which is sent to vehicles.",
@@ -416,14 +416,30 @@ int main (int argc, char *argv[]) {
   NodeContainer nodePool;
   nodePool.Create (1000);
   uint32_t nodeCounter (0);
+  NetDeviceContainer netDevices;
 
+  YansWifiChannelHelper wifiChannel = YansWifiChannelHelper::Default ();
+  YansWavePhyHelper wavePhy =  YansWavePhyHelper::Default ();
+  wavePhy.SetChannel (wifiChannel.Create ());
+  QosWaveMacHelper waveMac = QosWaveMacHelper::Default ();
+  WaveHelper waveHelper = WaveHelper::Default ();
+  waveHelper.SetRemoteStationManager ("ns3::ConstantRateWifiManager",
+                                      "DataMode",StringValue ("0fdmRate6MbpsBW10MHz"),
+                                      "ControlMode",StringValue ("0fdmRate6MbpsBW10MHz"));
+  netDevices = waveHelper.Install (wavePhy, waveMac, nodePool);
+
+/*
   YansWifiPhyHelper wifiPhy = YansWifiPhyHelper::Default ();
   YansWifiChannelHelper wifiChannel = YansWifiChannelHelper::Default ();
   wifiPhy.SetChannel (wifiChannel.Create ());
   wifiPhy.SetPcapDataLinkType (WifiPhyHelper::DLT_IEEE802_11);
   NqosWaveMacHelper wifi80211pMac = NqosWaveMacHelper::Default ();
   Wifi80211pHelper wifi80211p = Wifi80211pHelper::Default ();
+  wifi80211p.SetRemoteStationManager ("ns3::ConstantRateWifiManager",
+                                      "DataMode",StringValue ("OfdmRate6MbpsBW10MHz"),
+                                      "ControlMode",StringValue ("OfdmRate6MbpsBW10MHz"));
   NetDeviceContainer netDevices = wifi80211p.Install (wifiPhy, wifi80211pMac, nodePool);
+*/
   /*
   //Creazione modello di comunicazione 
   YansWifiChannelHelper wifiChannel = YansWifiChannelHelper::Default();
@@ -526,7 +542,7 @@ int main (int argc, char *argv[]) {
   sumoClient->SumoSetup (setupNewWifiNode, shutdownWifiNode);  
 
   // inizio simulazione
-  AnimationInterface anim ("scratch/project.xml"); // Mandatory
+  //AnimationInterface anim ("scratch/project.xml"); // Mandatory
   Simulator::Stop (simulationTime);
 
   Simulator::Run ();
