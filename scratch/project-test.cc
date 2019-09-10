@@ -51,7 +51,7 @@ namespace ns3 {
                        MakeUintegerChecker<uint16_t> ())
         .AddAttribute ("Interval",
                        "The time to wait between packets",
-                       TimeValue (Seconds (1.0)),
+                       TimeValue (Seconds (0.0112)),
                        MakeTimeAccessor (&TestProject::m_interval),
                        MakeTimeChecker ())
         .AddAttribute ("Velocity", "Velocity value which is sent to vehicles.",
@@ -112,6 +112,10 @@ namespace ns3 {
      * Start application method. 
      * This method creates the sockets and records the callback to send and recive packets.
      */
+    double npack = 0;
+    uint32_t sizepack = 0;
+    double thr = 0;
+
     void StartApplication (void) {
       NS_LOG_FUNCTION(this);
 
@@ -132,6 +136,8 @@ namespace ns3 {
 
       ScheduleTransmit (Seconds (0.0));
       Simulator::Schedule (Seconds (10.0), &TestProject::ChangeSpeed, this);
+      Simulator::Schedule (Seconds (5.0), &TestProject::CalcThroughput, this);
+
     }
 
     /*
@@ -180,19 +186,20 @@ namespace ns3 {
       msg << laneid << '\0';
       
       Ptr<Packet> packet = Create<Packet> ((uint8_t*) msg.str().c_str(), msg.str().length());
+      
 
-      Ptr<Ipv4> ipv4 = this->GetNode ()->GetObject<Ipv4> ();
+      /*Ptr<Ipv4> ipv4 = this->GetNode ()->GetObject<Ipv4> ();
       Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
-      Ipv4Address ipAddr = iaddr.GetLocal ();
+      Ipv4Address ipAddr = iaddr.GetLocal ();*/
 
       m_socket->Send (packet);
       
-      NS_LOG_INFO("Packet sent at time " << Simulator::Now().GetSeconds()
+      /*NS_LOG_INFO("Packet sent at time " << Simulator::Now().GetSeconds()
                   << "s - [ip:" << ipAddr << "]"
                   << "[veh:" << m_sumo_client->GetVehicleId(this->GetNode()) << "]" 
                   << "[tx vel:" << m_velocity << "m/s]"
                   << "[pos x:" << pos.x << " y:" << pos.y << "]"
-                  << "[laneid:" << laneid << "]");
+                  << "[laneid:" << laneid << "]");*/
 
       ScheduleTransmit (m_interval);
     }
@@ -204,6 +211,14 @@ namespace ns3 {
     void ChangeSpeed (void) {
       m_velocity = rand () % 60; // between 0 and 60 m/s
       Simulator::Schedule (Seconds (10.0), &TestProject::ChangeSpeed, this);
+    }
+
+    void CalcThroughput (void) {
+      thr = sizepack*8.0/5.0 / 1024;
+      NS_LOG_INFO("ID: " << m_sumo_client->GetVehicleId(this->GetNode()) << " - Throughput: " << thr << " Kbps - Num packets: " << npack);
+      npack = 0;
+      sizepack = 0;
+      Simulator::Schedule (Seconds (5.0), &TestProject::CalcThroughput, this);
     }
 
     /*
@@ -219,6 +234,8 @@ namespace ns3 {
 
       Ptr<Packet> packet;
       packet = m_socket->Recv();
+      npack++;
+      sizepack += packet->GetSize ();
       //int size = packet->GetSize (); //debug only
       uint8_t *buffer = new uint8_t[packet->GetSize ()];
       packet->CopyData(buffer, packet->GetSize ());
@@ -231,19 +248,19 @@ namespace ns3 {
       //std::cout << "buffer: " << buffer << "\ns: " << s << "\nsize: " << size << "\n"; //debug only
       double velocity = (double) std::stoi (payload.at(1));
 
-      Ptr<Ipv4> ipv4 = this->GetNode ()->GetObject<Ipv4> ();
+      /*Ptr<Ipv4> ipv4 = this->GetNode ()->GetObject<Ipv4> ();
       Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
-      Ipv4Address ipAddr = iaddr.GetLocal ();
+      Ipv4Address ipAddr = iaddr.GetLocal ();*/
       
-      NS_LOG_INFO("Packet received - "
+      /*NS_LOG_INFO("Packet received - "
           << "[id:" << m_sumo_client->GetVehicleId(this->GetNode()) << "]"
           << "[ip:" << ipAddr << "]"
           << "[vel:" << m_sumo_client->TraCIAPI::vehicle.getSpeed(m_sumo_client->GetVehicleId(this->GetNode())) << "m/s]"
           << "[rx vel:" << velocity << "m/s]"
           << "[s:" << payload.at(0) << "]"
           << "[s_pos x:" << payload.at(2) << " y:" << payload.at(3) << "]"
-          << "[s_lane_id:" << payload.at(4) << "]");
-      
+          << "[s_lane_id:" << payload.at(4) << "]");*/
+
       //NS_LOG_INFO("Set speed of: " << m_sumo_client->GetVehicleId(this->GetNode()) << " [" << ipAddr << "] to " << velocity << "m/s");
       m_sumo_client->TraCIAPI::vehicle.setSpeed (m_sumo_client->GetVehicleId (this->GetNode ()), velocity);
     }
@@ -368,7 +385,7 @@ int main (int argc, char *argv[]) {
   // Creazione di un pool di nodi perchè devono essere creati in precedenza per sumo
   ns3::Time simulationTime (ns3::Seconds(5000));
   NodeContainer nodePool;
-  nodePool.Create (5000);
+  nodePool.Create (100);
   uint32_t nodeCounter (0);
 
   //Creazione modello di comunicazione 
@@ -468,7 +485,7 @@ int main (int argc, char *argv[]) {
   };
 
   // Lanciamo il client per sumo con le due callback fatte in precedenza  
-  sumoClient->SumoSetup (setupNewWifiNode, shutdownWifiNode);
+  sumoClient->SumoSetup (setupNewWifiNode, shutdownWifiNode);  
 
   // inizio simulazione
   AnimationInterface anim ("scratch/project.xml"); // Mandatory
