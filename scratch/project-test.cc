@@ -66,7 +66,7 @@ namespace ns3 {
                        MakeUintegerChecker<uint16_t> ())
         .AddAttribute ("Interval",
                        "The time to wait between packets",
-                       TimeValue (Seconds (0.1)),
+                       TimeValue (Seconds (0.021)),
                        MakeTimeAccessor (&TestProject::m_interval),
                        MakeTimeChecker ())
         .AddAttribute ("Velocity", "Velocity value which is sent to vehicles.",
@@ -79,8 +79,8 @@ namespace ns3 {
                        MakePointerAccessor (&TestProject::m_sumo_client),
                        MakePointerChecker<TraciClient> ())
         .AddTraceSource ("Tx", "A new packet is created and is sent", 
-                        MakeTraceSourceAccessor (&TestProject::m_txTrace),
-                        "ns3::Packet::TracedCallback")
+                          MakeTraceSourceAccessor (&TestProject::m_txTrace),
+                          "ns3::Packet::TracedCallback")
       ;
       return tid;
     }
@@ -204,16 +204,16 @@ namespace ns3 {
       msg << laneid << "*";
 
       //Padding
-      for(int i = msg.str().length(); i < 200; ++i) msg << "0";        
+      for(int i = msg.str().length(); i < 1000; ++i) msg << "0";        
       msg << "\0";
       
       Ptr<Packet> packet = Create<Packet> ((uint8_t*) msg.str().c_str(), msg.str().length());
 
+      m_socket_2->Send (packet);
+/*
       Ptr<Ipv4> ipv4 = this->GetNode ()->GetObject<Ipv4> ();
       Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
       Ipv4Address ipAddr = iaddr.GetLocal ();
-
-      m_socket_2->Send (packet);
       
       NS_LOG_INFO("Packet sent at time " << Simulator::Now().GetSeconds()
                   << "s - [ip:" << ipAddr << "]"
@@ -221,7 +221,7 @@ namespace ns3 {
                   << "[tx vel:" << m_velocity << "m/s]"
                   << "[pos x:" << pos.x << " y:" << pos.y << "]"
                   << "[laneid:" << laneid << "]");
-
+*/
       ScheduleTransmit (m_interval);
     }
 
@@ -235,12 +235,19 @@ namespace ns3 {
     }
 
     void CalcThroughput (void) {
-      thr = sizepack*8.0/1.0 / 1024;
+      std::string s = "";
+      //compute the string to print the map
+      for(auto it = id_v.cbegin(); it != id_v.cend(); ++it) {
+          s = s + it->first + ":" + std::to_string(it->second) + " - ";
+      }
+
+      thr = ((sizepack*8.0)/1.0)/(1024*1024);
       if(npack != 0)
-        NS_LOG_INFO("ID: " << m_sumo_client->GetVehicleId(this->GetNode()) << " - Throughput: " << thr
-                    << " Kbps - Num packets: " << npack << " Time: " << Simulator::Now().GetSeconds());
+        NS_LOG_INFO("ID: " << m_sumo_client->GetVehicleId(this->GetNode()) << " - Thr: " << thr 
+                    << " Mbps - N_p: " << npack << " Conn: " << id_v.size() << " - " << s);
       npack = 0;
       sizepack = 0;
+      id_v.clear();
       Simulator::Schedule (Seconds (1.0), &TestProject::CalcThroughput, this);
     }
 
@@ -269,12 +276,12 @@ namespace ns3 {
           payload.push_back(t);
       }
       //std::cout << "buffer: " << buffer << "\ns: " << s << "\nsize: " << size << "\n"; //debug only
-      double velocity = (double) std::stoi (payload.at(1));
+/*      double velocity = (double) std::stoi (payload.at(1));
 
       Ptr<Ipv4> ipv4 = this->GetNode ()->GetObject<Ipv4> ();
       Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
       Ipv4Address ipAddr = iaddr.GetLocal ();
-      
+
       NS_LOG_INFO("Packet received - "
           << "[id:" << m_sumo_client->GetVehicleId(this->GetNode()) << "]"
           << "[ip:" << ipAddr << "]"
@@ -283,6 +290,12 @@ namespace ns3 {
           << "[s:" << payload.at(0) << "]"
           << "[s_pos x:" << payload.at(2) << " y:" << payload.at(3) << "]"
           << "[s_lane_id:" << payload.at(4) << "]");
+*/
+      auto f = id_v.find(payload.at(0));
+      if (f != id_v.end())
+        f->second = f->second + 1;
+      else 
+        id_v.insert({payload.at(0), 1});
 
       //NS_LOG_INFO("Set speed of: " << m_sumo_client->GetVehicleId(this->GetNode()) << " [" << ipAddr << "] to " << velocity << "m/s");
       //m_sumo_client->TraCIAPI::vehicle.setSpeed (m_sumo_client->GetVehicleId (this->GetNode ()), velocity);
@@ -307,6 +320,7 @@ namespace ns3 {
     double npack = 0;
     uint32_t sizepack = 0;
     double thr = 0;
+    std::unordered_map<std::string, int> id_v;
   };
 
   /*
@@ -417,7 +431,7 @@ int main (int argc, char *argv[]) {
   nodePool.Create (1000);
   uint32_t nodeCounter (0);
   NetDeviceContainer netDevices;
-
+/*
   YansWifiChannelHelper wifiChannel = YansWifiChannelHelper::Default ();
   YansWavePhyHelper wavePhy =  YansWavePhyHelper::Default ();
   wavePhy.SetChannel (wifiChannel.Create ());
@@ -427,24 +441,31 @@ int main (int argc, char *argv[]) {
                                       "DataMode",StringValue ("0fdmRate6MbpsBW10MHz"),
                                       "ControlMode",StringValue ("0fdmRate6MbpsBW10MHz"));
   netDevices = waveHelper.Install (wavePhy, waveMac, nodePool);
+*/
 
-/*
   YansWifiPhyHelper wifiPhy = YansWifiPhyHelper::Default ();
   YansWifiChannelHelper wifiChannel = YansWifiChannelHelper::Default ();
+  wifiPhy.Set("TxPowerStart", DoubleValue (21.5));
+  wifiPhy.Set("TxPowerEnd", DoubleValue (21.5));
+  //double freq = 5.9e9;
+  //wifiChannel.SetPropagationDelay ("ns3::ConstantSpeedPropagationDelayModel");
+  //wifiChannel.AddPropagationLoss ("ns3::LogDistancePropagationLossModel");
+  wifiChannel.AddPropagationLoss ("ns3::NakagamiPropagationLossModel");
   wifiPhy.SetChannel (wifiChannel.Create ());
   wifiPhy.SetPcapDataLinkType (WifiPhyHelper::DLT_IEEE802_11);
   NqosWaveMacHelper wifi80211pMac = NqosWaveMacHelper::Default ();
   Wifi80211pHelper wifi80211p = Wifi80211pHelper::Default ();
-  wifi80211p.SetRemoteStationManager ("ns3::ConstantRateWifiManager",
-                                      "DataMode",StringValue ("OfdmRate6MbpsBW10MHz"),
-                                      "ControlMode",StringValue ("OfdmRate6MbpsBW10MHz"));
-  NetDeviceContainer netDevices = wifi80211p.Install (wifiPhy, wifi80211pMac, nodePool);
-*/
+  //wifi80211p.SetRemoteStationManager ("ns3::ConstantRateWifiManager",
+  //                                    "DataMode",StringValue ("OfdmRate6MbpsBW10MHz"),
+  //                                    "ControlMode",StringValue ("OfdmRate6MbpsBW10MHz"));
+  wifi80211p.SetStandard(WIFI_PHY_STANDARD_80211_10MHZ);
+  netDevices = wifi80211p.Install(wifiPhy, wifi80211pMac, nodePool);
+
   /*
   //Creazione modello di comunicazione 
   YansWifiChannelHelper wifiChannel = YansWifiChannelHelper::Default();
   //double freq = 5.9e9;
-  //wifiChannel.SetPropagationDelay ("ns3::ConstantSpeedPropagationDelayModel");
+  //wifiChannel.SetPropagationDelay ("ns3::ConstantSpeedPropagationDelayModel", "Frequency", DoubleValue (freq), "HeightAboveZ", DoubleValue (1.5));
   //wifiChannel.AddPropagationLoss ("ns3::LogDistancePropagationLossModel");
   //wifiChannel.AddPropagationLoss ("ns3::NakagamiPropagationLossModel");
   YansWifiPhyHelper wifiPhy = YansWifiPhyHelper::Default ();
@@ -490,7 +511,7 @@ int main (int argc, char *argv[]) {
 
   // Setup del client per sumo
   Ptr<TraciClient> sumoClient = CreateObject<TraciClient> ();
-  sumoClient->SetAttribute ("SumoConfigPath", StringValue ("maps/test3/osm.sumocfg"));
+  sumoClient->SetAttribute ("SumoConfigPath", StringValue ("maps/test4/osm.sumocfg"));
   sumoClient->SetAttribute ("SumoBinaryPath", StringValue (""));    // use system installation of sumo
   sumoClient->SetAttribute ("SynchInterval", TimeValue (Seconds (0.1)));
   sumoClient->SetAttribute ("StartTime", TimeValue (Seconds (0.0)));
