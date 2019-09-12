@@ -150,7 +150,7 @@ namespace ns3 {
 
       ScheduleTransmit (Seconds (0.0));
       //Simulator::Schedule (Seconds (10.0), &TestProject::ChangeSpeed, this);
-      Simulator::Schedule (Seconds (1.0), &TestProject::CalcThroughput, this);
+      Simulator::Schedule (Seconds (1.0), &TestProject::CalcStats, this);
     }
 
     /*
@@ -201,7 +201,7 @@ namespace ns3 {
 
       std::string laneid = m_sumo_client->vehicle.getLaneID(m_sumo_client->GetVehicleId(this->GetNode())); //lane/road id
       //std::cout << "laneID:" << laneid << std::endl;
-      msg << laneid << "*";
+      msg << laneid << "*" << std::to_string(Simulator::Now().GetMicroSeconds()) << "*";
 
       //Padding
       for(int i = msg.str().length(); i < 1000; ++i) msg << "0";        
@@ -234,7 +234,7 @@ namespace ns3 {
       Simulator::Schedule (Seconds (10.0), &TestProject::ChangeSpeed, this);
     }
 
-    void CalcThroughput (void) {
+    void CalcStats (void) {
       std::string s = "";
       //compute the string to print the map
       for(auto it = id_v.cbegin(); it != id_v.cend(); ++it) {
@@ -242,13 +242,19 @@ namespace ns3 {
       }
 
       thr = ((sizepack*8.0)/1.0)/(1024*1024);
+      if (id_v.size() == 0) thr_car = 0;
+      else thr_car = thr/id_v.size();
       if(npack != 0)
+        mean_delay = delay/npack;
         NS_LOG_INFO("ID: " << m_sumo_client->GetVehicleId(this->GetNode()) << " - Thr: " << thr 
-                    << " Mbps - N_p: " << npack << " Conn: " << id_v.size() << " - " << s);
+                    << " Mbps - Thr/cars: " << thr_car << " Mbps - MeanDelay: " << mean_delay 
+                    << " us - N_p: " << npack << " Conn: " << id_v.size() << " - " << s);
       npack = 0;
       sizepack = 0;
+      mean_delay = 0;
+      delay = 0;
       id_v.clear();
-      Simulator::Schedule (Seconds (1.0), &TestProject::CalcThroughput, this);
+      Simulator::Schedule (Seconds (1.0), &TestProject::CalcStats, this);
     }
 
     /*
@@ -275,6 +281,8 @@ namespace ns3 {
       for (const auto& t : tokens) {
           payload.push_back(t);
       }
+
+      delay += (Simulator::Now().GetMicroSeconds() - std::stoull(payload.at(5)));
       //std::cout << "buffer: " << buffer << "\ns: " << s << "\nsize: " << size << "\n"; //debug only
 /*      double velocity = (double) std::stoi (payload.at(1));
 
@@ -320,7 +328,10 @@ namespace ns3 {
     double npack = 0;
     uint32_t sizepack = 0;
     double thr = 0;
+    double thr_car = 0;
     std::unordered_map<std::string, int> id_v;
+    int64_t delay = 0;
+    int64_t mean_delay = 0;
   };
 
   /*
