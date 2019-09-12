@@ -252,16 +252,21 @@ namespace ns3 {
      * Only for test now.
      */
     void ChangeSpeed (void) {
-      m_velocity = rand () % 60; // between 0 and 60 m/s
+      m_velocity = rand () % 60; // between 0 and 60 m/s{
       Simulator::Schedule (Seconds (10.0), &TestProject::ChangeSpeed, this);
     }      
 
     void CalcStats (void) {
       //Update vehicle data
-      my_velocity = m_sumo_client->vehicle.getSpeed(my_id);
-      my_lane_id = m_sumo_client->vehicle.getLaneID(my_id);
-      my_road_id = m_sumo_client->vehicle.getRoadID(my_id);
-
+      try{
+        my_velocity = m_sumo_client->vehicle.getSpeed(my_id);
+        my_lane_id = m_sumo_client->vehicle.getLaneID(my_id);
+        my_road_id = m_sumo_client->vehicle.getRoadID(my_id);
+      }catch(const libsumo::TraCIException e) {
+        std::cerr << e.what();
+        return;
+      }
+      
       std::string s = "";
       //compute the string to print the map
       for(auto it = id_v.cbegin(); it != id_v.cend(); ++it) {
