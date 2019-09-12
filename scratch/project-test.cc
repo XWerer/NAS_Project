@@ -13,7 +13,6 @@
 #include "ns3/netanim-module.h"
 #include "ns3/packet.h"
 #include "ns3/socket.h"
-#include "ns3/ocb-wifi-mac.h"
 #include "ns3/yans-wifi-helper.h"
 #include "ns3/vector.h"
 #include "ns3/string.h"
@@ -131,26 +130,32 @@ namespace ns3 {
     void StartApplication (void) {
       NS_LOG_FUNCTION(this);
 
+      //Retrive vehicle information
+      my_id = m_sumo_client->GetVehicleId(this->GetNode());
+      my_velocity = m_sumo_client->vehicle.getSpeed(my_id);
+      my_lane_id = m_sumo_client->vehicle.getLaneID(my_id);
+      my_road_id = m_sumo_client->vehicle.getRoadID(my_id);
+
       //Recv
       TypeId tid = TypeId::LookupByName ("ns3::UdpSocketFactory");
-      m_socket = Socket::CreateSocket (GetNode (), tid);
-      InetSocketAddress local = InetSocketAddress (Ipv4Address::GetAny (), m_port);
-      m_socket->Bind (local);
-      m_socket->SetRecvCallback (MakeCallback (&TestProject::HandleRead, this));
+      m_socket = Socket::CreateSocket (GetNode(), tid);
+      InetSocketAddress local = InetSocketAddress (Ipv4Address::GetAny(), m_port);
+      m_socket->Bind(local);
+      m_socket->SetRecvCallback(MakeCallback(&TestProject::HandleRead, this));
 
       //Send
-      TypeId tid_2 = TypeId::LookupByName ("ns3::UdpSocketFactory");
-      m_socket_2 = Socket::CreateSocket (GetNode (), tid_2);
-      Ptr<Ipv4> ipv4 = this->GetNode ()->GetObject<Ipv4> ();
-      Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
-      Ipv4Address ipAddr = iaddr.GetBroadcast ();
-      InetSocketAddress remote = InetSocketAddress (ipAddr, m_port);
-      m_socket_2->SetAllowBroadcast (true);
-      m_socket_2->Connect (remote);
+      TypeId tid_2 = TypeId::LookupByName("ns3::UdpSocketFactory");
+      m_socket_2 = Socket::CreateSocket(GetNode(), tid_2);
+      Ptr<Ipv4> ipv4 = this->GetNode()->GetObject<Ipv4>();
+      Ipv4InterfaceAddress iaddr = ipv4->GetAddress(1, 0);
+      Ipv4Address ipAddr = iaddr.GetBroadcast();
+      InetSocketAddress remote = InetSocketAddress(ipAddr, m_port);
+      m_socket_2->SetAllowBroadcast(true);
+      m_socket_2->Connect(remote);
 
-      ScheduleTransmit (Seconds (0.0));
+      ScheduleTransmit(Seconds(0.0));
       //Simulator::Schedule (Seconds (10.0), &TestProject::ChangeSpeed, this);
-      Simulator::Schedule (Seconds (1.0), &TestProject::CalcThroughput, this);
+      Simulator::Schedule(Seconds(1.0), &TestProject::CalcThroughput, this);
     }
 
     /*
@@ -177,7 +182,7 @@ namespace ns3 {
      */
     void ScheduleTransmit (Time dt) {
       NS_LOG_FUNCTION(this << dt);
-      m_sendEvent = Simulator::Schedule (dt, &TestProject::Send, this);
+      m_sendEvent = Simulator::Schedule(dt, &TestProject::Send, this);
     }
     
     /*
@@ -187,42 +192,47 @@ namespace ns3 {
       NS_LOG_FUNCTION(this << m_socket);
 
       std::ostringstream msg; 
-      msg << m_sumo_client->GetVehicleId(this->GetNode()) << "*"; //id
-      msg << std::to_string(m_velocity) << "*"; //velocità 
+      msg << my_id << "*"; //id
+      msg << std::to_string(my_velocity) << "*"; //velocità 
 
       Ptr<MobilityModel> mob = this->GetNode()->GetObject<MobilityModel>();
       Vector pos = mob->GetPosition();
       msg << std::to_string(pos.x) << "*" << std::to_string(pos.y) << "*"; //Position of the sender
 
       /* Another way to get the position by sumo
-      libsumo::TraCIPosition p = m_sumo_client->vehicle.getPosition(m_sumo_client->GetVehicleId(this->GetNode()));
+      libsumo::TraCIPosition p = m_sumo_client->vehicle.getPosition(my_id);
       std::cout << p.x << " " << p.y << std::endl;
       */
 
-      std::string laneid = m_sumo_client->vehicle.getLaneID(m_sumo_client->GetVehicleId(this->GetNode())); //lane/road id
-      //std::cout << "laneID:" << laneid << std::endl;
-      msg << laneid << "*";
+      //std::string lane_id = m_sumo_client->vehicle.getLaneID(my_id); //lane id
+      //std::cout << "lane ID:" << lane_id << std::endl;
+      msg << my_lane_id << "*";
+
+      //std::string road_id = m_sumo_client->vehicle.getRoadID(my_id); //road id
+      //std::cout << "road ID:" << road_id << std::endl;
+      msg << my_road_id << "*";
 
       //Padding
-      for(int i = msg.str().length(); i < 1000; ++i) msg << "0";        
+      for(int i = msg.str().length(); i < 500; ++i) msg << "0";        
       msg << "\0";
       
-      Ptr<Packet> packet = Create<Packet> ((uint8_t*) msg.str().c_str(), msg.str().length());
+      Ptr<Packet> packet = Create<Packet>((uint8_t*) msg.str().c_str(), msg.str().length());
 
-      m_socket_2->Send (packet);
-/*
+      m_socket_2->Send(packet);
+
       Ptr<Ipv4> ipv4 = this->GetNode ()->GetObject<Ipv4> ();
       Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
       Ipv4Address ipAddr = iaddr.GetLocal ();
       
       NS_LOG_INFO("Packet sent at time " << Simulator::Now().GetSeconds()
                   << "s - [ip:" << ipAddr << "]"
-                  << "[veh:" << m_sumo_client->GetVehicleId(this->GetNode()) << "]" 
+                  << "[veh:" << my_id << "]" 
                   << "[tx vel:" << m_velocity << "m/s]"
                   << "[pos x:" << pos.x << " y:" << pos.y << "]"
-                  << "[laneid:" << laneid << "]");
-*/
-      ScheduleTransmit (m_interval);
+                  << "[laneid:" << my_lane_id << "]"
+                  << "[roadid:" << my_road_id << "]");
+
+      ScheduleTransmit(m_interval);
     }
 
     /*
@@ -235,6 +245,11 @@ namespace ns3 {
     }
 
     void CalcThroughput (void) {
+      //Update vehicle data
+      my_velocity = m_sumo_client->vehicle.getSpeed(my_id);
+      my_lane_id = m_sumo_client->vehicle.getLaneID(my_id);
+      my_road_id = m_sumo_client->vehicle.getRoadID(my_id);
+
       std::string s = "";
       //compute the string to print the map
       for(auto it = id_v.cbegin(); it != id_v.cend(); ++it) {
@@ -243,12 +258,12 @@ namespace ns3 {
 
       thr = ((sizepack*8.0)/1.0)/(1024*1024);
       if(npack != 0)
-        NS_LOG_INFO("ID: " << m_sumo_client->GetVehicleId(this->GetNode()) << " - Thr: " << thr 
+        NS_LOG_INFO("ID: " << my_id << " - Thr: " << thr 
                     << " Mbps - N_p: " << npack << " Conn: " << id_v.size() << " - " << s);
       npack = 0;
       sizepack = 0;
       id_v.clear();
-      Simulator::Schedule (Seconds (1.0), &TestProject::CalcThroughput, this);
+      Simulator::Schedule(Seconds (1.0), &TestProject::CalcThroughput, this);
     }
 
     /*
@@ -264,40 +279,59 @@ namespace ns3 {
 
       Ptr<Packet> packet;
       packet = m_socket->Recv();
-      npack++;
-      sizepack += packet->GetSize ();
+      ++npack;
+      sizepack += packet->GetSize();
       //int size = packet->GetSize (); //debug only
-      uint8_t *buffer = new uint8_t[packet->GetSize ()];
-      packet->CopyData(buffer, packet->GetSize ());
+      uint8_t *buffer = new uint8_t[packet->GetSize()];
+      packet->CopyData(buffer, packet->GetSize());
       std::string s = std::string ((char*) buffer);
       //tokenization 
       boost::tokenizer<boost::char_separator<char>> tokens(s, sep);
       for (const auto& t : tokens) {
           payload.push_back(t);
       }
-      //std::cout << "buffer: " << buffer << "\ns: " << s << "\nsize: " << size << "\n"; //debug only
-/*      double velocity = (double) std::stoi (payload.at(1));
+    
+      double velocity = (double) std::stoi (payload.at(1));
 
       Ptr<Ipv4> ipv4 = this->GetNode ()->GetObject<Ipv4> ();
       Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
       Ipv4Address ipAddr = iaddr.GetLocal ();
 
       NS_LOG_INFO("Packet received - "
-          << "[id:" << m_sumo_client->GetVehicleId(this->GetNode()) << "]"
+          << "[id:" << my_id << "]"
           << "[ip:" << ipAddr << "]"
-          << "[vel:" << m_sumo_client->TraCIAPI::vehicle.getSpeed(m_sumo_client->GetVehicleId(this->GetNode())) << "m/s]"
+          << "[vel:" << m_sumo_client->TraCIAPI::vehicle.getSpeed(my_id) << "m/s]"
           << "[rx vel:" << velocity << "m/s]"
           << "[s:" << payload.at(0) << "]"
           << "[s_pos x:" << payload.at(2) << " y:" << payload.at(3) << "]"
-          << "[s_lane_id:" << payload.at(4) << "]");
-*/
+          << "[s_lane_id:" << payload.at(4) << "]"
+          << "[s_road_id:" << payload.at(5) << "]");
+
+      //Update info of the network(ns3)
       auto f = id_v.find(payload.at(0));
       if (f != id_v.end())
         f->second = f->second + 1;
       else 
         id_v.insert({payload.at(0), 1});
 
-      //NS_LOG_INFO("Set speed of: " << m_sumo_client->GetVehicleId(this->GetNode()) << " [" << ipAddr << "] to " << velocity << "m/s");
+      //Update info of vehicle (info1)
+      auto it1 = info1.find(payload.at(0));
+      if (it1 != info1.end())
+        it1->second = std::make_tuple(payload.at(4), payload.at(5), velocity);
+      else 
+        info1.insert({payload.at(0), std::make_tuple(payload.at(4), payload.at(5), velocity)});
+
+      //Update info of vehicle (info2)
+      auto it2 = info2.find(payload.at(4));
+      if (it2 != info2.end())
+        it2->second.push_back(payload.at(0));
+      else{ 
+        std::vector<std::string> v;
+        v.push_back(payload.at(0));
+        info2.insert({payload.at(4), v});
+      }
+
+      //NS_LOG_INFO("Set speed of: " << my_id << " [" << ipAddr << "] to " << velocity << "m/s");
       //m_sumo_client->TraCIAPI::vehicle.setSpeed (m_sumo_client->GetVehicleId (this->GetNode ()), velocity);
     }
 
@@ -305,8 +339,8 @@ namespace ns3 {
 
     Time m_interval;              //Packet inter-send time
 
-    Ptr<Socket> m_socket;         //Socket
-    Ptr<Socket> m_socket_2;
+    Ptr<Socket> m_socket;         //Socket recv
+    Ptr<Socket> m_socket_2;       //Socket send
 
     uint16_t m_velocity;          //Transmitted velocity
     EventId m_sendEvent;          //Event to send the next packet
@@ -321,6 +355,16 @@ namespace ns3 {
     uint32_t sizepack = 0;
     double thr = 0;
     std::unordered_map<std::string, int> id_v;
+
+    //Vehicle status variables
+    std::string my_lane_id;
+    std::string my_road_id;
+    double my_velocity;
+    std::string my_id;
+
+    //Other vehicles status varibles
+    std::unordered_map<std::string, std::tuple<std::string, std::string, double>> info1;
+    std::unordered_map<std::string, std::vector<std::string>> info2;
   };
 
   /*
