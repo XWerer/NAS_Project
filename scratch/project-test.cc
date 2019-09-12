@@ -174,13 +174,13 @@ namespace ns3 {
         m_socket_2->SetRecvCallback (MakeNullCallback<void, Ptr<Socket> > ());
       }
 
-      Simulator::Cancel (m_sendEvent);
+      Simulator::Cancel(m_sendEvent);
     }
 
     /*
      * ScheduleTransmit method, that schedule the trasmission of a pacchet each dt time.
      */
-    void ScheduleTransmit (Time dt) {
+    void ScheduleTransmit(Time dt) {
       NS_LOG_FUNCTION(this << dt);
       m_sendEvent = Simulator::Schedule(dt, &TestProject::Send, this);
     }
@@ -210,7 +210,10 @@ namespace ns3 {
 
       //std::string road_id = m_sumo_client->vehicle.getRoadID(my_id); //road id
       //std::cout << "road ID:" << road_id << std::endl;
-      msg << my_road_id << "*" << std::to_string(Simulator::Now().GetMicroSeconds()) << "*";
+      msg << my_road_id << "*";
+
+      //timestamp
+      msg << std::to_string(Simulator::Now().GetMicroSeconds()) << "*";
 
       //Padding
       for(int i = msg.str().length(); i < 500; ++i) msg << "0";        
@@ -219,7 +222,7 @@ namespace ns3 {
       Ptr<Packet> packet = Create<Packet>((uint8_t*) msg.str().c_str(), msg.str().length());
 
       m_socket_2->Send(packet);
-
+/*
       Ptr<Ipv4> ipv4 = this->GetNode()->GetObject<Ipv4>();
       Ipv4InterfaceAddress iaddr = ipv4->GetAddress(1, 0);
       Ipv4Address ipAddr = iaddr.GetLocal();
@@ -231,7 +234,7 @@ namespace ns3 {
                   << "[pos x:" << pos.x << " y:" << pos.y << "]"
                   << "[laneid:" << my_lane_id << "]"
                   << "[roadid:" << my_road_id << "]");
-
+*/
       ScheduleTransmit(m_interval);
     }
 
@@ -253,7 +256,7 @@ namespace ns3 {
       std::string s = "";
       //compute the string to print the map
       for(auto it = id_v.cbegin(); it != id_v.cend(); ++it) {
-          s = s + it->first + ":" + std::to_string(it->second) + " - ";
+        s = s + it->first + ":" + std::to_string(it->second) + " - ";
       }
 
       thr = ((sizepack*8.0)/1.0)/(1024*1024);
@@ -261,9 +264,28 @@ namespace ns3 {
       else thr_car = thr/id_v.size();
       if(npack != 0){
         mean_delay = delay/npack;
-        NS_LOG_INFO("ID: " << m_sumo_client->GetVehicleId(this->GetNode()) << " - Thr: " << thr 
+        NS_LOG_INFO("ID: " << my_id << " - Thr: " << thr 
                     << " Mbps - Thr/cars: " << thr_car << " Mbps - MeanDelay: " << mean_delay 
                     << " us - N_p: " << npack << " Conn: " << id_v.size() << " - " << s);
+  
+        s = "";
+        for(auto it = info1.cbegin(); it != info1.cend(); ++it) {
+          s = s + it->first + ":<" + std::get<0>(it->second) + "," + std::get<1>(it->second) + "," + std::to_string(std::get<2>(it->second)) + "> - ";
+        }
+        NS_LOG_INFO("ID: " << my_id << " - Info1: " << s);
+
+        s = "";
+        for(auto it = info2.cbegin(); it != info2.cend(); ++it) {
+          s = s + it->first + ": ";
+          std::vector<std::string> vec = it->second;
+          std::sort(vec.begin(), vec.end());
+          vec.erase(unique(vec.begin(), vec.end()), vec.end());
+          for(size_t i = 0; i < vec.size(); ++i){
+            s = s + vec.at(i) + ",";
+          }
+          s = s + " - ";
+        }
+        NS_LOG_INFO("ID: " << my_id << " - Info2: " << s);
       }
 
       npack = 0;
@@ -271,6 +293,9 @@ namespace ns3 {
       mean_delay = 0;
       delay = 0;
       id_v.clear();
+      info1.clear();
+      info2.clear();
+
       Simulator::Schedule(Seconds(1.0), &TestProject::CalcStats, this);
     }
 
@@ -302,7 +327,7 @@ namespace ns3 {
       double velocity = (double) std::stoi (payload.at(1));
 
       delay += (Simulator::Now().GetMicroSeconds() - std::stoull(payload.at(6)));
-
+/*
       Ptr<Ipv4> ipv4 = this->GetNode()->GetObject<Ipv4>();
       Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
       Ipv4Address ipAddr = iaddr.GetLocal ();
@@ -317,7 +342,7 @@ namespace ns3 {
           << "[s_lane_id:" << payload.at(4) << "]"
           << "[s_road_id:" << payload.at(5) << "]"
           << "[timestamp:" << payload.at(6) << "]");
-
+*/
       //Update info of the network(ns3)
       auto f = id_v.find(payload.at(0));
       if (f != id_v.end())
@@ -333,13 +358,13 @@ namespace ns3 {
         info1.insert({payload.at(0), std::make_tuple(payload.at(4), payload.at(5), velocity)});
 
       //Update info of vehicle (info2)
-      auto it2 = info2.find(payload.at(4));
+      auto it2 = info2.find(payload.at(5));
       if (it2 != info2.end())
         it2->second.push_back(payload.at(0));
       else{ 
         std::vector<std::string> v;
         v.push_back(payload.at(0));
-        info2.insert({payload.at(4), v});
+        info2.insert({payload.at(5), v});
       }
 
       //NS_LOG_INFO("Set speed of: " << my_id << " [" << ipAddr << "] to " << velocity << "m/s");
