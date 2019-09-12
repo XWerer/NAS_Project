@@ -155,7 +155,7 @@ namespace ns3 {
 
       ScheduleTransmit(Seconds(0.0));
       //Simulator::Schedule (Seconds (10.0), &TestProject::ChangeSpeed, this);
-      Simulator::Schedule(Seconds(1.0), &TestProject::CalcStats, this);
+      ScheduleStats(Seconds(1.0));
     }
 
     /*
@@ -175,16 +175,25 @@ namespace ns3 {
       }
 
       Simulator::Cancel(m_sendEvent);
+      Simulator::Cancel(m_stats);
     }
 
     /*
-     * ScheduleTransmit method, that schedule the trasmission of a pacchet each dt time.
+     * ScheduleTransmit method, that schedule the trasmission of a packet each dt time.
      */
     void ScheduleTransmit(Time dt) {
       NS_LOG_FUNCTION(this << dt);
       m_sendEvent = Simulator::Schedule(dt, &TestProject::Send, this);
     }
     
+    /*
+     * ScheduleStats method, that schedule the calculation of the stats each dt time.
+     */
+    void ScheduleStats(Time dt) {
+      NS_LOG_FUNCTION(this << dt);
+      m_stats = Simulator::Schedule(dt, &TestProject::CalcStats, this);
+    }
+
     /*
      * Send method that send a paket 
      */
@@ -272,7 +281,7 @@ namespace ns3 {
         for(auto it = info1.cbegin(); it != info1.cend(); ++it) {
           s = s + it->first + ":<" + std::get<0>(it->second) + "," + std::get<1>(it->second) + "," + std::to_string(std::get<2>(it->second)) + "> - ";
         }
-        NS_LOG_INFO("ID: " << my_id << " - Info1: " << s);
+        //NS_LOG_INFO("ID: " << my_id << " - Info1: " << s);
 
         s = "";
         for(auto it = info2.cbegin(); it != info2.cend(); ++it) {
@@ -285,7 +294,7 @@ namespace ns3 {
           }
           s = s + " - ";
         }
-        NS_LOG_INFO("ID: " << my_id << " - Info2: " << s);
+        //NS_LOG_INFO("ID: " << my_id << " - Info2: " << s);
       }
 
       npack = 0;
@@ -380,6 +389,7 @@ namespace ns3 {
 
     uint16_t m_velocity;          //Transmitted velocity
     EventId m_sendEvent;          //Event to send the next packet
+    EventId m_stats; 
 
     Ptr<TraciClient> m_sumo_client; //Sumo client
 
