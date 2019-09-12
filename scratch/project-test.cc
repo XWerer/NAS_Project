@@ -155,11 +155,7 @@ namespace ns3 {
 
       ScheduleTransmit(Seconds(0.0));
       //Simulator::Schedule (Seconds (10.0), &TestProject::ChangeSpeed, this);
-<<<<<<< HEAD
-      Simulator::Schedule(Seconds(1.0), &TestProject::CalcThroughput, this);
-=======
-      Simulator::Schedule (Seconds (1.0), &TestProject::CalcStats, this);
->>>>>>> e77acfb4d61fb4bb03e7d431ab667793fe0e0403
+      Simulator::Schedule(Seconds(1.0), &TestProject::CalcStats, this);
     }
 
     /*
@@ -208,19 +204,13 @@ namespace ns3 {
       std::cout << p.x << " " << p.y << std::endl;
       */
 
-<<<<<<< HEAD
       //std::string lane_id = m_sumo_client->vehicle.getLaneID(my_id); //lane id
       //std::cout << "lane ID:" << lane_id << std::endl;
       msg << my_lane_id << "*";
 
       //std::string road_id = m_sumo_client->vehicle.getRoadID(my_id); //road id
       //std::cout << "road ID:" << road_id << std::endl;
-      msg << my_road_id << "*";
-=======
-      std::string laneid = m_sumo_client->vehicle.getLaneID(m_sumo_client->GetVehicleId(this->GetNode())); //lane/road id
-      //std::cout << "laneID:" << laneid << std::endl;
-      msg << laneid << "*" << std::to_string(Simulator::Now().GetMicroSeconds()) << "*";
->>>>>>> e77acfb4d61fb4bb03e7d431ab667793fe0e0403
+      msg << my_road_id << "*" << std::to_string(Simulator::Now().GetMicroSeconds()) << "*";
 
       //Padding
       for(int i = msg.str().length(); i < 500; ++i) msg << "0";        
@@ -230,9 +220,9 @@ namespace ns3 {
 
       m_socket_2->Send(packet);
 
-      Ptr<Ipv4> ipv4 = this->GetNode ()->GetObject<Ipv4> ();
-      Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
-      Ipv4Address ipAddr = iaddr.GetLocal ();
+      Ptr<Ipv4> ipv4 = this->GetNode()->GetObject<Ipv4>();
+      Ipv4InterfaceAddress iaddr = ipv4->GetAddress(1, 0);
+      Ipv4Address ipAddr = iaddr.GetLocal();
       
       NS_LOG_INFO("Packet sent at time " << Simulator::Now().GetSeconds()
                   << "s - [ip:" << ipAddr << "]"
@@ -252,18 +242,14 @@ namespace ns3 {
     void ChangeSpeed (void) {
       m_velocity = rand () % 60; // between 0 and 60 m/s
       Simulator::Schedule (Seconds (10.0), &TestProject::ChangeSpeed, this);
-    }
+    }      
 
-<<<<<<< HEAD
-    void CalcThroughput (void) {
+    void CalcStats (void) {
       //Update vehicle data
       my_velocity = m_sumo_client->vehicle.getSpeed(my_id);
       my_lane_id = m_sumo_client->vehicle.getLaneID(my_id);
       my_road_id = m_sumo_client->vehicle.getRoadID(my_id);
 
-=======
-    void CalcStats (void) {
->>>>>>> e77acfb4d61fb4bb03e7d431ab667793fe0e0403
       std::string s = "";
       //compute the string to print the map
       for(auto it = id_v.cbegin(); it != id_v.cend(); ++it) {
@@ -273,26 +259,19 @@ namespace ns3 {
       thr = ((sizepack*8.0)/1.0)/(1024*1024);
       if (id_v.size() == 0) thr_car = 0;
       else thr_car = thr/id_v.size();
-      if(npack != 0)
-<<<<<<< HEAD
-        NS_LOG_INFO("ID: " << my_id << " - Thr: " << thr 
-                    << " Mbps - N_p: " << npack << " Conn: " << id_v.size() << " - " << s);
-=======
+      if(npack != 0){
         mean_delay = delay/npack;
         NS_LOG_INFO("ID: " << m_sumo_client->GetVehicleId(this->GetNode()) << " - Thr: " << thr 
                     << " Mbps - Thr/cars: " << thr_car << " Mbps - MeanDelay: " << mean_delay 
                     << " us - N_p: " << npack << " Conn: " << id_v.size() << " - " << s);
->>>>>>> e77acfb4d61fb4bb03e7d431ab667793fe0e0403
+      }
+
       npack = 0;
       sizepack = 0;
       mean_delay = 0;
       delay = 0;
       id_v.clear();
-<<<<<<< HEAD
-      Simulator::Schedule(Seconds (1.0), &TestProject::CalcThroughput, this);
-=======
-      Simulator::Schedule (Seconds (1.0), &TestProject::CalcStats, this);
->>>>>>> e77acfb4d61fb4bb03e7d431ab667793fe0e0403
+      Simulator::Schedule(Seconds(1.0), &TestProject::CalcStats, this);
     }
 
     /*
@@ -319,17 +298,12 @@ namespace ns3 {
       for (const auto& t : tokens) {
           payload.push_back(t);
       }
-<<<<<<< HEAD
     
       double velocity = (double) std::stoi (payload.at(1));
-=======
 
-      delay += (Simulator::Now().GetMicroSeconds() - std::stoull(payload.at(5)));
-      //std::cout << "buffer: " << buffer << "\ns: " << s << "\nsize: " << size << "\n"; //debug only
-/*      double velocity = (double) std::stoi (payload.at(1));
->>>>>>> e77acfb4d61fb4bb03e7d431ab667793fe0e0403
+      delay += (Simulator::Now().GetMicroSeconds() - std::stoull(payload.at(6)));
 
-      Ptr<Ipv4> ipv4 = this->GetNode ()->GetObject<Ipv4> ();
+      Ptr<Ipv4> ipv4 = this->GetNode()->GetObject<Ipv4>();
       Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
       Ipv4Address ipAddr = iaddr.GetLocal ();
 
@@ -341,7 +315,8 @@ namespace ns3 {
           << "[s:" << payload.at(0) << "]"
           << "[s_pos x:" << payload.at(2) << " y:" << payload.at(3) << "]"
           << "[s_lane_id:" << payload.at(4) << "]"
-          << "[s_road_id:" << payload.at(5) << "]");
+          << "[s_road_id:" << payload.at(5) << "]"
+          << "[timestamp:" << payload.at(6) << "]");
 
       //Update info of the network(ns3)
       auto f = id_v.find(payload.at(0));
@@ -392,7 +367,6 @@ namespace ns3 {
     double thr = 0;
     double thr_car = 0;
     std::unordered_map<std::string, int> id_v;
-<<<<<<< HEAD
 
     //Vehicle status variables
     std::string my_lane_id;
@@ -403,10 +377,8 @@ namespace ns3 {
     //Other vehicles status varibles
     std::unordered_map<std::string, std::tuple<std::string, std::string, double>> info1;
     std::unordered_map<std::string, std::vector<std::string>> info2;
-=======
     int64_t delay = 0;
     int64_t mean_delay = 0;
->>>>>>> e77acfb4d61fb4bb03e7d431ab667793fe0e0403
   };
 
   /*
