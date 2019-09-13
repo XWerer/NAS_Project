@@ -81,7 +81,6 @@ namespace ns3 {
       m_port = 0;
       m_socket = 0;
       m_socket_2 = 0;
-      m_velocity = 0;
       m_sumo_client = nullptr;
     }
 
@@ -103,13 +102,6 @@ namespace ns3 {
       StopApplication ();
     }
 
-  protected:
-    /* in teoria non serve
-    void DoDispose (void) {
-      NS_LOG_FUNCTION(this);
-      Application::DoDispose ();
-    } */
-
   private:
     /*
      * Start application method. 
@@ -120,9 +112,9 @@ namespace ns3 {
 
       //Retrive vehicle information
       my_id = m_sumo_client->GetVehicleId(this->GetNode());
-      my_velocity = m_sumo_client->vehicle.getSpeed(my_id);
-      my_lane_id = m_sumo_client->vehicle.getLaneID(my_id);
       my_road_id = m_sumo_client->vehicle.getRoadID(my_id);
+      my_velocity = m_sumo_client->vehicle.getSpeed(my_id);
+      my_packet_freq = (int) (m_window.GetSeconds()/m_interval.GetSeconds());
 
       //Recv
       TypeId tid = TypeId::LookupByName ("ns3::UdpSocketFactory");
@@ -190,27 +182,10 @@ namespace ns3 {
 
       std::ostringstream msg; 
       msg << my_id << "*"; //id
-      msg << std::to_string(my_velocity) << "*"; //velocità 
-
-      Ptr<MobilityModel> mob = this->GetNode()->GetObject<MobilityModel>();
-      Vector pos = mob->GetPosition();
-      msg << std::to_string(pos.x) << "*" << std::to_string(pos.y) << "*"; //Position of the sender
-
-      /* Another way to get the position by sumo
-      libsumo::TraCIPosition p = m_sumo_client->vehicle.getPosition(my_id);
-      std::cout << p.x << " " << p.y << std::endl;
-      */
-
-      //std::string lane_id = m_sumo_client->vehicle.getLaneID(my_id); //lane id
-      //std::cout << "lane ID:" << lane_id << std::endl;
-      msg << my_lane_id << "*";
-
-      //std::string road_id = m_sumo_client->vehicle.getRoadID(my_id); //road id
-      //std::cout << "road ID:" << road_id << std::endl;
-      msg << my_road_id << "*";
-
-      //timestamp
-      msg << std::to_string(Simulator::Now().GetMicroSeconds()) << "*";
+      msg << my_road_id << "*"; //road id
+      msg << std::to_string(Simulator::Now().GetMicroSeconds()) << "*"; //time stamp
+      msg << std::to_string(my_packet_freq) << "*"; //Packet frequency
+      msg << std::to_string(is_stuck) << "*";   //traffic info
 
       //Padding
       for(int i = msg.str().length(); i < m_size; ++i) msg << "0";        
@@ -219,36 +194,20 @@ namespace ns3 {
       Ptr<Packet> packet = Create<Packet>((uint8_t*) msg.str().c_str(), msg.str().length());
 
       m_socket_2->Send(packet);
-/*
-      Ptr<Ipv4> ipv4 = this->GetNode()->GetObject<Ipv4>();
-      Ipv4InterfaceAddress iaddr = ipv4->GetAddress(1, 0);
-      Ipv4Address ipAddr = iaddr.GetLocal();
       
       NS_LOG_INFO("Packet sent at time " << Simulator::Now().GetSeconds()
-                  << "s - [ip:" << ipAddr << "]"
                   << "[veh:" << my_id << "]" 
-                  << "[tx vel:" << m_velocity << "m/s]"
-                  << "[pos x:" << pos.x << " y:" << pos.y << "]"
-                  << "[laneid:" << my_lane_id << "]"
-                  << "[roadid:" << my_road_id << "]");
-*/
-      ScheduleTransmit(m_interval);
-    }
+                  << "[roadid:" << my_road_id << "]"
+                  << "[p_f:" << my_packet_freq << "]"
+                  << "[flag:" << std::to_string(is_stuck) << "]");
 
-    /*
-     * ChangeSpeed method that change the velocity to trasmit to other veichol.
-     * Only for test now.
-     */
-    void ChangeSpeed (void) {
-      m_velocity = rand () % 60; // between 0 and 60 m/s{
-      Simulator::Schedule (Seconds (10.0), &TestProject::ChangeSpeed, this);
-    }      
+      ScheduleTransmit(m_interval);
+    }    
 
     void CalcStats (void) {
       //Update vehicle data
       try{
         my_velocity = m_sumo_client->vehicle.getSpeed(my_id);
-        my_lane_id = m_sumo_client->vehicle.getLaneID(my_id);
         my_road_id = m_sumo_client->vehicle.getRoadID(my_id);
       } catch(libsumo::TraCIException &e) {
         std::cerr << *e.what() << std::endl;
@@ -272,9 +231,9 @@ namespace ns3 {
   
         s = "";
         for(auto it = info1.cbegin(); it != info1.cend(); ++it) {
-          s = s + it->first + ":<" + std::get<0>(it->second) + "," + std::get<1>(it->second) + "," + std::to_string(std::get<2>(it->second)) + "> - ";
+          s = s + it->first + ": " + it->second + "- ";
         }
-        //NS_LOG_INFO("ID: " << my_id << " - Info1: " << s);
+        NS_LOG_INFO("ID: " << my_id << " - Info1: " << s);
 
         s = "";
         for(auto it = info2.cbegin(); it != info2.cend(); ++it) {
@@ -287,7 +246,7 @@ namespace ns3 {
           }
           s = s + " - ";
         }
-        //NS_LOG_INFO("ID: " << my_id << " - Info2: " << s);
+        NS_LOG_INFO("ID: " << my_id << " - Info2: " << s);
       }
 
       npack = 0;
@@ -316,7 +275,6 @@ namespace ns3 {
       packet = m_socket->Recv();
       ++npack;
       sizepack += packet->GetSize();
-      //int size = packet->GetSize (); //debug only
       uint8_t *buffer = new uint8_t[packet->GetSize()];
       packet->CopyData(buffer, packet->GetSize());
       std::string s = std::string ((char*) buffer);
@@ -326,26 +284,15 @@ namespace ns3 {
           payload.push_back(t);
       }
     
-      double velocity = (double) std::stoi (payload.at(1));
+      delay += (Simulator::Now().GetMicroSeconds() - std::stoll(payload.at(2)));
 
-      delay += (Simulator::Now().GetMicroSeconds() - std::stoll(payload.at(6)));
-
-/*
-      Ptr<Ipv4> ipv4 = this->GetNode()->GetObject<Ipv4>();
-      Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
-      Ipv4Address ipAddr = iaddr.GetLocal ();
-
-      NS_LOG_INFO("Packet received - "
-          << "[id:" << my_id << "]"
-          << "[ip:" << ipAddr << "]"
-          << "[vel:" << m_sumo_client->TraCIAPI::vehicle.getSpeed(my_id) << "m/s]"
-          << "[rx vel:" << velocity << "m/s]"
+      NS_LOG_INFO("Packet received by " << my_id << " - "
           << "[s:" << payload.at(0) << "]"
-          << "[s_pos x:" << payload.at(2) << " y:" << payload.at(3) << "]"
-          << "[s_lane_id:" << payload.at(4) << "]"
-          << "[s_road_id:" << payload.at(5) << "]"
-          << "[timestamp:" << payload.at(6) << "]");
-*/
+          << "[s_road_id:" << payload.at(1) << "]"
+          << "[timestamp:" << payload.at(2) << "]"
+          << "[p_f:" << payload.at(3) << "]"
+          << "[flag:" << payload.at(4) << "]");
+
       //Update info of the network(ns3)
       auto f = id_v.find(payload.at(0));
       if (f != id_v.end())
@@ -356,22 +303,19 @@ namespace ns3 {
       //Update info of vehicle (info1)
       auto it1 = info1.find(payload.at(0));
       if (it1 != info1.end())
-        it1->second = std::make_tuple(payload.at(4), payload.at(5), velocity);
+        it1->second = std::string(payload.at(1));
       else 
-        info1.insert({payload.at(0), std::make_tuple(payload.at(4), payload.at(5), velocity)});
+        info1.insert({payload.at(0), std::string(payload.at(1))});
 
       //Update info of vehicle (info2)
-      auto it2 = info2.find(payload.at(5));
+      auto it2 = info2.find(payload.at(1));
       if (it2 != info2.end())
         it2->second.push_back(payload.at(0));
       else{ 
         std::vector<std::string> v;
         v.push_back(payload.at(0));
-        info2.insert({payload.at(5), v});
+        info2.insert({payload.at(1), v});
       }
-
-      //NS_LOG_INFO("Set speed of: " << my_id << " [" << ipAddr << "] to " << velocity << "m/s");
-      //m_sumo_client->TraCIAPI::vehicle.setSpeed (m_sumo_client->GetVehicleId (this->GetNode ()), velocity);
     }
 
     bool m_project = true;        //Enables project functionality
@@ -385,7 +329,6 @@ namespace ns3 {
     Ptr<Socket> m_socket;         //Socket recv
     Ptr<Socket> m_socket_2;       //Socket send
 
-    uint16_t m_velocity;          //Transmitted velocity
     EventId m_sendEvent;          //Event to send the next packet
     EventId m_statEvent;          //Event to compute the stats
 
@@ -404,13 +347,14 @@ namespace ns3 {
     std::unordered_map<std::string, int> id_v;
 
     //Vehicle status variables
-    std::string my_lane_id;
     std::string my_road_id;
-    double my_velocity;
     std::string my_id;
+    uint16_t my_velocity;          
+    int my_packet_freq;
+    uint8_t is_stuck = 0;
 
     //Other vehicles status varibles
-    std::unordered_map<std::string, std::tuple<std::string, std::string, double>> info1;
+    std::unordered_map<std::string, std::string> info1;
     std::unordered_map<std::string, std::vector<std::string>> info2;
   };
 
@@ -593,7 +537,8 @@ int main (int argc, char *argv[]) {
   sumoClient->SetAttribute ("SumoWaitForSocket", TimeValue (Seconds (3.0)));  
 
   // Creazione dell'helper per la creazione delle unità mobili (veicoli/nodi)
-  TestProjectHelper testProjectHelper(port, interval, window, project, p_size);
+  TestProjectHelper testProjectHelper(port, interval, window, project, p_size
+  );
   testProjectHelper.SetAttribute ("Client", (PointerValue) sumoClient); // pass TraciClient object for accessing sumo in application
 
   // Creazione di una callback che verrà chiamata quando viene creato un veicolo in sumo! 
