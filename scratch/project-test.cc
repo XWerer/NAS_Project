@@ -2,30 +2,12 @@
 #include "ns3/internet-module.h"
 #include "ns3/wifi-module.h"
 #include "ns3/mobility-module.h"
-#include "ns3/ipv4-global-routing-helper.h"
 #include "ns3/traci-applications-module.h"
 #include "ns3/network-module.h"
 #include "ns3/traci-module.h"
 #include "ns3/wave-module.h"
-#include "ns3/ocb-wifi-mac.h"
-#include "ns3/wifi-80211p-helper.h"
-#include "ns3/wave-mac-helper.h"
 #include "ns3/netanim-module.h"
-#include "ns3/packet.h"
-#include "ns3/socket.h"
-#include "ns3/yans-wifi-helper.h"
-#include "ns3/vector.h"
-#include "ns3/string.h"
-#include "ns3/double.h"
-#include "ns3/config.h"
-#include "ns3/log.h"
-#include "ns3/command-line.h"
 #include "ns3/mobility-model.h"
-#include "ns3/position-allocator.h"
-#include "ns3/mobility-helper.h"
-#include "ns3/internet-stack-helper.h"
-#include "ns3/ipv4-address-helper.h"
-#include "ns3/ipv4-interface-container.h"
 #include <iostream>
 #include <boost/tokenizer.hpp>
 #include <functional>
@@ -262,7 +244,7 @@ namespace ns3 {
         my_velocity = m_sumo_client->vehicle.getSpeed(my_id);
         my_lane_id = m_sumo_client->vehicle.getLaneID(my_id);
         my_road_id = m_sumo_client->vehicle.getRoadID(my_id);
-      }catch(const libsumo::TraCIException e) {
+      } catch(const libsumo::TraCIException e) {
         std::cerr << e.what();
         return;
       }
