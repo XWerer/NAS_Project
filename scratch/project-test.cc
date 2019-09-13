@@ -134,7 +134,6 @@ namespace ns3 {
       m_socket_2->Connect(remote);
 
       ScheduleTransmit(Seconds(0.0));
-      //Simulator::Schedule (Seconds (10.0), &TestProject::ChangeSpeed, this);
       ScheduleStats(m_window);
     }
 
@@ -194,13 +193,13 @@ namespace ns3 {
       Ptr<Packet> packet = Create<Packet>((uint8_t*) msg.str().c_str(), msg.str().length());
 
       m_socket_2->Send(packet);
-      
+/*      
       NS_LOG_INFO("Packet sent at time " << Simulator::Now().GetSeconds()
                   << "[veh:" << my_id << "]" 
                   << "[roadid:" << my_road_id << "]"
                   << "[p_f:" << my_packet_freq << "]"
                   << "[flag:" << std::to_string(is_stuck) << "]");
-
+*/
       ScheduleTransmit(m_interval);
     }    
 
@@ -233,7 +232,7 @@ namespace ns3 {
         for(auto it = info1.cbegin(); it != info1.cend(); ++it) {
           s = s + it->first + ": " + it->second + "- ";
         }
-        NS_LOG_INFO("ID: " << my_id << " - Info1: " << s);
+        //NS_LOG_INFO("ID: " << my_id << " - Info1: " << s);
 
         s = "";
         for(auto it = info2.cbegin(); it != info2.cend(); ++it) {
@@ -246,7 +245,7 @@ namespace ns3 {
           }
           s = s + " - ";
         }
-        NS_LOG_INFO("ID: " << my_id << " - Info2: " << s);
+       // NS_LOG_INFO("ID: " << my_id << " - Info2: " << s);
       }
 
       npack = 0;
@@ -285,14 +284,14 @@ namespace ns3 {
       }
     
       delay += (Simulator::Now().GetMicroSeconds() - std::stoll(payload.at(2)));
-
+/*
       NS_LOG_INFO("Packet received by " << my_id << " - "
           << "[s:" << payload.at(0) << "]"
           << "[s_road_id:" << payload.at(1) << "]"
           << "[timestamp:" << payload.at(2) << "]"
           << "[p_f:" << payload.at(3) << "]"
           << "[flag:" << payload.at(4) << "]");
-
+*/
       //Update info of the network(ns3)
       auto f = id_v.find(payload.at(0));
       if (f != id_v.end())
