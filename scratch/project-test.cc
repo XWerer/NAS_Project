@@ -224,15 +224,19 @@ namespace ns3 {
       else thr_car = thr/id_v.size();
       if(npack != 0){
         mean_delay = (double) (delay / npack);
-        NS_LOG_INFO("ID: " << my_id << " - Thr: " << thr 
-                    << " Mbps - Thr/cars: " << thr_car << " Mbps - MeanDelay: " << mean_delay 
-                    << " us - N_p: " << npack << " Conn: " << id_v.size() << " - " << s);
-  
-        s = "";
+
+        int sum = 0;
+        //s = "";
         for(auto it = info1.cbegin(); it != info1.cend(); ++it) {
-          s = s + it->first + ": " + it->second + "- ";
+          sum += (std::get<1>(it->second) + 1);
+          //s = s + it->first + ": " + std::get<0>(it->second) + "," + std::to_string(std::get<1>(it->second)) + " - ";
         }
         //NS_LOG_INFO("ID: " << my_id << " - Info1: " << s);
+
+        double pl = 1 - (npack / sum);
+        NS_LOG_INFO("ID: " << my_id << " - Thr: " << thr 
+                    << " Mbps - PackLoss: " << pl << " - MeanDelay: " << mean_delay 
+                    << " us - N_p: " << npack << " Conn: " << id_v.size() << " - " << s);
 
         s = "";
         for(auto it = info2.cbegin(); it != info2.cend(); ++it) {
@@ -245,7 +249,26 @@ namespace ns3 {
           }
           s = s + " - ";
         }
-       // NS_LOG_INFO("ID: " << my_id << " - Info2: " << s);
+        // NS_LOG_INFO("ID: " << my_id << " - Info2: " << s);
+        
+        //Decision (only if project is true)
+        if(m_project) {
+          if(id_v.size() >= 6) {
+            if(mean_delay >= 4000){
+              if(thr >= 2.0)
+                NS_LOG_INFO("Veicolo: " << my_id << " è in Ingorgo");
+              else
+                NS_LOG_INFO("Veicolo: " << my_id << " ok");
+            } else {
+              NS_LOG_INFO("Veicolo: " << my_id << " è OK");
+            }
+          } else {
+            if(pl >= 0.85)
+              NS_LOG_INFO("Veicolo: " << my_id << " è isolato");
+            else 
+              NS_LOG_INFO("Veicolo: " << my_id << " è vicino con altri ma ok");
+          }
+        }
       }
 
       npack = 0;
@@ -302,9 +325,9 @@ namespace ns3 {
       //Update info of vehicle (info1)
       auto it1 = info1.find(payload.at(0));
       if (it1 != info1.end())
-        it1->second = std::string(payload.at(1));
+        it1->second = std::make_tuple(payload.at(1), std::stoi(payload.at(3)));
       else 
-        info1.insert({payload.at(0), std::string(payload.at(1))});
+        info1.insert({payload.at(0), std::make_tuple(payload.at(1), std::stoi(payload.at(3)))});
 
       //Update info of vehicle (info2)
       auto it2 = info2.find(payload.at(1));
@@ -353,7 +376,7 @@ namespace ns3 {
     uint8_t is_stuck = 0;
 
     //Other vehicles status varibles
-    std::unordered_map<std::string, std::string> info1;
+    std::unordered_map<std::string, std::tuple<std::string, int>> info1;
     std::unordered_map<std::string, std::vector<std::string>> info2;
   };
 
