@@ -47,7 +47,7 @@ namespace ns3 {
                        MakeUintegerChecker<uint16_t> ())
         .AddAttribute ("Interval",
                        "The time to wait between packets",
-                       TimeValue (Seconds (0.021)),
+                       TimeValue (Seconds (0.011)),
                        MakeTimeAccessor (&TestProject::m_interval),
                        MakeTimeChecker ())
         .AddAttribute ("Velocity", "Velocity value which is sent to vehicles.",
@@ -157,7 +157,7 @@ namespace ns3 {
       }
 
       Simulator::Cancel(m_sendEvent);
-      Simulator::Cancel(m_stats);
+      Simulator::Cancel(m_statEvent);
     }
 
     /*
@@ -173,7 +173,7 @@ namespace ns3 {
      */
     void ScheduleStats(Time dt) {
       NS_LOG_FUNCTION(this << dt);
-      m_stats = Simulator::Schedule(dt, &TestProject::CalcStats, this);
+      m_statEvent = Simulator::Schedule(dt, &TestProject::CalcStats, this);
     }
 
     /*
@@ -204,7 +204,7 @@ namespace ns3 {
       msg << my_road_id << "*";
 
       //timestamp
-      msg << std::to_string(Simulator::Now().GetMicroSeconds()) << "*";
+      msg << std::to_string((double) Simulator::Now().GetMicroSeconds()) << "*";
 
       //Padding
       for(int i = msg.str().length(); i < 500; ++i) msg << "0";        
@@ -244,8 +244,8 @@ namespace ns3 {
         my_velocity = m_sumo_client->vehicle.getSpeed(my_id);
         my_lane_id = m_sumo_client->vehicle.getLaneID(my_id);
         my_road_id = m_sumo_client->vehicle.getRoadID(my_id);
-      } catch(const libsumo::TraCIException e) {
-        std::cerr << e.what();
+      } catch(libsumo::TraCIException &e) {
+        std::cerr << *e.what() << std::endl;
         return;
       }
       
@@ -259,7 +259,7 @@ namespace ns3 {
       if (id_v.size() == 0) thr_car = 0;
       else thr_car = thr/id_v.size();
       if(npack != 0){
-        mean_delay = delay/npack;
+        mean_delay = (double) (delay / npack);
         NS_LOG_INFO("ID: " << my_id << " - Thr: " << thr 
                     << " Mbps - Thr/cars: " << thr_car << " Mbps - MeanDelay: " << mean_delay 
                     << " us - N_p: " << npack << " Conn: " << id_v.size() << " - " << s);
@@ -322,7 +322,8 @@ namespace ns3 {
     
       double velocity = (double) std::stoi (payload.at(1));
 
-      delay += (Simulator::Now().GetMicroSeconds() - std::stoull(payload.at(6)));
+      delay += (double) (Simulator::Now().GetMicroSeconds() - std::stod(payload.at(6)));
+
 /*
       Ptr<Ipv4> ipv4 = this->GetNode()->GetObject<Ipv4>();
       Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
@@ -376,7 +377,7 @@ namespace ns3 {
 
     uint16_t m_velocity;          //Transmitted velocity
     EventId m_sendEvent;          //Event to send the next packet
-    EventId m_stats; 
+    EventId m_statEvent;          //Event to compute the stats
 
     Ptr<TraciClient> m_sumo_client; //Sumo client
 
@@ -388,6 +389,8 @@ namespace ns3 {
     uint32_t sizepack = 0;
     double thr = 0;
     double thr_car = 0;
+    double delay = 0;
+    double mean_delay = 0;
     std::unordered_map<std::string, int> id_v;
 
     //Vehicle status variables
@@ -399,8 +402,6 @@ namespace ns3 {
     //Other vehicles status varibles
     std::unordered_map<std::string, std::tuple<std::string, std::string, double>> info1;
     std::unordered_map<std::string, std::vector<std::string>> info2;
-    int64_t delay = 0;
-    int64_t mean_delay = 0;
   };
 
   /*
@@ -511,26 +512,13 @@ int main (int argc, char *argv[]) {
   nodePool.Create (1000);
   uint32_t nodeCounter (0);
   NetDeviceContainer netDevices;
-/*
-  YansWifiChannelHelper wifiChannel = YansWifiChannelHelper::Default ();
-  YansWavePhyHelper wavePhy =  YansWavePhyHelper::Default ();
-  wavePhy.SetChannel (wifiChannel.Create ());
-  QosWaveMacHelper waveMac = QosWaveMacHelper::Default ();
-  WaveHelper waveHelper = WaveHelper::Default ();
-  waveHelper.SetRemoteStationManager ("ns3::ConstantRateWifiManager",
-                                      "DataMode",StringValue ("0fdmRate6MbpsBW10MHz"),
-                                      "ControlMode",StringValue ("0fdmRate6MbpsBW10MHz"));
-  netDevices = waveHelper.Install (wavePhy, waveMac, nodePool);
-*/
 
   YansWifiPhyHelper wifiPhy = YansWifiPhyHelper::Default ();
   YansWifiChannelHelper wifiChannel = YansWifiChannelHelper::Default ();
+  wifiChannel.AddPropagationLoss ("ns3::NakagamiPropagationLossModel");
+  wifiChannel.AddPropagationLoss ("ns3::RandomPropagationLossModel");
   wifiPhy.Set("TxPowerStart", DoubleValue (21.5));
   wifiPhy.Set("TxPowerEnd", DoubleValue (21.5));
-  //double freq = 5.9e9;
-  //wifiChannel.SetPropagationDelay ("ns3::ConstantSpeedPropagationDelayModel");
-  //wifiChannel.AddPropagationLoss ("ns3::LogDistancePropagationLossModel");
-  wifiChannel.AddPropagationLoss ("ns3::NakagamiPropagationLossModel");
   wifiPhy.SetChannel (wifiChannel.Create ());
   wifiPhy.SetPcapDataLinkType (WifiPhyHelper::DLT_IEEE802_11);
   NqosWaveMacHelper wifi80211pMac = NqosWaveMacHelper::Default ();
@@ -540,32 +528,6 @@ int main (int argc, char *argv[]) {
   //                                    "ControlMode",StringValue ("OfdmRate6MbpsBW10MHz"));
   wifi80211p.SetStandard(WIFI_PHY_STANDARD_80211_10MHZ);
   netDevices = wifi80211p.Install(wifiPhy, wifi80211pMac, nodePool);
-
-  /*
-  //Creazione modello di comunicazione 
-  YansWifiChannelHelper wifiChannel = YansWifiChannelHelper::Default();
-  //double freq = 5.9e9;
-  //wifiChannel.SetPropagationDelay ("ns3::ConstantSpeedPropagationDelayModel", "Frequency", DoubleValue (freq), "HeightAboveZ", DoubleValue (1.5));
-  //wifiChannel.AddPropagationLoss ("ns3::LogDistancePropagationLossModel");
-  //wifiChannel.AddPropagationLoss ("ns3::NakagamiPropagationLossModel");
-  YansWifiPhyHelper wifiPhy = YansWifiPhyHelper::Default ();
-  Ptr<YansWifiChannel> channel = wifiChannel.Create ();
-  wifiPhy.SetChannel (channel);
-  wifiPhy.SetPcapDataLinkType (WifiPhyHelper::DLT_IEEE802_11);
-
-  NqosWaveMacHelper wifi80211pMac = NqosWaveMacHelper::Default ();
-  Wifi80211pHelper wifi80211p = Wifi80211pHelper::Default ();
-  
-  // Setup 802.11p stuff
-  wifi80211p.SetRemoteStationManager ("ns3::ConstantRateWifiManager",
-                                      "DataMode", StringValue ("OfdmRate6MbpsBW10MHz"),
-                                      "ControlMode", StringValue ("OfdmRate6MbpsBW10MHz"));
-
-  wifiPhy.Set("TxPowerStart", DoubleValue (20));
-  wifiPhy.Set("TxPowerEnd", DoubleValue (20));
-
-  NetDeviceContainer netDevices = wifi80211p.Install (wifiPhy, wifi80211pMac, nodePool);
-  */
 
   // Creazione stack di internet
   InternetStackHelper stack;
