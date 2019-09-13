@@ -204,7 +204,7 @@ namespace ns3 {
       msg << my_road_id << "*";
 
       //timestamp
-      msg << std::to_string((double) Simulator::Now().GetMicroSeconds()) << "*";
+      msg << std::to_string(Simulator::Now().GetMicroSeconds()) << "*";
 
       //Padding
       for(int i = msg.str().length(); i < 500; ++i) msg << "0";        
@@ -322,7 +322,7 @@ namespace ns3 {
     
       double velocity = (double) std::stoi (payload.at(1));
 
-      delay += (double) (Simulator::Now().GetMicroSeconds() - std::stod(payload.at(6)));
+      delay += (Simulator::Now().GetMicroSeconds() - std::stoll(payload.at(6)));
 
 /*
       Ptr<Ipv4> ipv4 = this->GetNode()->GetObject<Ipv4>();
@@ -389,8 +389,8 @@ namespace ns3 {
     uint32_t sizepack = 0;
     double thr = 0;
     double thr_car = 0;
-    double delay = 0;
-    double mean_delay = 0;
+    int64_t delay = 0;
+    int64_t mean_delay = 0;
     std::unordered_map<std::string, int> id_v;
 
     //Vehicle status variables
