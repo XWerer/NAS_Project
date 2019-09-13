@@ -45,17 +45,23 @@ namespace ns3 {
                        UintegerValue (9),
                        MakeUintegerAccessor (&TestProject::m_port),
                        MakeUintegerChecker<uint16_t> ())
-        .AddAttribute ("Interval",
-                       "The time to wait between packets",
+        .AddAttribute ("Interval", "The time to wait between packets",
                        TimeValue (Seconds (0.011)),
                        MakeTimeAccessor (&TestProject::m_interval),
                        MakeTimeChecker ())
-        .AddAttribute ("Velocity", "Velocity value which is sent to vehicles.",
-                        UintegerValue (10),
-                        MakeUintegerAccessor (&TestProject::m_velocity),
-                        MakeUintegerChecker<uint16_t> ())
-        .AddAttribute ("Client",
-                       "TraCI client for SUMO",
+        .AddAttribute ("Window", "The time between each stats calculation",
+                       TimeValue (Seconds (1.0)),
+                       MakeTimeAccessor (&TestProject::m_window),
+                       MakeTimeChecker ())
+        .AddAttribute ("Project", "Enables the project functionality",
+                       BooleanValue (true),
+                       MakeBooleanAccessor (&TestProject::m_project),
+                       MakeBooleanChecker ())
+        .AddAttribute ("PacketSize", "Size of the packets to send.",
+                       UintegerValue (500),
+                       MakeUintegerAccessor (&TestProject::m_size),
+                       MakeUintegerChecker<uint16_t> ())                       
+        .AddAttribute ("Client", "TraCI client for SUMO",
                        PointerValue (0),
                        MakePointerAccessor (&TestProject::m_sumo_client),
                        MakePointerChecker<TraciClient> ())
@@ -137,7 +143,7 @@ namespace ns3 {
 
       ScheduleTransmit(Seconds(0.0));
       //Simulator::Schedule (Seconds (10.0), &TestProject::ChangeSpeed, this);
-      ScheduleStats(Seconds(1.0));
+      ScheduleStats(m_window);
     }
 
     /*
@@ -207,7 +213,7 @@ namespace ns3 {
       msg << std::to_string(Simulator::Now().GetMicroSeconds()) << "*";
 
       //Padding
-      for(int i = msg.str().length(); i < 500; ++i) msg << "0";        
+      for(int i = msg.str().length(); i < m_size; ++i) msg << "0";        
       msg << "\0";
       
       Ptr<Packet> packet = Create<Packet>((uint8_t*) msg.str().c_str(), msg.str().length());
@@ -255,7 +261,7 @@ namespace ns3 {
         s = s + it->first + ":" + std::to_string(it->second) + " - ";
       }
 
-      thr = ((sizepack*8.0)/1.0)/(1024*1024);
+      thr = ((sizepack*8.0)/m_window.GetSeconds())/(1024*1024);
       if (id_v.size() == 0) thr_car = 0;
       else thr_car = thr/id_v.size();
       if(npack != 0){
@@ -292,7 +298,7 @@ namespace ns3 {
       info1.clear();
       info2.clear();
 
-      Simulator::Schedule(Seconds(1.0), &TestProject::CalcStats, this);
+      ScheduleStats(m_window);
     }
 
     /*
@@ -368,9 +374,13 @@ namespace ns3 {
       //m_sumo_client->TraCIAPI::vehicle.setSpeed (m_sumo_client->GetVehicleId (this->GetNode ()), velocity);
     }
 
+    bool m_project = true;        //Enables project functionality
+
     uint16_t m_port;              //Port 
 
     Time m_interval;              //Packet inter-send time
+    Time m_window;                //Time to collect stats
+    uint16_t m_size;              //Size of each packet
 
     Ptr<Socket> m_socket;         //Socket recv
     Ptr<Socket> m_socket_2;       //Socket send
@@ -410,9 +420,13 @@ namespace ns3 {
    */
   class TestProjectHelper {
   public:
-    TestProjectHelper (uint16_t port_send) {
+    TestProjectHelper (uint16_t port_send, Time interval, Time window, bool project, uint16_t packet_size) {
       m_factory.SetTypeId (TestProject::GetTypeId ());
-      SetAttribute ("Port", UintegerValue (port_send));
+      SetAttribute("Port", UintegerValue(port_send));
+      SetAttribute("Interval", TimeValue(interval));
+      SetAttribute("Window", TimeValue(window));
+      SetAttribute("Project", BooleanValue(project));
+      SetAttribute("PacketSize", UintegerValue(packet_size));
     }
 
     /**
@@ -498,9 +512,21 @@ NS_LOG_COMPONENT_DEFINE("ns3-project-test");
 int main (int argc, char *argv[]) {
   //Opzioni di log in
   bool verbose = true;
+  int port = 9;
+  Time interval(0.011);
+  Time window(1.0);
+  double p_rate = 1.0;
+  bool project = true;
+  uint16_t p_size = 500;
 
   CommandLine cmd;
-  cmd.Parse (argc, argv);
+  cmd.AddValue("Port", "Port on which we send packets.", port);
+  cmd.AddValue("Interval", "The time to wait between packets", interval);
+  cmd.AddValue("Window", "The time between each stats calculation", window);
+  cmd.AddValue("PenetrationRate", "Portion of vehicles equipped with wifi", p_rate);
+  cmd.AddValue("Project", "Enables the project functionality", project);
+  cmd.AddValue("PacketSize", "Size of the packets to send.", p_size);
+  cmd.Parse(argc, argv);
   if (verbose) {
     LogComponentEnable ("TraciClient", LOG_LEVEL_INFO);
     LogComponentEnable ("TestProjectApplication", LOG_LEVEL_INFO);
@@ -559,7 +585,7 @@ int main (int argc, char *argv[]) {
   sumoClient->SetAttribute ("StartTime", TimeValue (Seconds (0.0)));
   sumoClient->SetAttribute ("SumoGUI", BooleanValue (true));
   sumoClient->SetAttribute ("SumoPort", UintegerValue (3400));
-  sumoClient->SetAttribute ("PenetrationRate", DoubleValue (1.0));  // portion of vehicles equipped with wifi
+  sumoClient->SetAttribute ("PenetrationRate", DoubleValue (p_rate));  // portion of vehicles equipped with wifi
   sumoClient->SetAttribute ("SumoLogFile", BooleanValue (true));
   sumoClient->SetAttribute ("SumoStepLog", BooleanValue (false));
   sumoClient->SetAttribute ("SumoSeed", IntegerValue (10));
@@ -567,7 +593,7 @@ int main (int argc, char *argv[]) {
   sumoClient->SetAttribute ("SumoWaitForSocket", TimeValue (Seconds (3.0)));  
 
   // Creazione dell'helper per la creazione delle unità mobili (veicoli/nodi)
-  TestProjectHelper testProjectHelper (9);
+  TestProjectHelper testProjectHelper(port, interval, window, project, p_size);
   testProjectHelper.SetAttribute ("Client", (PointerValue) sumoClient); // pass TraciClient object for accessing sumo in application
 
   // Creazione di una callback che verrà chiamata quando viene creato un veicolo in sumo! 
