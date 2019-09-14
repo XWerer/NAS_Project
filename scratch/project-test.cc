@@ -222,6 +222,7 @@ namespace ns3 {
       thr = ((sizepack*8.0)/m_window.GetSeconds())/(1024*1024);
       if (id_v.size() == 0) thr_car = 0;
       else thr_car = thr/id_v.size();
+      std::vector<int> countstuck;
       if(npack != 0){
         mean_delay = (double) (delay / npack);
 
@@ -234,42 +235,62 @@ namespace ns3 {
         //NS_LOG_INFO("ID: " << my_id << " - Info1: " << s);
 
         double pl = 1 - (npack / sum);
+        double street_vel = m_sumo_client->lane.getMaxSpeed(m_sumo_client->vehicle.getLaneID(my_id));
+        double rateV = my_velocity/street_vel;
+        if (rateV >= 1) rateV = 1.0;
         NS_LOG_INFO("ID: " << my_id << " - Thr: " << thr 
-                    << " Mbps - PackLoss: " << pl << " - MeanDelay: " << mean_delay 
-                    << " us - N_p: " << npack << " Conn: " << id_v.size() << " - " << s);
+                  << " Mbps - PackLoss: " << pl << " RateV: " << rateV << " - MeanDelay: " << mean_delay 
+                  << " us - N_p: " << npack << " Conn: " << id_v.size() << " - " << s);
 
         s = "";
         for(auto it = info2.cbegin(); it != info2.cend(); ++it) {
           s = s + it->first + ": ";
-          std::vector<std::string> vec = it->second;
+          std::vector<std::pair<std::string, int>> vec = it->second;
           std::sort(vec.begin(), vec.end());
           vec.erase(unique(vec.begin(), vec.end()), vec.end());
+          int count = 0;
           for(size_t i = 0; i < vec.size(); ++i){
-            s = s + vec.at(i) + ",";
+            count += vec.at(i).second;
+            s = s + vec.at(i).first + ":" + std::to_string(vec.at(i).second) + ", ";
           }
+          countstuck.push_back(count);
           s = s + " - ";
         }
-        // NS_LOG_INFO("ID: " << my_id << " - Info2: " << s);
+        //NS_LOG_INFO("ID: " << my_id << " - Info2: " << s);
         
         //Decision (only if project is true)
         if(m_project) {
           if(id_v.size() >= 6) {
-            if(mean_delay >= 4000){
-              if(thr >= 2.0)
-                NS_LOG_INFO("Veicolo: " << my_id << " è in Ingorgo");
-              else
+            if(rateV <= 0.15) {
+              NS_LOG_INFO("Veicolo: " << my_id << " è in INGORGO");
+              is_stuck = 1;
+            }
+            else {
+              if(mean_delay >= 4000){
+                if(thr >= 2.0) {
+                  NS_LOG_INFO("Veicolo: " << my_id << " è in ingorgo");
+                  is_stuck = 1;
+                }
+                else
+                  NS_LOG_INFO("Veicolo: " << my_id << " OK");
+              } else {
                 NS_LOG_INFO("Veicolo: " << my_id << " ok");
-            } else {
-              NS_LOG_INFO("Veicolo: " << my_id << " è OK");
+              }
             }
           } else {
             if(pl >= 0.85)
               NS_LOG_INFO("Veicolo: " << my_id << " è isolato");
             else 
-              NS_LOG_INFO("Veicolo: " << my_id << " è vicino con altri ma ok");
+              NS_LOG_INFO("Veicolo: " << my_id << " è vicino ad altri ma OK");
           }
         }
       }
+
+
+      //rerouting procedure
+      // se ricevo un tot pacchetti stuck da diversi veicoli, SE LA STRADA E' PRESENTE NEL MIO PATH, rerouting con tempo di percorrenza strada inf
+      // ''                 ''                ''            setto is_stuck a true
+
 
       npack = 0;
       sizepack = 0;
@@ -307,6 +328,7 @@ namespace ns3 {
       }
     
       delay += (Simulator::Now().GetMicroSeconds() - std::stoll(payload.at(2)));
+      
 /*
       NS_LOG_INFO("Packet received by " << my_id << " - "
           << "[s:" << payload.at(0) << "]"
@@ -332,10 +354,10 @@ namespace ns3 {
       //Update info of vehicle (info2)
       auto it2 = info2.find(payload.at(1));
       if (it2 != info2.end())
-        it2->second.push_back(payload.at(0));
+        it2->second.push_back(std::make_pair(payload.at(0), std::stoi(payload.at(4))));
       else{ 
-        std::vector<std::string> v;
-        v.push_back(payload.at(0));
+        std::vector<std::pair<std::string, int>> v;
+        v.push_back(std::make_pair(payload.at(0), std::stoi(payload.at(4))));
         info2.insert({payload.at(1), v});
       }
     }
@@ -371,13 +393,13 @@ namespace ns3 {
     //Vehicle status variables
     std::string my_road_id;
     std::string my_id;
-    uint16_t my_velocity;          
+    double my_velocity;          
     int my_packet_freq;
     uint8_t is_stuck = 0;
 
     //Other vehicles status varibles
     std::unordered_map<std::string, std::tuple<std::string, int>> info1;
-    std::unordered_map<std::string, std::vector<std::string>> info2;
+    std::unordered_map<std::string, std::vector<std::pair<std::string, int>>> info2;
   };
 
   /*
