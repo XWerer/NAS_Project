@@ -205,6 +205,7 @@ namespace ns3 {
 
     void CalcStats (void) {
       //Update vehicle data
+      std::string previous_road_id = my_road_id;
       try{
         my_velocity = m_sumo_client->vehicle.getSpeed(my_id);
         my_road_id = m_sumo_client->vehicle.getRoadID(my_id);
@@ -212,90 +213,161 @@ namespace ns3 {
         std::cerr << *e.what() << std::endl;
         return;
       }
-      
+
       std::string s = "";
       //compute the string to print the map
       for(auto it = id_v.cbegin(); it != id_v.cend(); ++it) {
         s = s + it->first + ":" + std::to_string(it->second) + " - ";
       }
 
-      thr = ((sizepack*8.0)/m_window.GetSeconds())/(1024*1024);
-      if (id_v.size() == 0) thr_car = 0;
-      else thr_car = thr/id_v.size();
-      std::vector<int> countstuck;
-      if(npack != 0){
-        mean_delay = (double) (delay / npack);
+      thr = ((sizepack*8.0)/m_window.GetSeconds())/(1024*1024); //Global thr
+      thr_local = ((sizepack_local*8.0)/m_window.GetSeconds())/(1024*1024); //Local thr
 
+      std::vector<double> countstuck;
+      if(npack != 0){
+        //Compute mean delay
+        mean_delay = (double) (delay / npack); //Global
+        if(npack_local != 0)
+          mean_delay_local = (double) (delay_local / npack_local); //Local
+
+        //compute sum for the packet loss
         int sum = 0;
-        //s = "";
+        std::string s2 = "";
         for(auto it = info1.cbegin(); it != info1.cend(); ++it) {
           sum += (std::get<1>(it->second) + 1);
-          //s = s + it->first + ": " + std::get<0>(it->second) + "," + std::to_string(std::get<1>(it->second)) + " - ";
+          s2 = s2 + it->first + ": " + std::get<0>(it->second) + "," + std::to_string(std::get<1>(it->second)) + " - ";
         }
-        //NS_LOG_INFO("ID: " << my_id << " - Info1: " << s);
-
         double pl = 1 - (npack / sum);
+        NS_LOG_INFO("ID: " << my_id << " - Info1: " << s2);
+
+        //Compute the rateV (velocity of the vehicle / max vehicle of the road)
         double street_vel = m_sumo_client->lane.getMaxSpeed(m_sumo_client->vehicle.getLaneID(my_id));
         double rateV = my_velocity/street_vel;
         if (rateV >= 1) rateV = 1.0;
-        NS_LOG_INFO("ID: " << my_id << " - Thr: " << thr 
-                  << " Mbps - PackLoss: " << pl << " RateV: " << rateV << " - MeanDelay: " << mean_delay 
-                  << " us - N_p: " << npack << " Conn: " << id_v.size() << " - " << s);
 
-        s = "";
+        //Compute number of local connection
+        size_t cl = 0;
+        auto it = info2.find(my_road_id);
+        if(it != info2.end())
+          cl = it->second.size();
+
+        //Print info
+        NS_LOG_INFO("ID: " << my_id << " - Thr: " << thr << " - Thr_L: " << thr_local << " Mbps - PL: " << pl  
+                    << " RateV: " << rateV << " - M_D: " << mean_delay << " us - M_D_L: " << mean_delay_local
+                    << " us - N_p: " << npack << "\nID: " << my_id << " - Conn: " << id_v.size() << " - ConnL: " << cl << " - " << s);
+
+        //Compute the number of stuck vehicle for each road 
+        std::string s3 = "";
         for(auto it = info2.cbegin(); it != info2.cend(); ++it) {
-          s = s + it->first + ": ";
-          std::vector<std::pair<std::string, int>> vec = it->second;
-          std::sort(vec.begin(), vec.end());
-          vec.erase(unique(vec.begin(), vec.end()), vec.end());
+          s3 = s3 + it->first + ": ";
           int count = 0;
-          for(size_t i = 0; i < vec.size(); ++i){
-            count += vec.at(i).second;
-            s = s + vec.at(i).first + ":" + std::to_string(vec.at(i).second) + ", ";
+          std::unordered_map<std::string, int> m = it->second;
+          for(auto it2 = m.cbegin(); it2 != m.cend(); ++it2){
+            s3 = s3 + it2->first + "," + std::to_string(it2->second) + " - ";
+            count += it2->second;
           }
-          countstuck.push_back(count);
-          s = s + " - ";
+          countstuck.push_back((double)count/it->second.size());
+          s3 = s3 + " countstuck: " + std::to_string((double)count/it->second.size()) + " - ";      
         }
-        //NS_LOG_INFO("ID: " << my_id << " - Info2: " << s);
-        
-        //Decision (only if project is true)
+        NS_LOG_INFO("ID: " << my_id << " - Info2: " << s3);
+
+        //Project part
         if(m_project) {
-          if(id_v.size() >= 6) {
+          //Decision tree to decide if the vehicle is stucked based on the parameters computed before
+          if(cl >= 6) {
             if(rateV <= 0.15) {
-              NS_LOG_INFO("Veicolo: " << my_id << " è in INGORGO");
+              NS_LOG_INFO("Veicolo: " << my_id << " INGORGO");
               is_stuck = 1;
             }
             else {
-              if(mean_delay >= 4000){
-                if(thr >= 2.0) {
-                  NS_LOG_INFO("Veicolo: " << my_id << " è in ingorgo");
+              if(mean_delay_local >= 4000){
+                if(thr_local >= 2.0) {
+                  NS_LOG_INFO("Veicolo: " << my_id << " ingorgo");
                   is_stuck = 1;
                 }
-                else
+                else{
                   NS_LOG_INFO("Veicolo: " << my_id << " OK");
+                  is_stuck = 0;
+                }
               } else {
                 NS_LOG_INFO("Veicolo: " << my_id << " ok");
+                is_stuck = 0;
               }
             }
           } else {
-            if(pl >= 0.85)
-              NS_LOG_INFO("Veicolo: " << my_id << " è isolato");
-            else 
-              NS_LOG_INFO("Veicolo: " << my_id << " è vicino ad altri ma OK");
+            if(pl >= 0.85){
+              NS_LOG_INFO("Veicolo: " << my_id << " isolato");
+              is_stuck = 0;
+            }
+            else{
+              NS_LOG_INFO("Veicolo: " << my_id << " OK2");
+              is_stuck = 0;
+            }
           }
-        }
-      }
 
+          //Set the stucked flag based on the messages of the other vehicles
+          //And extract the list of blocked roads
+          //And set the flag for the rerouting
+          std::vector<std::string> v;
+          bool rerouting = false;
+          int i = 0;
+          for(auto it = info2.cbegin(); it != info2.cend(); ++it){
+            if(countstuck.at(i) >= 0.5){
+              v.push_back(it->first);
+              rerouting = true;
+              if(my_road_id.compare(it->first) == 0){
+                is_stuck = 1;
+                rerouting = false;
+                NS_LOG_INFO("Veicolo: " << my_id << " INGORGO CAUSA ALTRI - rerouting = FALSE");
+              }
+            }
+            ++i;          
+          }
 
-      //rerouting procedure
-      // se ricevo un tot pacchetti stuck da diversi veicoli, SE LA STRADA E' PRESENTE NEL MIO PATH, rerouting con tempo di percorrenza strada inf
-      // ''                 ''                ''            setto is_stuck a true
+          //Compute an alternative road if is possible
+          /*
+           * NOTA: qui o usiamo il flag rerouting oppure usiamo solo il flag is_stuck
+           * Dipende come può evolvere la situazione.
+           */
+          if(rerouting){
+            //reset the flag because we re-use it
+            rerouting = false;
+            //get the current route 
+            std::vector<std::string> old_route = m_sumo_client->vehicle.getRoute(my_id);
+            //array of old travel time
+            double old_travel_time[v.size()];
+            for(size_t i = 0; i < v.size(); ++i){
+              old_travel_time[i] = m_sumo_client->edge.getTraveltime(v.at(i));
+              NS_LOG_INFO(v.at(i) << " travel time: " << old_travel_time[i]);
+              //in teoria non serve risettare il travel time perche il petodo lo fa in automatico dopo gli 0.5 secondi settati.
+              m_sumo_client->edge.adaptTraveltime(v.at(i), old_travel_time[i]*100, 0.0, 0.5);
+              //check if the vehicle have to take the blocked routes from the current point 
+              int index = m_sumo_client->vehicle.getRouteIndex(my_id) + 1;
+              if((!rerouting) && std::find(old_route.begin() + index, old_route.end(), v.at(i)) != old_route.end())
+                rerouting = true;
+            }
+            if(rerouting){        
+              //Rerouting procedure, capire cosa fa il bool a true o false
+              m_sumo_client->vehicle.rerouteTraveltime(my_id, true);
+              NS_LOG_INFO(my_id << " Rerouting!!!");
+              std::vector<std::string> new_route = m_sumo_client->vehicle.getRoute(my_id);
+              for(size_t i = 0; i < std::min(old_route.size(), new_route.size()); ++i){
+                NS_LOG_INFO("Old: " << old_route.at(i) << " New: " << new_route.at(i));
+              }
+            }
+          }
+        } //end if m_project     
+      } //end if npack != 0
 
-
+      //clean the variables
       npack = 0;
       sizepack = 0;
       mean_delay = 0;
       delay = 0;
+      npack_local = 0;
+      sizepack_local = 0;
+      mean_delay_local = 0;
+      delay_local = 0;
       id_v.clear();
       info1.clear();
       info2.clear();
@@ -326,8 +398,9 @@ namespace ns3 {
       for (const auto& t : tokens) {
           payload.push_back(t);
       }
-    
-      delay += (Simulator::Now().GetMicroSeconds() - std::stoll(payload.at(2)));
+
+      int64_t d = (Simulator::Now().GetMicroSeconds() - std::stoll(payload.at(2)));
+      delay += d;
       
 /*
       NS_LOG_INFO("Packet received by " << my_id << " - "
@@ -337,6 +410,14 @@ namespace ns3 {
           << "[p_f:" << payload.at(3) << "]"
           << "[flag:" << payload.at(4) << "]");
 */
+
+      //Now take the local information (from the vehicle on the same road id)
+      if(my_road_id.compare(payload.at(1)) == 0){
+        ++npack_local;
+        sizepack_local += packet->GetSize();
+        delay_local += d;
+      }
+
       //Update info of the network(ns3)
       auto f = id_v.find(payload.at(0));
       if (f != id_v.end())
@@ -353,28 +434,33 @@ namespace ns3 {
 
       //Update info of vehicle (info2)
       auto it2 = info2.find(payload.at(1));
-      if (it2 != info2.end())
-        it2->second.push_back(std::make_pair(payload.at(0), std::stoi(payload.at(4))));
+      if (it2 != info2.end()){
+        auto it3 = it2->second.find(payload.at(0));
+        if(it3 != it2->second.end())
+          it3->second = std::stoi(payload.at(4));
+        else
+          it2->second.insert({payload.at(0), std::stoi(payload.at(4))});
+      }
       else{ 
-        std::vector<std::pair<std::string, int>> v;
-        v.push_back(std::make_pair(payload.at(0), std::stoi(payload.at(4))));
-        info2.insert({payload.at(1), v});
+        std::unordered_map<std::string, int> m;
+        m.insert({payload.at(0), std::stoi(payload.at(4))});        
+        info2.insert({payload.at(1), m});
       }
     }
 
-    bool m_project = true;        //Enables project functionality
+    bool m_project = true;          //Enables project functionality
 
-    uint16_t m_port;              //Port 
+    uint16_t m_port;                //Port 
 
-    Time m_interval;              //Packet inter-send time
-    Time m_window;                //Time to collect stats
-    uint16_t m_size;              //Size of each packet
+    Time m_interval;                //Packet inter-send time
+    Time m_window;                  //Time to collect stats
+    uint16_t m_size;                //Size of each packet
 
-    Ptr<Socket> m_socket;         //Socket recv
-    Ptr<Socket> m_socket_2;       //Socket send
+    Ptr<Socket> m_socket;           //Socket recv
+    Ptr<Socket> m_socket_2;         //Socket send
 
-    EventId m_sendEvent;          //Event to send the next packet
-    EventId m_statEvent;          //Event to compute the stats
+    EventId m_sendEvent;            //Event to send the next packet
+    EventId m_statEvent;            //Event to compute the stats
 
     Ptr<TraciClient> m_sumo_client; //Sumo client
 
@@ -382,12 +468,17 @@ namespace ns3 {
     TracedCallback<Ptr<const Packet> > m_txTrace;
 
     //Stats variables
-    double npack = 0;
-    uint32_t sizepack = 0;
-    double thr = 0;
-    double thr_car = 0;
-    int64_t delay = 0;
-    int64_t mean_delay = 0;
+    double npack = 0;               //Total number of packet recived (global)
+    uint32_t sizepack = 0;          //Size of the packets (global)
+    double npack_local = 0;         //Total number of packet recived (local/same road_id)
+    uint32_t sizepack_local = 0;    //Size of the packets (local/same road_id)
+    double thr = 0;                 //Throughput global
+    double thr_local = 0;           //Throughput local
+    int64_t delay = 0;              //Sum of all delay
+    int64_t mean_delay = 0;         //Mead delay
+    int64_t delay_local = 0;        //Sum of all delay local
+    int64_t mean_delay_local = 0;   //Mead delay local
+    //Map keeping vehicle ID and the number of packets recived for each vehicle
     std::unordered_map<std::string, int> id_v;
 
     //Vehicle status variables
@@ -398,8 +489,10 @@ namespace ns3 {
     uint8_t is_stuck = 0;
 
     //Other vehicles status varibles
+    //Info1: vehicle ID: <road ID, frequency>
     std::unordered_map<std::string, std::tuple<std::string, int>> info1;
-    std::unordered_map<std::string, std::vector<std::pair<std::string, int>>> info2;
+    //Info2: road ID: vehicle ID: is_stack
+    std::unordered_map<std::string, std::unordered_map<std::string, int>> info2;
   };
 
   /*
