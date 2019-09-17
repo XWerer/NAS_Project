@@ -104,7 +104,7 @@ namespace ns3 {
 
   private:
     /*
-     * Start application method. 
+     * Start application routine method. 
      * This method creates the sockets and records the callback to send and recive packets.
      */
     void StartApplication (void) {
@@ -115,6 +115,10 @@ namespace ns3 {
       my_road_id = m_sumo_client->vehicle.getRoadID(my_id);
       my_velocity = m_sumo_client->vehicle.getSpeed(my_id);
       my_packet_freq = (int) (m_window.GetSeconds()/m_interval.GetSeconds());
+
+      //Set current value of interval and window
+      current_interval = m_interval;
+      current_window = m_window;
 
       //Recv
       TypeId tid = TypeId::LookupByName ("ns3::UdpSocketFactory");
@@ -134,7 +138,7 @@ namespace ns3 {
       m_socket_2->Connect(remote);
 
       ScheduleTransmit(Seconds(0.0));
-      ScheduleStats(m_window);
+      ScheduleStats(current_window);
     }
 
     /*
@@ -189,9 +193,8 @@ namespace ns3 {
       //Padding
       for(int i = msg.str().length(); i < m_size; ++i) msg << "0";        
       msg << "\0";
-      
+      //Send
       Ptr<Packet> packet = Create<Packet>((uint8_t*) msg.str().c_str(), msg.str().length());
-
       m_socket_2->Send(packet);
 /*      
       NS_LOG_INFO("Packet sent at time " << Simulator::Now().GetSeconds()
@@ -200,7 +203,7 @@ namespace ns3 {
                   << "[p_f:" << my_packet_freq << "]"
                   << "[flag:" << std::to_string(is_stuck) << "]");
 */
-      ScheduleTransmit(m_interval);
+      ScheduleTransmit(current_interval);
     }    
 
     void CalcStats (void) {
@@ -214,18 +217,18 @@ namespace ns3 {
         return;
       }
 
-      std::string s = "";
       //compute the string to print the map
-      for(auto it = id_v.cbegin(); it != id_v.cend(); ++it) {
+      std::string s = "";
+      for(auto it = id_v.cbegin(); it != id_v.cend(); ++it)
         s = s + it->first + ":" + std::to_string(it->second) + " - ";
-      }
 
-      thr = ((sizepack*8.0)/m_window.GetSeconds())/(1024*1024); //Global thr
-      thr_local = ((sizepack_local*8.0)/m_window.GetSeconds())/(1024*1024); //Local thr
+      //Computation thr local and global
+      thr = ((sizepack*8.0)/current_window.GetSeconds())/(1024*1024); //Global thr
+      thr_local = ((sizepack_local*8.0)/current_window.GetSeconds())/(1024*1024); //Local thr
 
-      std::vector<double> countstuck;
-      if(npack != 0){
-        //Compute mean delay
+      std::vector<double> countstuck; //Vector counting the stucked vehicle in each road
+      if(npack != 0){ //Only if the vehicle recived at least one packet
+        //Compute mean delay local and global
         mean_delay = (double) (delay / npack); //Global
         if(npack_local != 0)
           mean_delay_local = (double) (delay_local / npack_local); //Local
@@ -238,7 +241,7 @@ namespace ns3 {
           s2 = s2 + it->first + ": " + std::get<0>(it->second) + "," + std::to_string(std::get<1>(it->second)) + " - ";
         }
         double pl = 1 - (npack / sum);
-        NS_LOG_INFO("ID: " << my_id << " - Info1: " << s2);
+        //NS_LOG_INFO("ID: " << my_id << " - Info1: " << s2);
 
         //Compute the rateV (velocity of the vehicle / max vehicle of the road)
         double street_vel = m_sumo_client->lane.getMaxSpeed(m_sumo_client->vehicle.getLaneID(my_id));
@@ -269,40 +272,53 @@ namespace ns3 {
           countstuck.push_back((double)count/it->second.size());
           s3 = s3 + " countstuck: " + std::to_string((double)count/it->second.size()) + " - ";      
         }
-        NS_LOG_INFO("ID: " << my_id << " - Info2: " << s3);
+        //NS_LOG_INFO("ID: " << my_id << " - Info2: " << s3);
+  
+        //Compute the throughput calue reference 
+        double thr_x_car = ((min_sizepack*min_rate*8.0)/current_window.GetSeconds())/(1024*1024);
 
         //Project part
         if(m_project) {
           //Decision tree to decide if the vehicle is stucked based on the parameters computed before
           if(cl >= 6) {
             if(rateV <= 0.15) {
-              NS_LOG_INFO("Veicolo: " << my_id << " INGORGO");
+              NS_LOG_INFO("ID: " << my_id << " INGORGO, intreval: " << current_interval.GetSeconds() << " window " << current_window.GetSeconds());
               is_stuck = 1;
             }
             else {
-              if(mean_delay_local >= 4000){
-                if(thr_local >= 2.0) {
-                  NS_LOG_INFO("Veicolo: " << my_id << " ingorgo");
+              if(mean_delay_local >= 2*min_delay){
+                if(thr_local >= 2*thr_x_car) {
+                  NS_LOG_INFO("ID: " << my_id << " ingorgo, intreval: " << current_interval.GetSeconds() << " window " << current_window.GetSeconds());
                   is_stuck = 1;
                 }
                 else{
-                  NS_LOG_INFO("Veicolo: " << my_id << " OK");
+                  NS_LOG_INFO("ID: " << my_id << " OK, intreval: " << current_interval.GetSeconds() << " window " << current_window.GetSeconds());
                   is_stuck = 0;
                 }
               } else {
-                NS_LOG_INFO("Veicolo: " << my_id << " ok");
+                NS_LOG_INFO("ID: " << my_id << " ok, intreval: " << current_interval.GetSeconds() << " window " << current_window.GetSeconds());
                 is_stuck = 0;
               }
             }
           } else {
             if(pl >= 0.85){
-              NS_LOG_INFO("Veicolo: " << my_id << " isolato");
+              NS_LOG_INFO("ID: " << my_id << " isolato, intreval: " << current_interval.GetSeconds() << " window " << current_window.GetSeconds());
               is_stuck = 0;
             }
             else{
-              NS_LOG_INFO("Veicolo: " << my_id << " OK2");
+              NS_LOG_INFO("ID: " << my_id << " OK2, intreval: " << current_interval.GetSeconds() << " window " << current_window.GetSeconds());
               is_stuck = 0;
             }
+          }
+
+          if(pl >= 0.8){
+            current_interval = Seconds(current_interval.GetSeconds() * 2);
+            current_window = Seconds(current_window.GetSeconds() * 2);
+            NS_LOG_INFO("ID: " << my_id << " Interval: " << current_interval.GetSeconds() << " Window " << current_window.GetSeconds());
+          } else if(pl <= 0.15){
+            current_interval = Seconds(current_interval.GetSeconds() / 2);
+            current_window = Seconds(current_window.GetSeconds() / 2);
+            NS_LOG_INFO("ID: " << my_id << " Interval: " << current_interval.GetSeconds() << " Window " << current_window.GetSeconds());
           }
 
           //Set the stucked flag based on the messages of the other vehicles
@@ -368,11 +384,14 @@ namespace ns3 {
       sizepack_local = 0;
       mean_delay_local = 0;
       delay_local = 0;
+      min_rate = 1000;
+      min_sizepack = 6000;
+      min_delay = 10000;
       id_v.clear();
       info1.clear();
       info2.clear();
 
-      ScheduleStats(m_window);
+      ScheduleStats(current_window);
     }
 
     /*
@@ -395,9 +414,8 @@ namespace ns3 {
       std::string s = std::string ((char*) buffer);
       //tokenization 
       boost::tokenizer<boost::char_separator<char>> tokens(s, sep);
-      for (const auto& t : tokens) {
+      for (const auto& t : tokens)
           payload.push_back(t);
-      }
 
       int64_t d = (Simulator::Now().GetMicroSeconds() - std::stoll(payload.at(2)));
       delay += d;
@@ -417,6 +435,14 @@ namespace ns3 {
         sizepack_local += packet->GetSize();
         delay_local += d;
       }
+
+      //Now take the min information
+      if(min_sizepack > packet->GetSize())
+        min_sizepack = packet->GetSize();
+      if(min_rate > std::stoi(payload.at(3)))
+        min_rate = std::stoi(payload.at(3));
+      if(min_delay > d)
+        min_delay = d;
 
       //Update info of the network(ns3)
       auto f = id_v.find(payload.at(0));
@@ -453,7 +479,9 @@ namespace ns3 {
     uint16_t m_port;                //Port 
 
     Time m_interval;                //Packet inter-send time
+    Time current_interval;          //Current packet interval
     Time m_window;                  //Time to collect stats
+    Time current_window;            //Current time to collect stats
     uint16_t m_size;                //Size of each packet
 
     Ptr<Socket> m_socket;           //Socket recv
@@ -478,6 +506,9 @@ namespace ns3 {
     int64_t mean_delay = 0;         //Mead delay
     int64_t delay_local = 0;        //Sum of all delay local
     int64_t mean_delay_local = 0;   //Mead delay local
+    uint32_t min_sizepack = 6000;   //Min size pack
+    int min_rate = 1000;            //Min rate
+    int64_t min_delay = 10000;      //min delay
     //Map keeping vehicle ID and the number of packets recived for each vehicle
     std::unordered_map<std::string, int> id_v;
 
@@ -660,10 +691,10 @@ int main (int argc, char *argv[]) {
 
   // Setup del client per sumo
   Ptr<TraciClient> sumoClient = CreateObject<TraciClient> ();
-  sumoClient->SetAttribute ("SumoConfigPath", StringValue ("maps/test4/osm.sumocfg"));
+  sumoClient->SetAttribute ("SumoConfigPath", StringValue ("maps/padova2/osm.sumocfg"));
   sumoClient->SetAttribute ("SumoBinaryPath", StringValue (""));    // use system installation of sumo
   sumoClient->SetAttribute ("SynchInterval", TimeValue (Seconds (0.1)));
-  sumoClient->SetAttribute ("StartTime", TimeValue (Seconds (0.0)));
+  sumoClient->SetAttribute ("StartTime", TimeValue (Seconds (150.0)));
   sumoClient->SetAttribute ("SumoGUI", BooleanValue (true));
   sumoClient->SetAttribute ("SumoPort", UintegerValue (3400));
   sumoClient->SetAttribute ("PenetrationRate", DoubleValue (p_rate));  // portion of vehicles equipped with wifi
