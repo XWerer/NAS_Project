@@ -12,6 +12,7 @@
 #include <boost/tokenizer.hpp>
 #include <functional>
 #include <stdlib.h>
+#include <cmath>
 
 /* Programma di test per una simulazione di una rete vanet V2V
  * che va ad usare ns3 e sumo. 
@@ -21,6 +22,9 @@
  * e propria, e la classe "TestProjectHelper" che farà da supporto nella 
  * creazione delle istanze della classe detta in precedenza. 
  */
+
+//data structur to print into a file
+std::map<double, std::map<int, std::vector<double>>> output;
 
 //vado a creare le due classi che ci servono all'interno del namspace ns3
 namespace ns3 {
@@ -114,11 +118,10 @@ namespace ns3 {
       my_id = m_sumo_client->GetVehicleId(this->GetNode());
       my_road_id = m_sumo_client->vehicle.getRoadID(my_id);
       my_velocity = m_sumo_client->vehicle.getSpeed(my_id);
-      my_packet_freq = (int) (m_window.GetSeconds()/m_interval.GetSeconds());
+      my_packet_freq = (int) (1.0/m_interval.GetSeconds());
 
       //Set current value of interval and window
       current_interval = m_interval;
-      current_window = m_window;
 
       //Recv
       TypeId tid = TypeId::LookupByName ("ns3::UdpSocketFactory");
@@ -137,8 +140,11 @@ namespace ns3 {
       m_socket_2->SetAllowBroadcast(true);
       m_socket_2->Connect(remote);
 
-      ScheduleTransmit(Seconds(0.0));
-      ScheduleStats(current_window);
+      //Randomization of 5 seconds to start transmit to avoid the transmiton channel to blow up
+      //std::srand(time(NULL));
+      double r = ((double) rand() / (RAND_MAX)) * 5;
+      ScheduleTransmit(Seconds(r));
+      ScheduleStats(m_window);
     }
 
     /*
@@ -223,112 +229,98 @@ namespace ns3 {
         s = s + it->first + ":" + std::to_string(it->second) + " - ";
 
       //Computation thr local and global
-      thr = ((sizepack*8.0)/current_window.GetSeconds())/(1024*1024); //Global thr
-      thr_local = ((sizepack_local*8.0)/current_window.GetSeconds())/(1024*1024); //Local thr
+      thr = ((sizepack*8.0)/m_window.GetSeconds())/(1024*1024); //Global thr
+      thr_local = ((sizepack_local*8.0)/m_window.GetSeconds())/(1024*1024); //Local thr
+      double thr_x_car;
+      if(npack != 0) thr_x_car = ((min_sizepack * min_rate * 8.0)/m_window.GetSeconds())/(1024*1024);
+      else thr_x_car = 0;
+
+      //Compute number of local connection
+      size_t cl = 0;
+      auto it = info2.find(my_road_id);
+      if(it != info2.end())
+        cl = it->second.size();
+
+      //compute sum for the packet loss
+      double pl = 0;
+      int sum = 0;
+      std::string s2 = "";
+      for(auto it = info1.cbegin(); it != info1.cend(); ++it) {
+        sum += (std::get<1>(it->second) + 1) * m_window.GetSeconds();
+        s2 = s2 + it->first + ": " + std::get<0>(it->second) + "," + std::to_string(std::get<1>(it->second)) + " - ";
+      }
+      if(sum == 0) pl = -1;
+      else pl = 1 - (npack / sum);
+      //NS_LOG_INFO("ID: " << my_id << " - Info1: " << s2);
+
+      //Compute the rateV (velocity of the vehicle / max vehicle of the road)
+      double street_vel = m_sumo_client->lane.getMaxSpeed(m_sumo_client->vehicle.getLaneID(my_id));
+      double rateV = my_velocity/street_vel;
+      if (rateV >= 1) rateV = 1.0;
+
+      bool rerouting = false; //boolean for rerouting procedure
 
       std::vector<double> countstuck; //Vector counting the stucked vehicle in each road
+      
       if(npack != 0){ //Only if the vehicle recived at least one packet
         //Compute mean delay local and global
         mean_delay = (double) (delay / npack); //Global
         if(npack_local != 0)
           mean_delay_local = (double) (delay_local / npack_local); //Local
 
-        //compute sum for the packet loss
-        int sum = 0;
-        std::string s2 = "";
-        for(auto it = info1.cbegin(); it != info1.cend(); ++it) {
-          sum += (std::get<1>(it->second) + 1);
-          s2 = s2 + it->first + ": " + std::get<0>(it->second) + "," + std::to_string(std::get<1>(it->second)) + " - ";
-        }
-        double pl = 1 - (npack / sum);
-        //NS_LOG_INFO("ID: " << my_id << " - Info1: " << s2);
-
-        //Compute the rateV (velocity of the vehicle / max vehicle of the road)
-        double street_vel = m_sumo_client->lane.getMaxSpeed(m_sumo_client->vehicle.getLaneID(my_id));
-        double rateV = my_velocity/street_vel;
-        if (rateV >= 1) rateV = 1.0;
-
-        //Compute number of local connection
-        size_t cl = 0;
-        auto it = info2.find(my_road_id);
-        if(it != info2.end())
-          cl = it->second.size();
-
         //Print info
-        NS_LOG_INFO("ID: " << my_id << " - Thr: " << thr << " - Thr_L: " << thr_local << " Mbps - PL: " << pl  
-                    << " RateV: " << rateV << " - M_D: " << mean_delay << " us - M_D_L: " << mean_delay_local
-                    << " us - N_p: " << npack << "\nID: " << my_id << " - Conn: " << id_v.size() << " - ConnL: " << cl << " - " << s);
-
-        //Compute the number of stuck vehicle for each road 
-        std::string s3 = "";
-        for(auto it = info2.cbegin(); it != info2.cend(); ++it) {
-          s3 = s3 + it->first + ": ";
-          int count = 0;
-          std::unordered_map<std::string, int> m = it->second;
-          for(auto it2 = m.cbegin(); it2 != m.cend(); ++it2){
-            s3 = s3 + it2->first + "," + std::to_string(it2->second) + " - ";
-            count += it2->second;
-          }
-          countstuck.push_back((double)count/it->second.size());
-          s3 = s3 + " countstuck: " + std::to_string((double)count/it->second.size()) + " - ";      
-        }
-        //NS_LOG_INFO("ID: " << my_id << " - Info2: " << s3);
-  
-        //Compute the throughput calue reference 
-        double thr_x_car = ((min_sizepack*min_rate*8.0)/current_window.GetSeconds())/(1024*1024);
+        // NS_LOG_INFO("ID: " << my_id << " - Thr: " << thr << " - Thr_L: " << thr_local << " THrxcar: " << thr_x_car << " Mbps - PL: " << pl  
+        //             << " RateV: " << rateV << " - M_D: " << mean_delay << " us - M_D_L: " << mean_delay_local << " us - minD: " << min_delay
+        //             << " us - N_p: " << npack << "\nID: " << my_id << " - Conn: " << id_v.size() << " - ConnL: " << cl << " - " << s);
 
         //Project part
         if(m_project) {
           //Decision tree to decide if the vehicle is stucked based on the parameters computed before
-          if(cl >= 6) {
-            if(rateV <= 0.15) {
-              NS_LOG_INFO("ID: " << my_id << " INGORGO, intreval: " << current_interval.GetSeconds() << " window " << current_window.GetSeconds());
-              is_stuck = 1;
-            }
-            else {
-              if(mean_delay_local >= 2*min_delay){
-                if(thr_local >= 2*thr_x_car) {
-                  NS_LOG_INFO("ID: " << my_id << " ingorgo, intreval: " << current_interval.GetSeconds() << " window " << current_window.GetSeconds());
-                  is_stuck = 1;
-                }
-                else{
-                  NS_LOG_INFO("ID: " << my_id << " OK, intreval: " << current_interval.GetSeconds() << " window " << current_window.GetSeconds());
-                  is_stuck = 0;
-                }
-              } else {
-                NS_LOG_INFO("ID: " << my_id << " ok, intreval: " << current_interval.GetSeconds() << " window " << current_window.GetSeconds());
+          if(cl >= 4) {
+            if(thr_local >= 1.5*thr_x_car) {
+              if(mean_delay_local >= 1.5*min_delay){
+                NS_LOG_INFO("ID: " << my_id << " INGORGO1 ****** interval: " << current_interval.GetSeconds());
+                is_stuck = 1;
+              }
+              else if(rateV <= 0.15){
+                NS_LOG_INFO("ID: " << my_id << " INGORGO2 ****** interval: " << current_interval.GetSeconds());
                 is_stuck = 0;
               }
+              else {
+                NS_LOG_INFO("ID: " << my_id << " OK0 ****** interval: " << current_interval.GetSeconds());
+                is_stuck = 0;
+              }
+            } else {
+              NS_LOG_INFO("ID: " << my_id << " OK1 ****** interval: " << current_interval.GetSeconds());
+              is_stuck = 0;
             }
           } else {
-            if(pl >= 0.85){
-              NS_LOG_INFO("ID: " << my_id << " isolato, intreval: " << current_interval.GetSeconds() << " window " << current_window.GetSeconds());
-              is_stuck = 0;
-            }
-            else{
-              NS_LOG_INFO("ID: " << my_id << " OK2, intreval: " << current_interval.GetSeconds() << " window " << current_window.GetSeconds());
-              is_stuck = 0;
-            }
+            NS_LOG_INFO("ID: " << my_id << " OK2 ****** interval: " << current_interval.GetSeconds());
+            is_stuck = 0;
           }
 
-          if(pl >= 0.8){
-            current_interval = Seconds(current_interval.GetSeconds() * 2);
-            current_window = Seconds(current_window.GetSeconds() * 2);
-            NS_LOG_INFO("ID: " << my_id << " Interval: " << current_interval.GetSeconds() << " Window " << current_window.GetSeconds());
-          } else if(pl <= 0.15){
-            current_interval = Seconds(current_interval.GetSeconds() / 2);
-            current_window = Seconds(current_window.GetSeconds() / 2);
-            NS_LOG_INFO("ID: " << my_id << " Interval: " << current_interval.GetSeconds() << " Window " << current_window.GetSeconds());
+          //Compute the number of stuck vehicle for each road 
+          std::string s3 = "";
+          for(auto it = info2.cbegin(); it != info2.cend(); ++it) {
+            s3 = s3 + it->first + ": ";
+            int count = 0;
+            std::unordered_map<std::string, int> m = it->second;
+            for(auto it2 = m.cbegin(); it2 != m.cend(); ++it2){
+              s3 = s3 + it2->first + "," + std::to_string(it2->second) + " - ";
+              count += it2->second;
+            }
+            countstuck.push_back((double)(count + is_stuck)/(it->second.size() + 1));
+            s3 = s3 + " countstuck: " + std::to_string((double)count/it->second.size()) + " - ";      
           }
+          //NS_LOG_INFO("ID: " << my_id << " - Info2: " << s3);
 
           //Set the stucked flag based on the messages of the other vehicles
           //And extract the list of blocked roads
           //And set the flag for the rerouting
           std::vector<std::string> v;
-          bool rerouting = false;
           int i = 0;
           for(auto it = info2.cbegin(); it != info2.cend(); ++it){
-            if(countstuck.at(i) >= 0.5){
+            if(countstuck.at(i) > 0.5){
               v.push_back(it->first);
               rerouting = true;
               if(my_road_id.compare(it->first) == 0){
@@ -340,11 +332,17 @@ namespace ns3 {
             ++i;          
           }
 
+          if((is_stuck || pl >= 0.85) && current_interval.GetSeconds() < 0.05){
+            current_interval = Seconds(current_interval.GetSeconds() * 2);
+            my_packet_freq = (int) (1.0/current_interval.GetSeconds());
+            //NS_LOG_INFO("ID: " << my_id << " Interval: " << current_interval.GetSeconds());
+          } else if(pl <= 0.15 && pl >= 0 && current_interval.GetSeconds() > 0.007){
+            current_interval = Seconds(current_interval.GetSeconds() / 2);
+            my_packet_freq = (int) (1.0/current_interval.GetSeconds());
+            //NS_LOG_INFO("ID: " << my_id << " Interval: " << current_interval.GetSeconds());
+          }
+
           //Compute an alternative road if is possible
-          /*
-           * NOTA: qui o usiamo il flag rerouting oppure usiamo solo il flag is_stuck
-           * Dipende come può evolvere la situazione.
-           */
           if(rerouting){
             //reset the flag because we re-use it
             rerouting = false;
@@ -375,6 +373,32 @@ namespace ns3 {
         } //end if m_project     
       } //end if npack != 0
 
+      //Save data into output data structure
+      //std::cout << (floor((x*2)+0.5)/2);
+
+      double t = (double) Simulator::Now().GetSeconds();
+      t = (floor((t*2) + 0.5) / 2);
+      int id = std::stoi(my_id.substr(3, my_id.size()));
+      std::vector<double> vec;
+      vec.push_back((double) thr);
+      vec.push_back((double) thr_local);
+      vec.push_back((double) thr_x_car);
+      vec.push_back((double) mean_delay);
+      vec.push_back((double) mean_delay_local);
+      vec.push_back((double) min_delay);
+      vec.push_back((double) id_v.size());
+      vec.push_back((double) cl);
+      vec.push_back((double) rateV);
+      vec.push_back((double) npack);
+      vec.push_back((double) pl);
+      vec.push_back((double) is_stuck);
+      vec.push_back((double) current_interval.GetSeconds());
+      if(rerouting)
+        vec.push_back((double) 1);
+      else
+        vec.push_back((double) 0);
+      output[t][id] = vec;
+
       //clean the variables
       npack = 0;
       sizepack = 0;
@@ -386,12 +410,12 @@ namespace ns3 {
       delay_local = 0;
       min_rate = 1000;
       min_sizepack = 6000;
-      min_delay = 10000;
+      min_delay = 999999;
       id_v.clear();
       info1.clear();
       info2.clear();
 
-      ScheduleStats(current_window);
+      ScheduleStats(m_window);
     }
 
     /*
@@ -481,7 +505,6 @@ namespace ns3 {
     Time m_interval;                //Packet inter-send time
     Time current_interval;          //Current packet interval
     Time m_window;                  //Time to collect stats
-    Time current_window;            //Current time to collect stats
     uint16_t m_size;                //Size of each packet
 
     Ptr<Socket> m_socket;           //Socket recv
@@ -508,7 +531,7 @@ namespace ns3 {
     int64_t mean_delay_local = 0;   //Mead delay local
     uint32_t min_sizepack = 6000;   //Min size pack
     int min_rate = 1000;            //Min rate
-    int64_t min_delay = 10000;      //min delay
+    int64_t min_delay = 999999;    //min delay
     //Map keeping vehicle ID and the number of packets recived for each vehicle
     std::unordered_map<std::string, int> id_v;
 
@@ -630,6 +653,8 @@ int main (int argc, char *argv[]) {
   double p_rate = 1.0;
   bool project = true;
   uint16_t p_size = 500;
+  std::string file;
+  int n_v = 10;
 
   CommandLine cmd;
   cmd.AddValue("Port", "Port on which we send packets.", port);
@@ -638,6 +663,8 @@ int main (int argc, char *argv[]) {
   cmd.AddValue("PenetrationRate", "Portion of vehicles equipped with wifi", p_rate);
   cmd.AddValue("Project", "Enables the project functionality", project);
   cmd.AddValue("PacketSize", "Size of the packets to send.", p_size);
+  cmd.AddValue("Filename", "File name where the output is saved", file);
+  cmd.AddValue("MaxVehicles", "Max number of vehicles generated by sumo", n_v);
   cmd.Parse(argc, argv);
   if (verbose) {
     LogComponentEnable ("TraciClient", LOG_LEVEL_INFO);
@@ -645,7 +672,7 @@ int main (int argc, char *argv[]) {
   }
 
   // Creazione di un pool di nodi perchè devono essere creati in precedenza per sumo
-  ns3::Time simulationTime (ns3::Seconds(5000));
+  ns3::Time simulationTime (ns3::Seconds(10));
   NodeContainer nodePool;
   nodePool.Create (1000);
   uint32_t nodeCounter (0);
@@ -691,18 +718,18 @@ int main (int argc, char *argv[]) {
 
   // Setup del client per sumo
   Ptr<TraciClient> sumoClient = CreateObject<TraciClient> ();
-  sumoClient->SetAttribute ("SumoConfigPath", StringValue ("maps/padova2/osm.sumocfg"));
-  sumoClient->SetAttribute ("SumoBinaryPath", StringValue (""));    // use system installation of sumo
-  sumoClient->SetAttribute ("SynchInterval", TimeValue (Seconds (0.1)));
-  sumoClient->SetAttribute ("StartTime", TimeValue (Seconds (150.0)));
-  sumoClient->SetAttribute ("SumoGUI", BooleanValue (true));
-  sumoClient->SetAttribute ("SumoPort", UintegerValue (3400));
-  sumoClient->SetAttribute ("PenetrationRate", DoubleValue (p_rate));  // portion of vehicles equipped with wifi
-  sumoClient->SetAttribute ("SumoLogFile", BooleanValue (true));
-  sumoClient->SetAttribute ("SumoStepLog", BooleanValue (false));
-  sumoClient->SetAttribute ("SumoSeed", IntegerValue (10));
-  sumoClient->SetAttribute ("SumoAdditionalCmdOptions", StringValue ("--verbose true"));
-  sumoClient->SetAttribute ("SumoWaitForSocket", TimeValue (Seconds (3.0)));  
+  sumoClient->SetAttribute("SumoConfigPath", StringValue("maps/test4/osm.sumocfg"));
+  sumoClient->SetAttribute("SumoBinaryPath", StringValue(""));    // use system installation of sumo
+  sumoClient->SetAttribute("SynchInterval", TimeValue(Seconds(0.1)));
+  sumoClient->SetAttribute("StartTime", TimeValue(Seconds(100.0)));
+  sumoClient->SetAttribute("SumoGUI", BooleanValue(true));
+  sumoClient->SetAttribute("SumoPort", UintegerValue(3400));
+  sumoClient->SetAttribute("PenetrationRate", DoubleValue(p_rate));  // portion of vehicles equipped with wifi
+  sumoClient->SetAttribute("SumoLogFile", BooleanValue(true));
+  sumoClient->SetAttribute("SumoStepLog", BooleanValue(false));
+  sumoClient->SetAttribute("SumoSeed", IntegerValue(10));
+  sumoClient->SetAttribute("SumoAdditionalCmdOptions", StringValue("--verbose true --max-num-vehicles " + std::to_string(n_v)));
+  sumoClient->SetAttribute("SumoWaitForSocket", TimeValue(Seconds(3.0)));  
 
   // Creazione dell'helper per la creazione delle unità mobili (veicoli/nodi)
   TestProjectHelper testProjectHelper(port, interval, window, project, p_size
@@ -749,6 +776,21 @@ int main (int argc, char *argv[]) {
 
   Simulator::Run ();
   Simulator::Destroy ();
+
+  //Save into a csv file
+  std::ofstream fout;
+  std::string file_name = "results/" + file + ".csv";
+  fout.open(file_name);
+  for(auto it = output.cbegin(); it != output.cend(); ++it){
+    for(auto it2 = it->second.cbegin(); it2 != it->second.cend(); ++it2){
+      fout << it->first << "\t" << it2->first;
+      for(size_t i = 0; i < it2->second.size(); ++i){
+        fout << "\t" << it2->second.at(i);
+      }
+      fout << "\n";
+    }
+  }
+  fout.close();
 
   return 0;
 }
