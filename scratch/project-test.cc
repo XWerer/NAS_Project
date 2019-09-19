@@ -64,7 +64,11 @@ namespace ns3 {
         .AddAttribute ("PacketSize", "Size of the packets to send.",
                        UintegerValue (500),
                        MakeUintegerAccessor (&TestProject::m_size),
-                       MakeUintegerChecker<uint16_t> ())                       
+                       MakeUintegerChecker<uint16_t> ())    
+        .AddAttribute ("TimeWindow", "How much back into time we consider the variation of delay and throughput",
+                       IntegerValue (1),
+                       MakeIntegerAccessor (&TestProject::time_window),
+                       MakeIntegerChecker<int> ())                  
         .AddAttribute ("Client", "TraCI client for SUMO",
                        PointerValue (0),
                        MakePointerAccessor (&TestProject::m_sumo_client),
@@ -120,6 +124,15 @@ namespace ns3 {
       my_velocity = m_sumo_client->vehicle.getSpeed(my_id);
       my_packet_freq = (int) (1.0/m_interval.GetSeconds());
 
+      //Set time window
+      if(time_window > 1){
+        t_thr = new double[time_window];
+        t_del = new double[time_window];
+        for(int i = 0; i < time_window; ++i){
+          t_del[i] = t_thr[i] = 0;
+        }
+      }
+
       //Set current value of interval and window
       current_interval = m_interval;
 
@@ -140,8 +153,7 @@ namespace ns3 {
       m_socket_2->SetAllowBroadcast(true);
       m_socket_2->Connect(remote);
 
-      //Randomization of 5 seconds to start transmit to avoid the transmiton channel to blow up
-      //std::srand(time(NULL));
+      //Randomization of 5 seconds to start transmit to avoid the blow up of the transmiton channel
       double r = ((double) rand() / (RAND_MAX)) * 5;
       ScheduleTransmit(Seconds(r));
       ScheduleStats(m_window);
@@ -268,6 +280,22 @@ namespace ns3 {
         if(npack_local != 0)
           mean_delay_local = (double) (delay_local / npack_local); //Local
 
+        //Update the time dependancies variables
+        if(time_window > 1){
+          if(time_i < time_window){
+            t_del[time_i] = mean_delay_local;
+            t_thr[time_i] = thr_local;
+            ++time_i;
+          } else {
+            for(int i = 1; i < time_window; ++i){
+              t_del[i - 1] = t_del[i];
+              t_thr[i - 1] = t_thr[i];
+            }
+            t_del[time_window - 1] = mean_delay_local;
+            t_thr[time_window - 1] = thr_local;
+          }
+        }
+
         //Print info
         // NS_LOG_INFO("ID: " << my_id << " - Thr: " << thr << " - Thr_L: " << thr_local << " THrxcar: " << thr_x_car << " Mbps - PL: " << pl  
         //             << " RateV: " << rateV << " - M_D: " << mean_delay << " us - M_D_L: " << mean_delay_local << " us - minD: " << min_delay
@@ -295,9 +323,19 @@ namespace ns3 {
               is_stuck = 0;
             }
           } else {
-            NS_LOG_INFO("ID: " << my_id << " OK2 ****** interval: " << current_interval.GetSeconds());
-            is_stuck = 0;
+            //Here we can put time correlation analysis
+            if(time_window > 1){
+              std::string t = "ID: " + my_id + " Time Correlation:\n";
+              for(int i = 0; i < time_window; ++i){
+                t = t + "\ti:" + std::to_string(i) + " thr: " + std::to_string(t_thr[i]) + " del: " + std::to_string(t_del[i]) + "\n"; 
+              }
+              NS_LOG_INFO(t);
+            } else {
+              NS_LOG_INFO("ID: " << my_id << " OK2 ****** interval: " << current_interval.GetSeconds());
+              is_stuck = 0;
+            }
           }
+
 
           //Compute the number of stuck vehicle for each road 
           std::string s3 = "";
@@ -374,8 +412,6 @@ namespace ns3 {
       } //end if npack != 0
 
       //Save data into output data structure
-      //std::cout << (floor((x*2)+0.5)/2);
-
       double t = (double) Simulator::Now().GetSeconds();
       t = (floor((t*2) + 0.5) / 2);
       int id = std::stoi(my_id.substr(3, my_id.size()));
@@ -531,7 +567,7 @@ namespace ns3 {
     int64_t mean_delay_local = 0;   //Mead delay local
     uint32_t min_sizepack = 6000;   //Min size pack
     int min_rate = 1000;            //Min rate
-    int64_t min_delay = 999999;    //min delay
+    int64_t min_delay = 999999;     //Min delay
     //Map keeping vehicle ID and the number of packets recived for each vehicle
     std::unordered_map<std::string, int> id_v;
 
@@ -547,6 +583,11 @@ namespace ns3 {
     std::unordered_map<std::string, std::tuple<std::string, int>> info1;
     //Info2: road ID: vehicle ID: is_stack
     std::unordered_map<std::string, std::unordered_map<std::string, int>> info2;
+    //Time correlation variables 
+    int time_window;                  //Size of the two time windows
+    double *t_thr;                    //Thr time window
+    double *t_del;                    //Delay time window
+    int time_i = 0;                   //Counter for the two time windows
   };
 
   /*
@@ -555,13 +596,14 @@ namespace ns3 {
    */
   class TestProjectHelper {
   public:
-    TestProjectHelper (uint16_t port_send, Time interval, Time window, bool project, uint16_t packet_size) {
+    TestProjectHelper (uint16_t port_send, Time interval, Time window, bool project, uint16_t packet_size, int t_w) {
       m_factory.SetTypeId (TestProject::GetTypeId ());
       SetAttribute("Port", UintegerValue(port_send));
       SetAttribute("Interval", TimeValue(interval));
       SetAttribute("Window", TimeValue(window));
       SetAttribute("Project", BooleanValue(project));
       SetAttribute("PacketSize", UintegerValue(packet_size));
+      SetAttribute("TimeWindow", IntegerValue(t_w));
     }
 
     /**
@@ -655,6 +697,7 @@ int main (int argc, char *argv[]) {
   uint16_t p_size = 500;
   std::string file;
   int n_v = 10;
+  int t_window = 1;
 
   CommandLine cmd;
   cmd.AddValue("Port", "Port on which we send packets.", port);
@@ -665,6 +708,7 @@ int main (int argc, char *argv[]) {
   cmd.AddValue("PacketSize", "Size of the packets to send.", p_size);
   cmd.AddValue("Filename", "File name where the output is saved", file);
   cmd.AddValue("MaxVehicles", "Max number of vehicles generated by sumo", n_v);
+  cmd.AddValue("TimeWindow", "How much back into time we consider the variation of delay and throughput", t_window);
   cmd.Parse(argc, argv);
   if (verbose) {
     LogComponentEnable ("TraciClient", LOG_LEVEL_INFO);
@@ -688,9 +732,6 @@ int main (int argc, char *argv[]) {
   wifiPhy.SetPcapDataLinkType (WifiPhyHelper::DLT_IEEE802_11);
   NqosWaveMacHelper wifi80211pMac = NqosWaveMacHelper::Default ();
   Wifi80211pHelper wifi80211p = Wifi80211pHelper::Default ();
-  //wifi80211p.SetRemoteStationManager ("ns3::ConstantRateWifiManager",
-  //                                    "DataMode",StringValue ("OfdmRate6MbpsBW10MHz"),
-  //                                    "ControlMode",StringValue ("OfdmRate6MbpsBW10MHz"));
   wifi80211p.SetStandard(WIFI_PHY_STANDARD_80211_10MHZ);
   netDevices = wifi80211p.Install(wifiPhy, wifi80211pMac, nodePool);
 
@@ -732,8 +773,7 @@ int main (int argc, char *argv[]) {
   sumoClient->SetAttribute("SumoWaitForSocket", TimeValue(Seconds(3.0)));  
 
   // Creazione dell'helper per la creazione delle unità mobili (veicoli/nodi)
-  TestProjectHelper testProjectHelper(port, interval, window, project, p_size
-  );
+  TestProjectHelper testProjectHelper(port, interval, window, project, p_size, t_window);
   testProjectHelper.SetAttribute ("Client", (PointerValue) sumoClient); // pass TraciClient object for accessing sumo in application
 
   // Creazione di una callback che verrà chiamata quando viene creato un veicolo in sumo! 
