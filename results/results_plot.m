@@ -2,7 +2,7 @@
 clearvars;
 clc; 
 
-filename = "rt50sec50veh";
+filename = "rt50sec100veh";
 
 %reading csv file and taking the time intervals involved
 m = readtable(filename + '.csv');
@@ -80,21 +80,21 @@ grid on;
 saveas(fig3, "Mean packet loss per time " + filename + ".jpg");
 
 %% calculation per vehicle
-veh_id = 0;
+veh_id = 45;
 thr_veh = zeros(size(time, 1), 1);
 rerout = zeros(size(time, 1), 1);
 
-i = 1;
-for j=1:size(m, 1)
-    if veh_id == m{j, 2}
-        thr_veh(i) = m{j, 3};
-        i = i + 1;
-        if m{j, 16} == 1
-            rerout(j, 1) = 1;
+for i=1:size(time, 1)
+    for j=1:size(m, 1)
+        if m{j, 1} == time(i, 1)
+            if m{j, 2} == veh_id
+                thr_veh(i) = m{j, 3};
+                rerout(i) = m{j, 16};
+            end
         end
     end
 end
-
+    
 fig4 = figure;
 title("Throughput for vehicle " + veh_id + " vs time");
 plot(time(:, 1), thr_veh);
@@ -102,7 +102,7 @@ ylabel("Throughput vehicle " + veh_id + " - Mbps");
 xlabel('Time - s'); 
 grid on;
 hold on;
-bar(time(:, 1), rerout, 'FaceColor', 'r', 'LineWidth', 0.3);
+bar(time(:, 1), rerout, 'FaceColor', 'r', 'LineWidth', 0.4);
 legend('Throughput', 'Rerouting');
 saveas(fig4, "Throughput vehicle " + veh_id + " per time " + filename + ".jpg");
 
