@@ -395,7 +395,11 @@ namespace ns3 {
                 mean_t_del_1 += t_del[i];
               }
               mean_t_del_1 /= index_1;
+              if(mean_t_del_1 == 0.0) //to avoid that a single value compromise the computation
+                mean_t_del_1 = min_delay; 
               mean_t_thr_1 /= index_1;
+              if(mean_t_thr_1 == 0.0) //to avoid that a single value compromise the computation
+                mean_t_thr_1 = thr_x_car; 
               double mean_t_thr_2 = 0;
               double mean_t_del_2 = 0;
               for(int i = index_1; i < time_window; ++i){
