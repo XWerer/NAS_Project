@@ -828,7 +828,7 @@ int main(int argc, char *argv[]) {
   }
 
   // Creazione di un pool di nodi perchè devono essere creati in precedenza per sumo
-  ns3::Time simulationTime(ns3::Seconds(50.0));
+  ns3::Time simulationTime(ns3::Seconds(90.0));
   NodeContainer nodePool;
   nodePool.Create(1000);
   uint32_t nodeCounter(0);
