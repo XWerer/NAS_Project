@@ -793,7 +793,7 @@ int main(int argc, char *argv[]) {
   //Opzioni di log in
   bool verbose = true;
   int port = 9;
-  Time interval(0.011);
+  Time interval(0.007);
   Time window(1.0);
   double p_rate = 1.0;
   bool project_1 = true;
@@ -801,7 +801,7 @@ int main(int argc, char *argv[]) {
   uint16_t p_size = 500;
   std::string file;
   int n_v = 10;
-  int t_window = 1;
+  int t_window = 4;
   double hard = 1.8, soft = 1.5, thr = 3.0, del = 6000.0, t_thr = 1.8, t_del = 1.8;
 
   CommandLine cmd;
