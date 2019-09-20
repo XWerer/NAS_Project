@@ -366,26 +366,26 @@ namespace ns3 {
 
           if(cl >= 4) {
             if(thr_local >= tr_hard*thr_x_car && mean_delay_local >= tr_hard*min_delay) {
-              NS_LOG_INFO("ID: " << my_id << " INGORGO1 ****** interval: " << current_interval.GetSeconds());
+              //NS_LOG_INFO("ID: " << my_id << " INGORGO1 ****** interval: " << current_interval.GetSeconds());
               is_stuck = 1;
             } else if((thr_local >= tr_soft*thr_x_car || mean_delay_local >= tr_soft*min_delay) && rateV <= 0.10){
-              NS_LOG_INFO("ID: " << my_id << " INGORGO2 ****** interval: " << current_interval.GetSeconds());
+              //NS_LOG_INFO("ID: " << my_id << " INGORGO2 ****** interval: " << current_interval.GetSeconds());
               is_stuck = 1;
             } else if(thr >= tr_thr || mean_delay >= tr_del){
-              NS_LOG_INFO("ID: " << my_id << " INGORGO3 ****** interval: " << current_interval.GetSeconds());
+              //NS_LOG_INFO("ID: " << my_id << " INGORGO3 ****** interval: " << current_interval.GetSeconds());
               is_stuck = 1;
             } else {
-              NS_LOG_INFO("ID: " << my_id << " OK0 ****** interval: " << current_interval.GetSeconds());
+              //NS_LOG_INFO("ID: " << my_id << " OK0 ****** interval: " << current_interval.GetSeconds());
               is_stuck = 0;
             }
           } else {
             //Here we can put time correlation analysis
             if(time_window > 1 && time_i == time_window){
-              std::string t = "ID: " + my_id + " Time Correlation:\n";
+              /*std::string t = "ID: " + my_id + " Time Correlation:\n";
               for(int i = 0; i < time_window; ++i){
                 t = t + "\ti:" + std::to_string(i) + " thr: " + std::to_string(t_thr[i]) + " del: " + std::to_string(t_del[i]) + "\n"; 
               }
-              NS_LOG_INFO(t);
+              NS_LOG_INFO(t);*/
               //Compute the variation between the two half windows
               double mean_t_thr_1 = 0;
               double mean_t_del_1 = 0;
@@ -409,14 +409,14 @@ namespace ns3 {
               mean_t_del_2 /= (time_window - index_1);
               mean_t_thr_2 /= (time_window - index_1);
               if((mean_t_thr_2 > tr_t_thr * mean_t_thr_1) || (mean_t_del_2 > tr_t_del * mean_t_del_1)){
-                NS_LOG_INFO("ID: " << my_id << " INGORGO4 ****** interval: " << current_interval.GetSeconds());
+                //NS_LOG_INFO("ID: " << my_id << " INGORGO4 ****** interval: " << current_interval.GetSeconds());
                 is_stuck = 1;
               } else {
-                NS_LOG_INFO("ID: " << my_id << " OK2 ****** interval: " << current_interval.GetSeconds());
+                //NS_LOG_INFO("ID: " << my_id << " OK2 ****** interval: " << current_interval.GetSeconds());
                 is_stuck = 0;
               }
             } else {
-              NS_LOG_INFO("ID: " << my_id << " OK1 ****** interval: " << current_interval.GetSeconds());
+              //NS_LOG_INFO("ID: " << my_id << " OK1 ****** interval: " << current_interval.GetSeconds());
               is_stuck = 0;
             }
           }
@@ -449,7 +449,7 @@ namespace ns3 {
               if(my_road_id.compare(it->first) == 0){
                 is_stuck = 1;
                 rerouting = false;
-                NS_LOG_INFO("Veicolo: " << my_id << " INGORGO CAUSA ALTRI - rerouting = FALSE");
+                //NS_LOG_INFO("Veicolo: " << my_id << " INGORGO CAUSA ALTRI - rerouting = FALSE");
               }
             }
             ++i;          
@@ -465,7 +465,7 @@ namespace ns3 {
             double old_travel_time[v.size()];
             for(size_t i = 0; i < v.size(); ++i){
               old_travel_time[i] = m_sumo_client->edge.getTraveltime(v.at(i));
-              NS_LOG_INFO(v.at(i) << " travel time: " << old_travel_time[i]);
+              //NS_LOG_INFO(v.at(i) << " travel time: " << old_travel_time[i]);
               //in teoria non serve risettare il travel time perche il petodo lo fa in automatico dopo gli 0.5 secondi settati.
               m_sumo_client->edge.adaptTraveltime(v.at(i), old_travel_time[i]*100, 0.0, 0.5);
               //check if the vehicle have to take the blocked routes from the current point 
@@ -476,11 +476,11 @@ namespace ns3 {
             if(rerouting){        
               //Rerouting procedure, capire cosa fa il bool a true o false
               m_sumo_client->vehicle.rerouteTraveltime(my_id, true);
-              NS_LOG_INFO(my_id << " Rerouting!!!");
+              //NS_LOG_INFO(my_id << " Rerouting!!!");
               std::vector<std::string> new_route = m_sumo_client->vehicle.getRoute(my_id);
-              for(size_t i = 0; i < std::min(old_route.size(), new_route.size()); ++i){
+              /*for(size_t i = 0; i < std::min(old_route.size(), new_route.size()); ++i){
                 NS_LOG_INFO("Old: " << old_route.at(i) << " New: " << new_route.at(i));
-              }
+              }*/
             }
           }
         } //end if m_project_1
@@ -944,6 +944,8 @@ int main(int argc, char *argv[]) {
     }
   }
   fout.close();
+
+  std::cout << "File: " << file << " SAVED CORRECTLY\n";
 
   return 0;
 }
