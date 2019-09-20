@@ -68,7 +68,31 @@ namespace ns3 {
         .AddAttribute("TimeWindow", "How much back into time we consider the variation of delay and throughput",
                        IntegerValue(1),
                        MakeIntegerAccessor(&TestProject::time_window),
-                       MakeIntegerChecker<int>())                  
+                       MakeIntegerChecker<int>())
+        .AddAttribute("Hard", "Hard threshold for the static tree first decision",
+                       DoubleValue(1.8),
+                       MakeDoubleAccessor(&TestProject::tr_hard),
+                       MakeDoubleChecker<double>()) 
+        .AddAttribute("Soft", "Soft threshold for the static tree second decision",
+                       DoubleValue(1.5),
+                       MakeDoubleAccessor(&TestProject::tr_soft),
+                       MakeDoubleChecker<double>())
+        .AddAttribute("Thr", "Throughput threshold for the static tree third decision",
+                       DoubleValue(3.0),
+                       MakeDoubleAccessor(&TestProject::tr_thr),
+                       MakeDoubleChecker<double>())  
+        .AddAttribute("Delay", "Delay threshold for the static tree third decision",
+                       DoubleValue(6000.0),
+                       MakeDoubleAccessor(&TestProject::tr_del),
+                       MakeDoubleChecker<double>()) 
+        .AddAttribute("TimeThr", "Time threshold for the throughput (only if the TimeWindow > 1)",
+                       DoubleValue(1.8),
+                       MakeDoubleAccessor(&TestProject::tr_t_thr),
+                       MakeDoubleChecker<double>())
+        .AddAttribute("TimeDelay", "Time threshold for the delay (only if the TimeWindow > 1)",
+                       DoubleValue(1.8),
+                       MakeDoubleAccessor(&TestProject::tr_t_del),
+                       MakeDoubleChecker<double>())                
         .AddAttribute("Client", "TraCI client for SUMO",
                        PointerValue(0),
                        MakePointerAccessor(&TestProject::m_sumo_client),
@@ -337,13 +361,13 @@ namespace ns3 {
           }*/
 
           if(cl >= 4) {
-            if(thr_local >= 1.8*thr_x_car && mean_delay_local >= 1.8*min_delay) {
+            if(thr_local >= tr_hard*thr_x_car && mean_delay_local >= tr_hard*min_delay) {
               NS_LOG_INFO("ID: " << my_id << " INGORGO1 ****** interval: " << current_interval.GetSeconds());
               is_stuck = 1;
-            } else if((thr_local >= 1.5*thr_x_car || mean_delay_local >= 1.5*min_delay) && rateV <= 0.10){
+            } else if((thr_local >= tr_soft*thr_x_car || mean_delay_local >= tr_soft*min_delay) && rateV <= 0.10){
               NS_LOG_INFO("ID: " << my_id << " INGORGO2 ****** interval: " << current_interval.GetSeconds());
               is_stuck = 1;
-            } else if(thr >= 3 || mean_delay >= 5000){
+            } else if(thr >= tr_thr || mean_delay >= tr_del){
               NS_LOG_INFO("ID: " << my_id << " INGORGO3 ****** interval: " << current_interval.GetSeconds());
               is_stuck = 1;
             } else {
@@ -352,14 +376,39 @@ namespace ns3 {
             }
           } else {
             //Here we can put time correlation analysis
-            if(time_window > 1){
-              std::string t = "ID: " + my_id + " Time Correlation:\n";
-              for(int i = 0; i < time_window; ++i){
+            if(time_window > 1 && time_i == time_window){
+              //std::string t = "ID: " + my_id + " Time Correlation:\n";
+              /*for(int i = 0; i < time_window; ++i){
                 t = t + "\ti:" + std::to_string(i) + " thr: " + std::to_string(t_thr[i]) + " del: " + std::to_string(t_del[i]) + "\n"; 
+              }*/
+              //NS_LOG_INFO(t);
+              //Compute the variation between the two half windows
+              double mean_t_thr_1 = 0;
+              double mean_t_del_1 = 0;
+              int index_1 = floor(time_window / 2);
+              for(int i = 0; i < index_1; ++i){
+                mean_t_thr_1 += t_thr[i];
+                mean_t_del_1 += t_del[i];
               }
-              NS_LOG_INFO(t);
+              mean_t_del_1 /= index_1;
+              mean_t_thr_1 /= index_1;
+              double mean_t_thr_2 = 0;
+              double mean_t_del_2 = 0;
+              for(int i = index_1; i < time_window; ++i){
+                mean_t_thr_2 += t_thr[i];
+                mean_t_del_2 += t_del[i];
+              }
+              mean_t_del_2 /= (time_window - index_1);
+              mean_t_thr_2 /= (time_window - index_1);
+              if((mean_t_thr_2 >= tr_t_thr * mean_t_thr_1) || (mean_t_del_2 >= tr_t_del * mean_t_del_1)){
+                NS_LOG_INFO("ID: " << my_id << " INGORGO4 ****** interval: " << current_interval.GetSeconds());
+                is_stuck = 1;
+              } else {
+                NS_LOG_INFO("ID: " << my_id << " OK2 ****** interval: " << current_interval.GetSeconds());
+                is_stuck = 0;
+              }
             } else {
-              NS_LOG_INFO("ID: " << my_id << " OK2 ****** interval: " << current_interval.GetSeconds());
+              NS_LOG_INFO("ID: " << my_id << " OK1 ****** interval: " << current_interval.GetSeconds());
               is_stuck = 0;
             }
           }
@@ -616,6 +665,14 @@ namespace ns3 {
     double *t_thr;                    //Thr time window
     double *t_del;                    //Delay time window
     int time_i = 0;                   //Counter for the two time windows
+
+    //Thresholds 
+    double tr_hard;
+    double tr_soft;
+    double tr_thr;
+    double tr_del;
+    double tr_t_thr;
+    double tr_t_del;
   };
 
   /*
@@ -624,7 +681,8 @@ namespace ns3 {
    */
   class TestProjectHelper {
   public:
-    TestProjectHelper(uint16_t port_send, Time interval, Time window, bool project, uint16_t packet_size, int t_w) {
+    TestProjectHelper(uint16_t port_send, Time interval, Time window, bool project, uint16_t packet_size, int t_w,
+                      double hard, double soft, double thr, double del, double t_thr, double t_del) {
       m_factory.SetTypeId(TestProject::GetTypeId());
       SetAttribute("Port", UintegerValue(port_send));
       SetAttribute("Interval", TimeValue(interval));
@@ -632,6 +690,12 @@ namespace ns3 {
       SetAttribute("Project", BooleanValue(project));
       SetAttribute("PacketSize", UintegerValue(packet_size));
       SetAttribute("TimeWindow", IntegerValue(t_w));
+      SetAttribute("Hard", DoubleValue(hard));
+      SetAttribute("Soft", DoubleValue(soft));
+      SetAttribute("Thr", DoubleValue(thr));
+      SetAttribute("Delay", DoubleValue(del));
+      SetAttribute("TimeThr", DoubleValue(t_thr));
+      SetAttribute("TimeDelay", DoubleValue(t_del));
     }
 
     /**
@@ -726,6 +790,7 @@ int main(int argc, char *argv[]) {
   std::string file;
   int n_v = 10;
   int t_window = 1;
+  double hard = 1.8, soft = 1.5, thr = 3.0, del = 6000.0, t_thr = 1.8, t_del = 1.8;
 
   CommandLine cmd;
   cmd.AddValue("Port", "Port on which we send packets.", port);
@@ -737,6 +802,12 @@ int main(int argc, char *argv[]) {
   cmd.AddValue("Filename", "File name where the output is saved", file);
   cmd.AddValue("MaxVehicles", "Max number of vehicles generated by sumo", n_v);
   cmd.AddValue("TimeWindow", "How much back into time we consider the variation of delay and throughput", t_window);
+  cmd.AddValue("Hard", "Hard threshold for the static tree first decision", hard);
+  cmd.AddValue("Soft", "Soft threshold for the static tree second decision", soft);
+  cmd.AddValue("Thr", "Throughput threshold for the static tree third decision", thr);
+  cmd.AddValue("Delay", "Delay threshold for the static tree third decision", del);
+  cmd.AddValue("TimeThr", "Time threshold for the throughput (only if the TimeWindow > 1)", t_thr);
+  cmd.AddValue("TimeDelay", "Time threshold for the delay (only if the TimeWindow > 1)", t_del);
   cmd.Parse(argc, argv);
   if(verbose) {
     LogComponentEnable("TraciClient", LOG_LEVEL_INFO);
@@ -787,7 +858,7 @@ int main(int argc, char *argv[]) {
 
   // Setup del client per sumo
   Ptr<TraciClient> sumoClient = CreateObject<TraciClient>();
-  sumoClient->SetAttribute("SumoConfigPath", StringValue("maps/test4/osm.sumocfg"));
+  sumoClient->SetAttribute("SumoConfigPath", StringValue("maps/oklahoma_city_3/osm.sumocfg"));
   sumoClient->SetAttribute("SumoBinaryPath", StringValue(""));    // use system installation of sumo
   sumoClient->SetAttribute("SynchInterval", TimeValue(Seconds(0.1)));
   sumoClient->SetAttribute("StartTime", TimeValue(Seconds(100.0)));
@@ -801,7 +872,8 @@ int main(int argc, char *argv[]) {
   sumoClient->SetAttribute("SumoWaitForSocket", TimeValue(Seconds(3.0)));  
 
   // Creazione dell'helper per la creazione delle unità mobili(veicoli/nodi)
-  TestProjectHelper testProjectHelper(port, interval, window, project, p_size, t_window);
+  TestProjectHelper testProjectHelper(port, interval, window, project, p_size, t_window,
+                                      hard, soft, thr, del, t_thr, t_del);
   testProjectHelper.SetAttribute("Client",(PointerValue) sumoClient); // pass TraciClient object for accessing sumo in application
 
   // Creazione di una callback che verrà chiamata quando viene creato un veicolo in sumo! 
