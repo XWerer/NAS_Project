@@ -57,9 +57,13 @@ namespace ns3 {
                        TimeValue(Seconds(1.0)),
                        MakeTimeAccessor(&TestProject::m_window),
                        MakeTimeChecker())
-        .AddAttribute("Project", "Enables the project functionality",
+        .AddAttribute("Project1", "Enables the project functionality of the rerouting part",
                        BooleanValue(true),
-                       MakeBooleanAccessor(&TestProject::m_project),
+                       MakeBooleanAccessor(&TestProject::m_project_1),
+                       MakeBooleanChecker())
+        .AddAttribute("Project2", "Enables the project functionality of the adapt time interval part",
+                       BooleanValue(true),
+                       MakeBooleanAccessor(&TestProject::m_project_2),
                        MakeBooleanChecker())
         .AddAttribute("PacketSize", "Size of the packets to send.",
                        UintegerValue(500),
@@ -86,11 +90,11 @@ namespace ns3 {
                        MakeDoubleAccessor(&TestProject::tr_del),
                        MakeDoubleChecker<double>()) 
         .AddAttribute("TimeThr", "Time threshold for the throughput (only if the TimeWindow > 1)",
-                       DoubleValue(1.8),
+                       DoubleValue(2.0),
                        MakeDoubleAccessor(&TestProject::tr_t_thr),
                        MakeDoubleChecker<double>())
         .AddAttribute("TimeDelay", "Time threshold for the delay (only if the TimeWindow > 1)",
-                       DoubleValue(1.8),
+                       DoubleValue(2.0),
                        MakeDoubleAccessor(&TestProject::tr_t_del),
                        MakeDoubleChecker<double>())                
         .AddAttribute("Client", "TraCI client for SUMO",
@@ -326,7 +330,7 @@ namespace ns3 {
         //             << " us - N_p: " << npack << "\nID: " << my_id << " - Conn: " << id_v.size() << " - ConnL: " << cl << " - " << s);
 
         //Project part
-        if(m_project) {
+        if(m_project_1) {
           //Decision tree to decide if the vehicle is stucked based on the parameters computed before
           /*if(cl >= 4) {
             if(thr_local >= 1.5*thr_x_car) {
@@ -377,11 +381,11 @@ namespace ns3 {
           } else {
             //Here we can put time correlation analysis
             if(time_window > 1 && time_i == time_window){
-              //std::string t = "ID: " + my_id + " Time Correlation:\n";
-              /*for(int i = 0; i < time_window; ++i){
+              std::string t = "ID: " + my_id + " Time Correlation:\n";
+              for(int i = 0; i < time_window; ++i){
                 t = t + "\ti:" + std::to_string(i) + " thr: " + std::to_string(t_thr[i]) + " del: " + std::to_string(t_del[i]) + "\n"; 
-              }*/
-              //NS_LOG_INFO(t);
+              }
+              NS_LOG_INFO(t);
               //Compute the variation between the two half windows
               double mean_t_thr_1 = 0;
               double mean_t_del_1 = 0;
@@ -400,7 +404,7 @@ namespace ns3 {
               }
               mean_t_del_2 /= (time_window - index_1);
               mean_t_thr_2 /= (time_window - index_1);
-              if((mean_t_thr_2 >= tr_t_thr * mean_t_thr_1) || (mean_t_del_2 >= tr_t_del * mean_t_del_1)){
+              if((mean_t_thr_2 > tr_t_thr * mean_t_thr_1) || (mean_t_del_2 > tr_t_del * mean_t_del_1)){
                 NS_LOG_INFO("ID: " << my_id << " INGORGO4 ****** interval: " << current_interval.GetSeconds());
                 is_stuck = 1;
               } else {
@@ -447,16 +451,6 @@ namespace ns3 {
             ++i;          
           }
 
-          if((is_stuck || pl >= 0.85) && current_interval.GetSeconds() < 0.05){
-            current_interval = Seconds(current_interval.GetSeconds() * 2);
-            my_packet_freq =(int)(1.0/current_interval.GetSeconds());
-            //NS_LOG_INFO("ID: " << my_id << " Interval: " << current_interval.GetSeconds());
-          } else if(pl <= 0.15 && pl >= 0 && current_interval.GetSeconds() > 0.007){
-            current_interval = Seconds(current_interval.GetSeconds() / 2);
-            my_packet_freq =(int)(1.0/current_interval.GetSeconds());
-            //NS_LOG_INFO("ID: " << my_id << " Interval: " << current_interval.GetSeconds());
-          }
-
           //Compute an alternative road if is possible
           if(rerouting){
             //reset the flag because we re-use it
@@ -485,7 +479,18 @@ namespace ns3 {
               }
             }
           }
-        } //end if m_project     
+        } //end if m_project_1
+        if(m_project_2){
+          if((is_stuck || pl >= 0.85) && current_interval.GetSeconds() < 0.05){
+            current_interval = Seconds(current_interval.GetSeconds() * 2);
+            my_packet_freq =(int)(1.0/current_interval.GetSeconds());
+            //NS_LOG_INFO("ID: " << my_id << " Interval: " << current_interval.GetSeconds());
+          } else if(pl <= 0.15 && pl >= 0 && current_interval.GetSeconds() > 0.007){
+            current_interval = Seconds(current_interval.GetSeconds() / 2);
+            my_packet_freq =(int)(1.0/current_interval.GetSeconds());
+            //NS_LOG_INFO("ID: " << my_id << " Interval: " << current_interval.GetSeconds());
+          }
+        } //end if m_project_2  
       } //end if npack != 0
 
       //Save data into output data structure
@@ -611,7 +616,8 @@ namespace ns3 {
       }
     }
 
-    bool m_project = true;          //Enables project functionality
+    bool m_project_1 = true;        //Enables rerouting functionality
+    bool m_project_2 = true;        //Enables frequency adaptivity functionality
 
     uint16_t m_port;                //Port 
 
@@ -681,13 +687,14 @@ namespace ns3 {
    */
   class TestProjectHelper {
   public:
-    TestProjectHelper(uint16_t port_send, Time interval, Time window, bool project, uint16_t packet_size, int t_w,
+    TestProjectHelper(uint16_t port_send, Time interval, Time window, bool project_1, bool project_2, uint16_t packet_size, int t_w,
                       double hard, double soft, double thr, double del, double t_thr, double t_del) {
       m_factory.SetTypeId(TestProject::GetTypeId());
       SetAttribute("Port", UintegerValue(port_send));
       SetAttribute("Interval", TimeValue(interval));
       SetAttribute("Window", TimeValue(window));
-      SetAttribute("Project", BooleanValue(project));
+      SetAttribute("Project1", BooleanValue(project_1));
+      SetAttribute("Project2", BooleanValue(project_2));
       SetAttribute("PacketSize", UintegerValue(packet_size));
       SetAttribute("TimeWindow", IntegerValue(t_w));
       SetAttribute("Hard", DoubleValue(hard));
@@ -785,7 +792,8 @@ int main(int argc, char *argv[]) {
   Time interval(0.011);
   Time window(1.0);
   double p_rate = 1.0;
-  bool project = true;
+  bool project_1 = true;
+  bool project_2 = true;
   uint16_t p_size = 500;
   std::string file;
   int n_v = 10;
@@ -797,7 +805,8 @@ int main(int argc, char *argv[]) {
   cmd.AddValue("Interval", "The time to wait between packets", interval);
   cmd.AddValue("Window", "The time between each stats calculation", window);
   cmd.AddValue("PenetrationRate", "Portion of vehicles equipped with wifi", p_rate);
-  cmd.AddValue("Project", "Enables the project functionality", project);
+  cmd.AddValue("Project1", "Enables the project functionality of the rerouting part", project_1);
+  cmd.AddValue("Project2", "Enables the project functionality of the adapt time interval part", project_2);
   cmd.AddValue("PacketSize", "Size of the packets to send.", p_size);
   cmd.AddValue("Filename", "File name where the output is saved", file);
   cmd.AddValue("MaxVehicles", "Max number of vehicles generated by sumo", n_v);
@@ -872,7 +881,7 @@ int main(int argc, char *argv[]) {
   sumoClient->SetAttribute("SumoWaitForSocket", TimeValue(Seconds(3.0)));  
 
   // Creazione dell'helper per la creazione delle unità mobili(veicoli/nodi)
-  TestProjectHelper testProjectHelper(port, interval, window, project, p_size, t_window,
+  TestProjectHelper testProjectHelper(port, interval, window, project_1, project_2, p_size, t_window,
                                       hard, soft, thr, del, t_thr, t_del);
   testProjectHelper.SetAttribute("Client",(PointerValue) sumoClient); // pass TraciClient object for accessing sumo in application
 
