@@ -162,3 +162,4 @@ ylabel('Packet loss - Rate');
 xlabel('App rate - Packets per second'); 
 grid on;
 saveas(fig6, "Mean packet loss per app rate " + filename + ".jpg");
+
