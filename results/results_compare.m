@@ -429,19 +429,22 @@ saveas(fig3, "Mean packet loss vs # of vehicles.jpg");
 % save('pl3-TTFF.mat', 'pl3');
 % save('pl4-TTFF.mat', 'pl4');
 
-TTFFthr = [mean(thr) mean(thr2) mean(thr3) mean(thr4)];
-TTFFdelay = [mean(delay) mean(delay2) mean(delay3) mean(delay4)];
-TTFFpl = [mean(pl) mean(pl2) mean(pl3) mean(pl4)];
-save('TTFFthr.mat', 'TTFFthr');
-save('TTFFdelay.mat', 'TTFFdelay');
-save('TTFFpl.mat', 'TTFFpl');
+% TTFFthr = [mean(thr) mean(thr2) mean(thr3) mean(thr4)];
+% TTFFdelay = [mean(delay) mean(delay2) mean(delay3) mean(delay4)];
+% TTFFpl = [mean(pl) mean(pl2) mean(pl3) mean(pl4)];
+% save('TTFFthr.mat', 'TTFFthr');
+% save('TTFFdelay.mat', 'TTFFdelay');
+% save('TTFFpl.mat', 'TTFFpl');
+load('TTFFthr.mat');
+load('TTFFdelay.mat');
+load('TTFFpl.mat');
 
 x = ['TT'; 'TF'; 'FT'; 'FF'];
 
 fig = figure;
 bar(TTFFthr);
 set(gca,'xticklabel', x);
-title('Mean throughput vs project');
+title('Mean throughput vs strategy combination');
 ylabel('Throughput - Mbps'); 
 xlabel('Combination of strategies'); 
 grid minor;
@@ -450,7 +453,7 @@ saveas(fig, "Mean throughput vs project.jpg");
 fig2 = figure;
 bar(TTFFdelay, 'r');
 set(gca,'xticklabel', x);
-title('Mean delay vs project');
+title('Mean delay vs strategy combination');
 ylabel('Delay - us'); 
 xlabel('Combination of strategies'); 
 grid minor;
@@ -459,7 +462,7 @@ saveas(fig2, "Mean delay vs project.jpg");
 fig3 = figure;
 bar(TTFFpl, 'g');
 set(gca,'xticklabel', x);
-title('Mean packet loss vs project');
+title('Mean packet loss vs strategy combination');
 ylabel('Packet loss - Rate'); 
 xlabel('Combination of strategies'); 
 xTicks = ["TT"; "TF"; "FT"; "FF"];
@@ -468,27 +471,56 @@ saveas(fig3, "Mean packet loss vs project.jpg");
 
 %% PLOTS FOR THR AGGRESSIVENESS
 
-save('thr-TH.mat', 'thr');
-save('thr2-TH.mat', 'thr2');
-save('thr3-TH.mat', 'thr3');
-save('delay-TH.mat', 'delay');
-save('delay2-TH.mat', 'delay2');
-save('delay3-TH.mat', 'delay3');
-save('pl-TH.mat', 'pl');
-save('pl2-TH.mat', 'pl2');
-save('pl3-TH.mat', 'pl3');
+% save('thr-TH.mat', 'thr');
+% save('thr2-TH.mat', 'thr2');
+% save('thr3-TH.mat', 'thr3');
+% save('delay-TH.mat', 'delay');
+% save('delay2-TH.mat', 'delay2');
+% save('delay3-TH.mat', 'delay3');
+% save('pl-TH.mat', 'pl');
+% save('pl2-TH.mat', 'pl2');
+% save('pl3-TH.mat', 'pl3');
 
+load('thr-TH.mat');
+load('thr2-TH.mat');
+load('thr3-TH.mat');
+load('delay-TH.mat');
+load('delay2-TH.mat');
+load('delay3-TH.mat');
+load('pl-TH.mat');
+load('pl2-TH.mat');
+load('pl3-TH.mat');
+load('thr4-TTFF.mat');
+load('delay4-TTFF.mat');
+load('pl4-TTFF.mat');
+%%
+
+thr = thr(11:size(thr, 1));
+thr2 = thr2(11:size(thr2, 1));
+thr3 = thr3(11:size(thr3, 1));
+thr4 = thr4(11:size(thr4, 1));
+delay = delay(11:size(delay, 1))/1000;
+delay2 = delay2(11:size(delay2, 1))/1000;
+delay3 = delay3(11:size(delay3, 1))/1000;
+delay4 = delay4(11:size(delay4, 1))/1000;
+pl = pl(11:size(pl, 1));
+pl2 = pl2(11:size(pl2, 1));
+pl3 = pl3(11:size(pl3, 1));
+pl4 = pl4(11:size(pl4, 1));
+time = time(11:size(time, 1));
+%%
 %plots and image savings
 fig = figure;
 plot(time(:, 1), thr);
 hold on;
 plot(time(:, 1), thr2, 'r');
 plot(time(:, 1), thr3, 'g');
+plot(time(:, 1), thr4, 'k');
 title('Mean throughput vs aggressiveness');
 ylabel('Throughput - Mbps'); 
 xlabel('Time - s'); 
 grid on;
-legend({'Standard', 'Aggressive', 'Weak'}, 'Location', "South", 'NumColumns', 2);
+legend({'Standard', 'Aggressive', 'Weak', 'Baseline'}, 'Location', "South", 'NumColumns', 2);
 saveas(fig, "Compare throughput vs aggressiveness on threshold.jpg");
 
 fig2 = figure;
@@ -496,11 +528,12 @@ plot(time(:, 1), delay);
 hold on;
 plot(time(:, 1), delay2, 'r');
 plot(time(:, 1), delay3, 'g');
+plot(time(:, 1), delay4, 'k');
 title('Mean delay vs aggressiveness');
-ylabel('Delay - us'); 
+ylabel('Delay - ms'); 
 xlabel('Time - s'); 
 grid on;
-legend({'Standard', 'Aggressive', 'Weak'}, 'Location', "South", 'NumColumns', 2);
+legend({'Standard', 'Aggressive', 'Weak', 'Baseline'}, 'Location', "NorthEast", 'NumColumns', 2);
 saveas(fig2, "Compare delay vs aggressiveness on threshold.jpg");
 
 fig3 = figure;
@@ -508,10 +541,11 @@ plot(time(:, 1), pl);
 hold on;
 plot(time(:, 1), pl2, 'r');
 plot(time(:, 1), pl3, 'g');
+plot(time(:, 1), pl4, 'k');
 title('Mean packet loss vs aggressiveness');
 ylabel('Packet loss - rate'); 
 xlabel('Time - s'); 
 grid on;
-legend({'Standard', 'Aggressive', 'Weak'}, 'Location', "NorthEast", 'NumColumns', 2);
+legend({'Standard', 'Aggressive', 'Weak', 'Baseline'}, 'Location', "NorthEast", 'NumColumns', 2);
 saveas(fig3, "Compare packet loss vs aggressiveness on threshold.jpg");
 
