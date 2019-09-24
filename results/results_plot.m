@@ -2,7 +2,7 @@
 clearvars;
 clc; 
 
-filename = "100veh-false-false";
+filename = "50-50-pr";
 
 %reading csv file and taking the time intervals involved
 m = readtable(filename + '.csv');
@@ -11,14 +11,14 @@ interval = table2array(unique(m(:,15)));
 
 %% calculation on all vehicles
 %arrays for thr calculation - mean and variance
-thr4 = zeros(size(time, 1), 1);
+thr = zeros(size(time, 1), 1);
 thr_var = zeros(size(time, 1), 1);
 thr_s = zeros(1, 1);
 %arrays for mean delay calculation
-delay4 = zeros(size(time, 1), 1);
+delay = zeros(size(time, 1), 1);
 delay_s = zeros(1, 1);
 %arrays for mean packet loss calculation
-pl4 = zeros(size(time, 1), 1);
+pl = zeros(size(time, 1), 1);
 pl_s = zeros(1, 1);
 
 first = true;   
@@ -44,10 +44,10 @@ for i=1:size(time, 1)
         end
     end
     %calculating stats per time instant
-    thr4(i, 1) = mean(thr_s);
+    thr(i, 1) = mean(thr_s);
     thr_var(i, 1) = var(thr_s);
-    delay4(i, 1) = mean(delay_s);
-    pl4(i, 1) = mean(pl_s);
+    delay(i, 1) = mean(delay_s);
+    pl(i, 1) = mean(pl_s);
     
     %zeroing temporary arrays for further analysis
     thr_s = zeros(1, 1);
@@ -55,15 +55,9 @@ for i=1:size(time, 1)
     pl_s = zeros(1, 1);
 end
 
-save('thr4-TTFF.mat', 'thr4');
-save('delay4-TTFF.mat', 'delay4');
-save('pl4-TTFF.mat', 'pl4');
-
-%%
-
 %plots and image savings
 fig = figure;
-errorbar(time(:, 1), thr4, thr_var);
+errorbar(time(:, 1), thr, thr_var);
 title('Throughput vs time (variance of thr displayed)');
 ylabel('Throughput (with variance) - Mbps'); 
 xlabel('Time - s'); 
@@ -71,7 +65,7 @@ grid on;
 saveas(fig, "Mean throughput per time " + filename + ".jpg");
 
 fig2 = figure;
-plot(time(:, 1), delay4, 'r');
+plot(time(:, 1), delay, 'r');
 title('Delay vs time');
 ylabel('Delay - us'); 
 xlabel('Time - s'); 
@@ -79,7 +73,7 @@ grid on;
 saveas(fig2, "Mean delay per time " + filename + ".jpg");
 
 fig3 = figure;
-plot(time(:, 1), pl4, 'g');
+plot(time(:, 1), pl, 'g');
 title('Packet loss vs time');
 ylabel('Packet loss - rate'); 
 xlabel('Time - s'); 
@@ -114,9 +108,9 @@ legend('Throughput', 'Rerouting');
 saveas(fig4, "Throughput vehicle " + veh_id + " per time " + filename + ".jpg");
 
 %% application rate variating
-thr4 = zeros(size(interval, 1), 1);
+thr = zeros(size(interval, 1), 1);
 thr_s = zeros(1, 1);
-pl4 = zeros(size(interval, 1), 1);
+pl = zeros(size(interval, 1), 1);
 pl_s = zeros(1, 1);
 
 first = true;   
@@ -140,8 +134,8 @@ for i=1:size(interval, 1)
         end
     end
     %calculating stats per app rate
-    thr4(i, 1) = mean(thr_s);
-    pl4(i, 1) = mean(pl_s);
+    thr(i, 1) = mean(thr_s);
+    pl(i, 1) = mean(pl_s);
     
     %zeroing temporary arrays for further analysis
     thr_s = zeros(1, 1);
@@ -154,7 +148,7 @@ for i=1:size(interval, 1)
 end
 
 fig5 = figure;
-plot(n_pckts(:, 1), thr4);
+plot(n_pckts(:, 1), thr);
 title('Mean throughput vs app rate');
 ylabel('Throughput - Mbps'); 
 xlabel('App rate - Packets per second'); 
@@ -162,7 +156,7 @@ grid on;
 saveas(fig5, "Mean throughput per app rate " + filename + ".jpg");
 
 fig6 = figure;
-plot(n_pckts(:, 1), pl4, 'r');
+plot(n_pckts(:, 1), pl, 'r');
 title('Mean packet loss vs app rate');
 ylabel('Packet loss - Rate'); 
 xlabel('App rate - Packets per second'); 
