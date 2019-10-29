@@ -102,9 +102,8 @@ namespace ns3 {
                        MakePointerAccessor(&TestProject::m_sumo_client),
                        MakePointerChecker<TraciClient>())
         .AddTraceSource("Tx", "A new packet is created and is sent", 
-                          MakeTraceSourceAccessor(&TestProject::m_txTrace),
-                          "ns3::Packet::TracedCallback")
-      ;
+                        MakeTraceSourceAccessor(&TestProject::m_txTrace),
+                        "ns3::Packet::TracedCallback");
       return tid;
     }
 
@@ -182,9 +181,11 @@ namespace ns3 {
       m_socket_2->Connect(remote);
 
       //Randomization of 5 seconds to start transmit to avoid the blow up of the transmiton channel
-      double r =((double) rand() /(RAND_MAX)) * 5;
-      ScheduleTransmit(Seconds(r));
-      ScheduleStats(m_window);
+      //srand(time(NULL));
+      double r1 = ((double) rand() / (RAND_MAX)) * 5;
+      double r2 = ((double) rand() / (RAND_MAX)) * 0.20;
+      ScheduleTransmit(Seconds(r1));
+      ScheduleStats(Seconds(m_window.GetSeconds() + r2));
     }
 
     /*
@@ -265,8 +266,8 @@ namespace ns3 {
 
       //compute the string to print the map
       std::string s = "";
-      for(auto it = id_v.cbegin(); it != id_v.cend(); ++it)
-        s = s + it->first + ":" + std::to_string(it->second) + " - ";
+      //for(auto it = id_v.cbegin(); it != id_v.cend(); ++it)
+      //  s = s + it->first + ":" + std::to_string(it->second) + " - ";
 
       //Computation thr local and global
       thr =((sizepack*8.0)/m_window.GetSeconds())/(1024*1024); //Global thr
@@ -286,11 +287,13 @@ namespace ns3 {
       int sum = 0;
       std::string s2 = "";
       for(auto it = info1.cbegin(); it != info1.cend(); ++it) {
-        sum +=(std::get<1>(it->second) + 1) * m_window.GetSeconds();
+        //sum += (std::get<1>(it->second) + 1) * m_window.GetSeconds();
+        sum += (int) ((std::get<1>(it->second) + 1) * m_window.GetSeconds());
         s2 = s2 + it->first + ": " + std::get<0>(it->second) + "," + std::to_string(std::get<1>(it->second)) + " - ";
       }
       if(sum == 0) pl = -1;
-      else pl = 1 -(npack / sum);
+      else if(npack >= sum) pl = 0;
+      else pl = 1 - (npack / sum);
       //NS_LOG_INFO("ID: " << my_id << " - Info1: " << s2);
 
       //Compute the rateV(velocity of the vehicle / max vehicle of the road)
@@ -484,6 +487,7 @@ namespace ns3 {
             }
           }
         } //end if m_project_1
+        /* previous project 2 
         if(m_project_2){
           if((is_stuck || pl >= 0.85) && current_interval.GetSeconds() < 0.05){
             current_interval = Seconds(current_interval.GetSeconds() * 2);
@@ -494,13 +498,28 @@ namespace ns3 {
             my_packet_freq =(int)(1.0/current_interval.GetSeconds());
             //NS_LOG_INFO("ID: " << my_id << " Interval: " << current_interval.GetSeconds());
           }
-        } //end if m_project_2  
+        } //end if m_project_2 
+        */ 
+        //New project 2 more parametrized 
+        if(m_project_2){
+          if((is_stuck || pl >= 0.50) && current_interval.GetSeconds() <= (m_interval.GetSeconds() * 2)){
+            current_interval = Seconds(current_interval.GetSeconds() * 2);
+            my_packet_freq =(int)(1.0/current_interval.GetSeconds());
+            //NS_LOG_INFO("ID: " << my_id << " Interval: " << current_interval.GetSeconds());
+          } else if(!is_stuck && pl <= 0.10 && pl >= 0 && current_interval.GetSeconds() > (m_interval.GetSeconds())){
+            current_interval = Seconds(current_interval.GetSeconds() / 2);
+            my_packet_freq =(int)(1.0/current_interval.GetSeconds());
+            //NS_LOG_INFO("ID: " << my_id << " Interval: " << current_interval.GetSeconds());
+          }
+        }
       } //end if npack != 0
 
       //Save data into output data structure
       double t =(double) Simulator::Now().GetSeconds();
       t =(floor((t*2) + 0.5) / 2);
-      int id = std::stoi(my_id.substr(3, my_id.size()));
+      //std::cout << my_id.size() << " and my id = " << my_id << std::endl;
+      //int id = std::stoi(my_id.substr(3, my_id.size()));
+      int id = std::stoi(my_id);
       std::vector<double> vec;
       vec.push_back((double) thr);
       vec.push_back((double) thr_local);
@@ -792,7 +811,7 @@ NS_LOG_COMPONENT_DEFINE("ns3-project-test");
 int main(int argc, char *argv[]) {
   //Opzioni di log in
   bool verbose = true;
-  int port = 9;
+  int port = 3400;
   Time interval(0.007);
   Time window(1.0);
   double p_rate = 1.0;
@@ -803,6 +822,7 @@ int main(int argc, char *argv[]) {
   int n_v = 10;
   int t_window = 4;
   double hard = 1.8, soft = 1.5, thr = 3.0, del = 6000.0, t_thr = 1.8, t_del = 1.8;
+  double sim_time = 90.0;
 
   CommandLine cmd;
   cmd.AddValue("Port", "Port on which we send packets.", port);
@@ -821,6 +841,7 @@ int main(int argc, char *argv[]) {
   cmd.AddValue("Delay", "Delay threshold for the static tree third decision", del);
   cmd.AddValue("TimeThr", "Time threshold for the throughput (only if the TimeWindow > 1)", t_thr);
   cmd.AddValue("TimeDelay", "Time threshold for the delay (only if the TimeWindow > 1)", t_del);
+  cmd.AddValue("SimTime", "Duration of the effective simulation", sim_time);
   cmd.Parse(argc, argv);
   if(verbose) {
     LogComponentEnable("TraciClient", LOG_LEVEL_INFO);
@@ -828,7 +849,7 @@ int main(int argc, char *argv[]) {
   }
 
   // Creazione di un pool di nodi perchè devono essere creati in precedenza per sumo
-  ns3::Time simulationTime(ns3::Seconds(90.0));
+  ns3::Time simulationTime(ns3::Seconds(sim_time));
   NodeContainer nodePool;
   nodePool.Create(1000);
   uint32_t nodeCounter(0);
@@ -870,17 +891,19 @@ int main(int argc, char *argv[]) {
   mobility.Install(nodePool);
 
   // Setup del client per sumo
+  int seed = time(NULL); //Seed to randomized sumo
+  srand(seed);
   Ptr<TraciClient> sumoClient = CreateObject<TraciClient>();
   sumoClient->SetAttribute("SumoConfigPath", StringValue("maps/oklahoma_city_3/osm.sumocfg"));
   sumoClient->SetAttribute("SumoBinaryPath", StringValue(""));    // use system installation of sumo
   sumoClient->SetAttribute("SynchInterval", TimeValue(Seconds(0.1)));
-  sumoClient->SetAttribute("StartTime", TimeValue(Seconds(100.0)));
+  sumoClient->SetAttribute("StartTime", TimeValue(Seconds(200.0)));
   sumoClient->SetAttribute("SumoGUI", BooleanValue(true));
-  sumoClient->SetAttribute("SumoPort", UintegerValue(3400));
+  sumoClient->SetAttribute("SumoPort", UintegerValue(port));
   sumoClient->SetAttribute("PenetrationRate", DoubleValue(p_rate));  // portion of vehicles equipped with wifi
   sumoClient->SetAttribute("SumoLogFile", BooleanValue(true));
   sumoClient->SetAttribute("SumoStepLog", BooleanValue(false));
-  sumoClient->SetAttribute("SumoSeed", IntegerValue(10));
+  sumoClient->SetAttribute("SumoSeed", IntegerValue(seed));
   sumoClient->SetAttribute("SumoAdditionalCmdOptions", StringValue("--verbose true --max-num-vehicles " + std::to_string(n_v)));
   sumoClient->SetAttribute("SumoWaitForSocket", TimeValue(Seconds(3.0)));  
 
