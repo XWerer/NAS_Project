@@ -1,0 +1,2597 @@
+tantissimo_12_sim.sh: 2: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 3: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 4: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 5: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 6: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 7: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 8: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 9: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 10: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 11: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 12: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 13: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 14: tantissimo_12_sim.sh: : not found
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (2.245s)
+'build' finished successfully (2.468s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (2.400s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (2.699s)
+'build' finished successfully (2.391s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (2.828s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (2.742s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (2.944s)
+'build' finished successfully (2.945s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (3.085s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (3.005s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (3.008s)
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3444 ***
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3445 ***
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3446 ***
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3447 ***
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3448 ***
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3448 ***
+Error: tcpip::Socket::accept() Unable to create listening socket: Address already in use
+Quitting (on error).
+Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Sumo: wait for socket: 3s
+done (570ms).
+Loading configuration ... done.
+***Starting server on port 3449 ***
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3450 ***
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3450 ***
+Error: tcpip::Socket::accept() Unable to create listening socket: Address already in use
+Quitting (on error).
+done (83ms).
+Loading done.
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3451 ***
+Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3452 ***
+Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... done (432ms).
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... done (84ms).
+Loading done.
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3453 ***
+done (641ms).
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... done (59ms).
+Loading done.
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... done (524ms).
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... done (59ms).
+done (557ms).
+Loading done.
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... Warning: Vehicle '10' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=24.50.
+done (43ms).
+Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Loading done.
+Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+done (507ms).
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... done (59ms).
+done (688ms).
+Loading done.
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... done (145ms).
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=17.30.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=17.50.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=17.80.
+Loading done.
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=17.30.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=17.50.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=17.80.
+Warning: Vehicle '10' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=24.50.
+done (800ms).
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... done (65ms).
+Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: Vehicle '10' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=25.10.
+Loading done.
+Warning: Vehicle '10' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=25.10.
+Warning: Vehicle '10' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=25.50.
+done (823ms).
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Warning: Vehicle '10' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=25.50.
+Warning: Vehicle '50' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=36.70.
+Warning: Vehicle '50' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=36.90.
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... done (74ms).
+Loading done.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+done (882ms).
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=19.50.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=19.80.
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=20.10.
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=19.50.
+Warning: Vehicle '50' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=35.80.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=19.80.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=20.10.
+done (108ms).
+Warning: Vehicle '50' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=36.70.
+Warning: Vehicle '50' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=36.90.
+Loading done.
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=19.50.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: Vehicle '50' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=35.80.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=19.80.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=20.10.
+Warning: Vehicle '148' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=30.50.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=18.80.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: Vehicle '148' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=30.50.
+Warning: Vehicle '50' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=33.90.
+Warning: Vehicle '50' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=34.10.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=18.80.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: Vehicle '50' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=33.90.
+Warning: Vehicle '50' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=34.10.
+Warning: Vehicle '148' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=30.50.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: Vehicle '50' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=33.90.
+Warning: Vehicle '50' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=34.10.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.50.
+Warning: Vehicle '86' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=55.60.
+Warning: Vehicle '86' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=55.60.
+Warning: Vehicle '87' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=90.20.
+Warning: Vehicle '328' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=96.20.
+Warning: Vehicle '328' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=96.60.
+Warning: Vehicle '62' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=80.10.
+Warning: Vehicle '62' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=80.30.
+Warning: Vehicle '73' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=82.20.
+Warning: Vehicle '75' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=79.40.
+Warning: Vehicle '75' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=79.60.
+Warning: Vehicle '130' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=81.60.
+Warning: Vehicle '130' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=81.90.
+Warning: Vehicle '233' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=82.40.
+Warning: Vehicle '62' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=80.10.
+Warning: Vehicle '62' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=80.30.
+Warning: Vehicle '21' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=83.90.
+Warning: Vehicle '73' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=82.20.
+Warning: Vehicle '21' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=84.70.
+Warning: Vehicle '331' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=85.10.
+Warning: Vehicle '62' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=80.10.
+Warning: Vehicle '62' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=80.30.
+Warning: Vehicle '75' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=79.40.
+Warning: Vehicle '75' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=79.60.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=104.30.
+Warning: Vehicle '324' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=111.60.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=104.70.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=87.20.
+Warning: Vehicle '87' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=90.20.
+Warning: Vehicle '193' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=87.60.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=87.60.
+Warning: Vehicle '73' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=82.20.
+Warning: Vehicle '130' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=81.60.
+Warning: Vehicle '130' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=81.90.
+Warning: Vehicle '233' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=82.40.
+Warning: Vehicle '62' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=89.80.
+Warning: Vehicle '132' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=94.40.
+Warning: Vehicle '21' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=83.90.
+Warning: Vehicle '21' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=84.70.
+Warning: Vehicle '328' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=96.20.
+Warning: Vehicle '331' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=85.10.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=98.30.
+Warning: Vehicle '328' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=96.60.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=98.80.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=104.30.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=101.40.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=87.20.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=104.70.
+Warning: Vehicle '193' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=87.60.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=87.60.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=101.80.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=102.00.
+Warning: Vehicle '132' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=94.40.
+Warning: Vehicle '62' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=89.80.
+Warning: Vehicle '132' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=94.40.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=98.30.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=98.80.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=98.30.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=98.80.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=101.40.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=101.80.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=102.00.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=101.40.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=101.80.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=102.00.
+Warning: Vehicle '324' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=111.60.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: Vehicle '419' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=156.50.
+Warning: Vehicle '419' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=156.90.
+Warning: Vehicle '419' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=157.60.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: Vehicle '82' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=163.90.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: Vehicle '419' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=156.50.
+Warning: Vehicle '419' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=156.90.
+Warning: Vehicle '419' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=157.60.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+tantissimo_12_sim.sh: 2: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 3: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 4: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 5: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 6: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 7: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 8: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 9: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 10: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 11: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 12: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 13: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 14: tantissimo_12_sim.sh: : not found
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (1.611s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (2.907s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (2.512s)
+'build' finished successfully (2.952s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (2.931s)
+'build' finished successfully (3.052s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (2.974s)
+'build' finished successfully (3.032s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (3.332s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+Traceback (most recent call last):
+  File "/media/vol1/sumonasproject/NAS_Project/.waf3-2.0.18-ff4ae9f5cc05353d3dc3aeff8854ae69/waflib/Scripting.py", line 119, in waf_entry_point
+    run_commands()
+  File "/media/vol1/sumonasproject/NAS_Project/.waf3-2.0.18-ff4ae9f5cc05353d3dc3aeff8854ae69/waflib/Scripting.py", line 182, in run_commands
+    ctx=run_command(cmd_name)
+  File "/media/vol1/sumonasproject/NAS_Project/.waf3-2.0.18-ff4ae9f5cc05353d3dc3aeff8854ae69/waflib/Scripting.py", line 173, in run_command
+    ctx.execute()
+  File "/media/vol1/sumonasproject/NAS_Project/.waf3-2.0.18-ff4ae9f5cc05353d3dc3aeff8854ae69/waflib/Scripting.py", line 375, in execute
+    return execute_method(self)
+  File "/media/vol1/sumonasproject/NAS_Project/.waf3-2.0.18-ff4ae9f5cc05353d3dc3aeff8854ae69/waflib/Build.py", line 93, in execute
+    self.execute_build()
+  File "/media/vol1/sumonasproject/NAS_Project/.waf3-2.0.18-ff4ae9f5cc05353d3dc3aeff8854ae69/waflib/Build.py", line 112, in execute_build
+    self.post_build()
+  File "/media/vol1/sumonasproject/NAS_Project/.waf3-2.0.18-ff4ae9f5cc05353d3dc3aeff8854ae69/waflib/Build.py", line 272, in post_build
+    m(self)
+  File "waf-tools/clang_compilation_database.py", line 47, in write_compilation_database
+    root = json.load(database_file)
+  File "/usr/lib/python3.7/json/__init__.py", line 296, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib/python3.7/json/__init__.py", line 348, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.7/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.7/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+'build' finished successfully (3.395s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (3.979s)
+Sumo: wait for socket: 3s
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3454 ***
+Loading configuration ... done.
+***Starting server on port 3454 ***
+Error: tcpip::Socket::accept() Unable to create listening socket: Address already in use
+Quitting (on error).
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3455 ***
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3456 ***
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3457 ***
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3458 ***
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3459 ***
+Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Sumo: wait for socket: 3s
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3460 ***
+Loading configuration ... done.
+***Starting server on port 3460 ***
+Error: tcpip::Socket::accept() Unable to create listening socket: Address already in use
+Quitting (on error).
+Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3461 ***
+done (720ms).
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... done (114ms).
+Sumo: wait for socket: 3s
+Loading done.
+Loading configuration ... done.
+***Starting server on port 3462 ***
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+done (859ms).
+Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... done (136ms).
+Loading done.
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... done (806ms).
+Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... done (111ms).
+Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Loading done.
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=17.10.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=17.60.
+done (894ms).
+done (1188ms).
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... done (99ms).
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Loading done.
+done (886ms).
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+done (106ms).
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... done (109ms).
+Loading done.
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Loading done.
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=19.30.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=19.50.
+done (755ms).
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... done (107ms).
+done (797ms).
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=17.20.
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... Loading done.
+done (75ms).
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Loading done.
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+done (779ms).
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+done (105ms).
+Loading done.
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=17.20.
+Warning: Vehicle '10' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=27.40.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=17.50.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=17.50.
+Warning: Vehicle '10' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=27.40.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=17.50.
+Warning: Vehicle '64' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=25.00.
+Warning: Vehicle '64' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=25.00.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: Vehicle '64' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=25.00.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: Vehicle '119' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=46.00.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=58.50.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=58.80.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=59.10.
+Warning: Vehicle '119' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=46.00.
+Warning: Vehicle '86' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=57.30.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=54.80.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=55.00.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=58.50.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=58.80.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=59.10.
+Warning: Vehicle '129' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=68.70.
+Warning: Vehicle '129' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=69.10.
+Warning: Vehicle '4' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=89.80.
+Warning: Vehicle '4' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=90.10.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=77.80.
+Warning: Vehicle '154' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=68.60.
+Warning: Vehicle '233' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=81.40.
+Warning: Vehicle '154' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=69.00.
+Warning: Vehicle '154' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=68.60.
+Warning: Vehicle '154' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=69.00.
+Warning: Vehicle '154' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=68.60.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=72.90.
+Warning: Vehicle '154' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=69.00.
+Warning: Vehicle '87' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=84.70.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=73.80.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=72.90.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=99.20.
+Warning: Vehicle '87' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=85.50.
+Warning: Vehicle '4' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=89.80.
+Warning: Vehicle '4' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=90.10.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=73.80.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=72.90.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=73.80.
+Warning: Vehicle '37' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=79.50.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=77.80.
+Warning: Vehicle '332' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=89.10.
+Warning: Vehicle '332' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=89.60.
+Warning: Vehicle '37' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=79.50.
+Warning: Vehicle '37' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=79.50.
+Warning: Vehicle '276' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=92.90.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=99.20.
+Warning: Vehicle '25' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=96.20.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=103.40.
+Warning: Vehicle '333' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=104.30.
+Warning: Vehicle '361' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=107.60.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=103.40.
+Warning: Vehicle '333' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=104.30.
+Warning: Vehicle '361' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=107.60.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3402', '--Interval=0.0004', '--Window=1', '--PacketSize=1000', '--Filename=300_0.0004_1000_20M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3404', '--Interval=0.00025', '--Window=1', '--PacketSize=500', '--Filename=300_0.00025_500_15M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3409', '--Interval=0.0016', '--Window=1', '--PacketSize=2000', '--Filename=300_0.0016_2000_10M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3407', '--Interval=0.0004', '--Window=1', '--PacketSize=500', '--Filename=300_0.0004_500_10M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3403', '--Interval=0.0008', '--Window=1', '--PacketSize=2000', '--Filename=300_0.0008_2000_20M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3410', '--Interval=0.0008', '--Window=1', '--PacketSize=500', '--Filename=300_0.0008_500_5M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3410', '--Interval=0.0008', '--Window=1', '--PacketSize=500', '--Filename=300_0.0008_500_5M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3407', '--Interval=0.0004', '--Window=1', '--PacketSize=500', '--Filename=300_0.0004_500_10M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3401', '--Interval=0.0002', '--Window=1', '--PacketSize=500', '--Filename=300_0.0002_500_20M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3412', '--Interval=0.0032', '--Window=1', '--PacketSize=2000', '--Filename=300_0.0032_2000_5M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3405', '--Interval=0.0005', '--Window=1', '--PacketSize=1000', '--Filename=300_0.0005_1000_15M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3411', '--Interval=0.0016', '--Window=1', '--PacketSize=1000', '--Filename=300_0.0016_1000_5M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3408', '--Interval=0.0008', '--Window=1', '--PacketSize=1000', '--Filename=300_0.0008_1000_10M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+DijkstraRouter answered 2126 queries and explored 167.75 edges on average.
+DijkstraRouter spent 1753ms answering queries (0.82ms on average).
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3406', '--Interval=0.001', '--Window=1', '--PacketSize=2000', '--Filename=300_0.001_2000_15M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+DijkstraRouter answered 2138 queries and explored 167.51 edges on average.
+DijkstraRouter spent 1773ms answering queries (0.83ms on average).
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3401', '--Interval=0.0002', '--Window=1', '--PacketSize=500', '--Filename=300_0.0002_500_20M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+DijkstraRouter answered 2132 queries and explored 167.57 edges on average.
+DijkstraRouter spent 2189ms answering queries (1.03ms on average).
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3412', '--Interval=0.0032', '--Window=1', '--PacketSize=2000', '--Filename=300_0.0032_2000_5M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3403', '--Interval=0.0008', '--Window=1', '--PacketSize=2000', '--Filename=300_0.0008_2000_20M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3408', '--Interval=0.0008', '--Window=1', '--PacketSize=1000', '--Filename=300_0.0008_1000_10M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3402', '--Interval=0.0004', '--Window=1', '--PacketSize=1000', '--Filename=300_0.0004_1000_20M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3405', '--Interval=0.0005', '--Window=1', '--PacketSize=1000', '--Filename=300_0.0005_1000_15M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3409', '--Interval=0.0016', '--Window=1', '--PacketSize=2000', '--Filename=300_0.0016_2000_10M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3404', '--Interval=0.00025', '--Window=1', '--PacketSize=500', '--Filename=300_0.00025_500_15M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+DijkstraRouter answered 2155 queries and explored 167.16 edges on average.
+DijkstraRouter spent 2054ms answering queries (0.95ms on average).
+DijkstraRouter answered 2131 queries and explored 167.55 edges on average.
+DijkstraRouter spent 2327ms answering queries (1.09ms on average).
+DijkstraRouter answered 2134 queries and explored 167.67 edges on average.
+DijkstraRouter spent 2222ms answering queries (1.04ms on average).
+Error: tcpip::Socket::recvAndCheck @ recv: peer shutdown
+Quitting (on error).
+DijkstraRouter answered 2150 queries and explored 167.78 edges on average.
+DijkstraRouter spent 2229ms answering queries (1.04ms on average).
+Command ['/media/vol1/sumonasproject/NAS_Project/build/scratch/project-test', '--Port=3406', '--Interval=0.001', '--Window=1', '--PacketSize=2000', '--Filename=300_0.001_2000_15M', '--MaxVehicles=300', '--SimTime=90'] terminated with signal SIGTERM. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").
+DijkstraRouter answered 2152 queries and explored 167.14 edges on average.
+DijkstraRouter spent 1652ms answering queries (0.77ms on average).
+DijkstraRouter answered 2133 queries and explored 167.50 edges on average.
+DijkstraRouter spent 1710ms answering queries (0.80ms on average).
+DijkstraRouter answered 2138 queries and explored 167.65 edges on average.
+DijkstraRouter spent 1845ms answering queries (0.86ms on average).
+DijkstraRouter answered 2126 queries and explored 167.75 edges on average.
+DijkstraRouter spent 1880ms answering queries (0.88ms on average).
+DijkstraRouter answered 2137 queries and explored 167.64 edges on average.
+DijkstraRouter spent 1937ms answering queries (0.91ms on average).
+DijkstraRouter answered 2155 queries and explored 167.16 edges on average.
+DijkstraRouter spent 1728ms answering queries (0.80ms on average).
+DijkstraRouter answered 2136 queries and explored 167.57 edges on average.
+DijkstraRouter spent 1658ms answering queries (0.78ms on average).
+DijkstraRouter answered 2127 queries and explored 167.77 edges on average.
+DijkstraRouter spent 2119ms answering queries (1.00ms on average).
+DijkstraRouter answered 2153 queries and explored 167.76 edges on average.
+DijkstraRouter spent 1968ms answering queries (0.91ms on average).
+DijkstraRouter answered 2136 queries and explored 167.62 edges on average.
+DijkstraRouter spent 2430ms answering queries (1.14ms on average).
+DijkstraRouter answered 2128 queries and explored 167.81 edges on average.
+DijkstraRouter spent 1906ms answering queries (0.90ms on average).
+DijkstraRouter answered 2132 queries and explored 167.71 edges on average.
+DijkstraRouter spent 1793ms answering queries (0.84ms on average).
+tantissimo_12_sim.sh: 2: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 3: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 4: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 5: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 6: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 7: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 8: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 9: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 10: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 11: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 12: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 13: tantissimo_12_sim.sh: : not found
+tantissimo_12_sim.sh: 14: tantissimo_12_sim.sh: : not found
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Entering directory `/media/vol1/sumonasproject/NAS_Project/build'
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (0.813s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (1.036s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (0.986s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (1.029s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (0.989s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (1.055s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (0.849s)
+'build' finished successfully (0.875s)
+'build' finished successfully (1.009s)
+'build' finished successfully (0.908s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (1.032s)
+Waf: Leaving directory `/media/vol1/sumonasproject/NAS_Project/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (1.145s)
+Sumo: wait for socket: 3s
+Sumo: wait for socket: 3s
+Sumo: wait for socket: 3s
+Sumo: wait for socket: 3s
+Sumo: wait for socket: 3s
+Loading configuration ... Loading configuration ... done.
+done.
+***Starting server on port 3401 ***
+***Starting server on port 3403 ***
+Loading configuration ... Loading configuration ... done.
+done.
+***Starting server on port 3412 ***
+***Starting server on port 3406 ***
+Loading configuration ... done.
+***Starting server on port 3402 ***
+Sumo: wait for socket: 3s
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3407 ***
+Loading configuration ... done.
+***Starting server on port 3404 ***
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3411 ***
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3409 ***
+Sumo: wait for socket: 3s
+Loading configuration ... done.
+***Starting server on port 3405 ***
+Sumo: wait for socket: 3s
+Sumo: wait for socket: 3s
+Loading configuration ... Loading configuration ... done.
+done.
+***Starting server on port 3408 ***
+***Starting server on port 3410 ***
+Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... done (201ms).
+Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... done (30ms).
+done (227ms).
+Loading done.
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... Loading net-file from 'maps/oklahoma_city_3/osm.net.xml' ... done (196ms).
+done (26ms).
+done (234ms).
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... done (236ms).
+done (189ms).
+Loading done.
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... done (199ms).
+done (44ms).
+done (189ms).
+done (26ms).
+done (236ms).
+done (27ms).
+done (27ms).
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... done (193ms).
+Loading done.
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading done.
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Loading done.
+done (27ms).
+Loading done.
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+done (26ms).
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... done (27ms).
+Loading done.
+done (26ms).
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Loading done.
+done (189ms).
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Loading done.
+done (202ms).
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Loading done.
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Warning: At actuated tlLogic '1504182099', linkIndex 17 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 18 has no controlling detector
+Warning: At actuated tlLogic '1504182099', linkIndex 19 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 2 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 3 has no controlling detector
+Warning: At actuated tlLogic '5129294311', linkIndex 4 has no controlling detector
+Loading additional-files from 'maps/oklahoma_city_3/osm.poly.xml' ... done (26ms).
+done (29ms).
+Loading done.
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Loading done.
+Simulation version v1_5_0+0998-eda9437 started with time: 0.00
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=16.80.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=16.80.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=16.80.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=16.80.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=16.80.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=16.80.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=16.80.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=16.80.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=16.80.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=16.80.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=16.80.
+Warning: Vehicle '1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=16.80.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: No connection between edge '138198236#0' and edge '529598127' found.
+Warning: No route for vehicle '280' found.
+Warning: Vehicle '125' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=41.00.
+Warning: Vehicle '125' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=41.00.
+Warning: Vehicle '125' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=41.00.
+Warning: Vehicle '125' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=41.00.
+Warning: Vehicle '125' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=41.00.
+Warning: Vehicle '125' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=41.00.
+Warning: Vehicle '125' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=41.00.
+Warning: Vehicle '125' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=41.00.
+Warning: Vehicle '125' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=41.00.
+Warning: Vehicle '125' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=41.00.
+Warning: Vehicle '125' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=41.00.
+Warning: Vehicle '125' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=41.00.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=56.90.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=57.20.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=56.90.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=57.20.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=56.90.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=57.20.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=56.90.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=56.90.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=56.90.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=56.90.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=56.90.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=57.20.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=57.20.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=57.20.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=57.20.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=57.20.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=56.90.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=57.20.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=56.90.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=57.20.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=56.90.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=57.20.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=56.90.
+Warning: Vehicle '160' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=57.20.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=67.70.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=68.10.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=67.70.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=68.10.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=67.70.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=67.70.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=68.10.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=67.70.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=67.70.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=67.70.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=67.70.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=67.70.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=68.10.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=68.10.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=68.10.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=68.10.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=68.10.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=68.10.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=67.70.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=68.10.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=67.70.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=67.70.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.00.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=68.10.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.20.
+Warning: Vehicle '46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=68.10.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.00.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.60.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.20.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.60.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.00.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.20.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.00.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.00.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.00.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.20.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.60.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.20.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.20.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.60.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.60.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.00.Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.60.
+
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.20.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.60.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.00.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.20.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.00.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=81.90.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.60.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.20.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.00.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.60.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.20.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=81.90.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.60.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.00.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.00.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.20.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.20.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.60.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=81.90.
+Warning: Vehicle '286' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=76.60.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=81.90.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=81.90.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=81.90.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=81.90.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=81.90.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=81.90.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=81.90.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=81.90.
+Warning: Vehicle '107' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=81.90.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=105.70.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=105.70.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=105.70.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=105.70.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=105.70.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=105.70.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=105.70.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=105.70.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=105.70.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=105.70.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=105.70.
+Warning: Vehicle '307' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=105.70.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: No connection between edge '138198236#0' and edge '522765228' found.
+Warning: No route for vehicle '1364' found.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.10.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.50.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.10.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.50.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.10.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.50.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.10.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.50.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.10.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.50.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.10.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.50.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.10.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.50.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.10.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.50.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.10.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.10.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.10.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.50.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.50.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.50.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.10.
+Warning: Vehicle '453' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=190.50.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: No connection between edge '138198236#0' and edge '-138198237#3' found.
+Warning: No route for vehicle '1962' found.
+Warning: Vehicle '210' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=234.40.
+Warning: No connection between edge '138198236#0' and edge '141442622#1' found.
+Warning: No route for vehicle '2390' found.
+Warning: Vehicle '210' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=234.90.
+Warning: Vehicle '210' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=235.30.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: No connection between edge '138198236#0' and edge '141442622#1' found.
+Warning: No route for vehicle '2390' found.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Vehicle '210' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=234.10.
+Warning: Vehicle '210' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=234.80.
+Warning: Vehicle '210' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=234.40.
+Warning: Vehicle '210' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=234.90.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: No connection between edge '138198236#0' and edge '141442622#1' found.
+Warning: No route for vehicle '2390' found.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: No connection between edge '138198236#0' and edge '141442622#1' found.
+Warning: No route for vehicle '2390' found.
+Warning: No connection between edge '138198236#0' and edge '14915133#8' found.
+Warning: No route for vehicle '2752' found.
+Warning: No connection between edge '138198236#0' and edge '141442622#1' found.
+Warning: No route for vehicle '2390' found.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: No connection between edge '138198236#0' and edge '-527640924#0' found.
+Warning: No route for vehicle '2860' found.
+Simulation ended at time: 290.00
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 35073133ms
+ Real time factor: 0.00826844
+ UPS: 23.464970
+Vehicles: 
+ Inserted: 634 (Loaded: 4004)
+ Running: 300
+ Waiting: 2266
+Statistics (avg):
+ RouteLength: 656.30
+ Speed: 6.24
+ Duration: 122.09
+ WaitingTime: 43.34
+ TimeLoss: 74.86
+ DepartDelay: 30.58
+
+DijkstraRouter answered 2 queries and explored 209.00 edges on average.
+DijkstraRouter spent 2ms answering queries (1.00ms on average).
+DijkstraRouter answered 5 queries and explored 145.00 edges on average.
+DijkstraRouter spent 3ms answering queries (0.60ms on average).
+DijkstraRouter answered 15 queries and explored 92.67 edges on average.
+DijkstraRouter spent 4ms answering queries (0.27ms on average).
+DijkstraRouter answered 7 queries and explored 224.43 edges on average.
+DijkstraRouter spent 5ms answering queries (0.71ms on average).
+DijkstraRouter answered 1 queries and explored 270.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 3 queries and explored 209.67 edges on average.
+DijkstraRouter spent 2ms answering queries (0.67ms on average).
+DijkstraRouter answered 13 queries and explored 153.23 edges on average.
+DijkstraRouter spent 7ms answering queries (0.54ms on average).
+DijkstraRouter answered 1 queries and explored 217.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 4 queries and explored 140.50 edges on average.
+DijkstraRouter spent 2ms answering queries (0.50ms on average).
+DijkstraRouter answered 17 queries and explored 176.82 edges on average.
+DijkstraRouter spent 9ms answering queries (0.53ms on average).
+DijkstraRouter answered 15 queries and explored 258.13 edges on average.
+DijkstraRouter spent 12ms answering queries (0.80ms on average).
+DijkstraRouter answered 4 queries and explored 134.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.25ms on average).
+DijkstraRouter answered 5 queries and explored 225.00 edges on average.
+DijkstraRouter spent 4ms answering queries (0.80ms on average).
+DijkstraRouter answered 5 queries and explored 136.80 edges on average.
+DijkstraRouter spent 2ms answering queries (0.40ms on average).
+DijkstraRouter answered 4 queries and explored 222.50 edges on average.
+DijkstraRouter spent 3ms answering queries (0.75ms on average).
+DijkstraRouter answered 4 queries and explored 132.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.25ms on average).
+DijkstraRouter answered 11 queries and explored 161.45 edges on average.
+DijkstraRouter spent 7ms answering queries (0.64ms on average).
+DijkstraRouter answered 4 queries and explored 116.00 edges on average.
+DijkstraRouter spent 2ms answering queries (0.50ms on average).
+DijkstraRouter answered 4 queries and explored 116.75 edges on average.
+DijkstraRouter spent 2ms answering queries (0.50ms on average).
+DijkstraRouter answered 11 queries and explored 108.36 edges on average.
+DijkstraRouter spent 6ms answering queries (0.55ms on average).
+DijkstraRouter answered 64 queries and explored 160.30 edges on average.
+DijkstraRouter spent 28ms answering queries (0.44ms on average).
+DijkstraRouter answered 1 queries and explored 61.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 3 queries and explored 132.33 edges on average.
+DijkstraRouter spent 2ms answering queries (0.67ms on average).
+DijkstraRouter answered 10 queries and explored 10.30 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 4 queries and explored 225.25 edges on average.
+DijkstraRouter spent 4ms answering queries (1.00ms on average).
+DijkstraRouter answered 4 queries and explored 1.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 4.67 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 5 queries and explored 191.80 edges on average.
+DijkstraRouter spent 1ms answering queries (0.20ms on average).
+DijkstraRouter answered 3 queries and explored 71.67 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 15 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 219.33 edges on average.
+DijkstraRouter spent 2ms answering queries (0.67ms on average).
+DijkstraRouter answered 8 queries and explored 170.38 edges on average.
+DijkstraRouter spent 3ms answering queries (0.38ms on average).
+DijkstraRouter answered 4 queries and explored 2.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 273.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 3 queries and explored 101.33 edges on average.
+DijkstraRouter spent 2ms answering queries (0.67ms on average).
+DijkstraRouter answered 5 queries and explored 216.40 edges on average.
+DijkstraRouter spent 2ms answering queries (0.40ms on average).
+DijkstraRouter answered 1 queries and explored 136.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 142.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 3 queries and explored 29.67 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 126.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 36.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 200.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 5 queries and explored 46.20 edges on average.
+DijkstraRouter spent 1ms answering queries (0.20ms on average).
+DijkstraRouter answered 9 queries and explored 121.22 edges on average.
+DijkstraRouter spent 4ms answering queries (0.44ms on average).
+DijkstraRouter answered 3 queries and explored 25.67 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 208.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 4 queries and explored 170.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.25ms on average).
+DijkstraRouter answered 3 queries and explored 199.67 edges on average.
+DijkstraRouter spent 3ms answering queries (1.00ms on average).
+DijkstraRouter answered 2 queries and explored 46.50 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 16 queries and explored 166.06 edges on average.
+DijkstraRouter spent 8ms answering queries (0.50ms on average).
+DijkstraRouter answered 1 queries and explored 104.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3177 queries and explored 168.85 edges on average.
+DijkstraRouter spent 917ms answering queries (0.29ms on average).
+File: 300_0.0032_2000_5M SAVED CORRECTLY
+Warning: Vehicle '210' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=234.20.
+Warning: Vehicle '210' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=234.60.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: No connection between edge '138198236#0' and edge '141442622#1' found.
+Warning: No route for vehicle '2390' found.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Vehicle '222' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=263.30.
+Warning: No connection between edge '138198236#0' and edge '14915133#8' found.
+Warning: No route for vehicle '2752' found.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Vehicle '210' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=234.70.
+Warning: Vehicle '210' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=235.10.
+Warning: Vehicle '210' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=234.90.
+Warning: Vehicle '183' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=266.70.
+Warning: Vehicle '183' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=266.90.
+Warning: Vehicle '183' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=267.30.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: No connection between edge '138198236#0' and edge '141442622#1' found.
+Warning: No route for vehicle '2390' found.
+Warning: Suspicious right_before_left junction '2519242884s'.
+Warning: Vehicle '183' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=266.60.
+Warning: No connection between edge '138198236#0' and edge '-527640924#0' found.
+Warning: No route for vehicle '2860' found.
+Warning: No connection between edge '138198236#0' and edge '141442622#1' found.
+Warning: No route for vehicle '2390' found.
+Warning: No connection between edge '138198236#0' and edge '14915133#8' found.
+Warning: No route for vehicle '2752' found.
+Simulation ended at time: 290.00
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 55039747ms
+ Real time factor: 0.00526892
+ UPS: 14.952649
+Vehicles: 
+ Inserted: 635 (Loaded: 4004)
+ Running: 300
+ Waiting: 2265
+Statistics (avg):
+ RouteLength: 662.64
+ Speed: 6.31
+ Duration: 122.93
+ WaitingTime: 43.92
+ TimeLoss: 75.31
+ DepartDelay: 30.89
+
+DijkstraRouter answered 1 queries and explored 77.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 5 queries and explored 90.00 edges on average.
+DijkstraRouter spent 2ms answering queries (0.40ms on average).
+DijkstraRouter answered 5 queries and explored 213.80 edges on average.
+DijkstraRouter spent 3ms answering queries (0.60ms on average).
+DijkstraRouter answered 1 queries and explored 1.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 89.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 5 queries and explored 183.00 edges on average.
+DijkstraRouter spent 4ms answering queries (0.80ms on average).
+DijkstraRouter answered 5 queries and explored 254.00 edges on average.
+DijkstraRouter spent 5ms answering queries (1.00ms on average).
+DijkstraRouter answered 2 queries and explored 252.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 1 queries and explored 294.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 2 queries and explored 147.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 1 queries and explored 38.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 175.50 edges on average.
+DijkstraRouter spent 2ms answering queries (1.00ms on average).
+DijkstraRouter answered 5 queries and explored 114.20 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 6 queries and explored 213.67 edges on average.
+DijkstraRouter spent 4ms answering queries (0.67ms on average).
+DijkstraRouter answered 3 queries and explored 111.00 edges on average.
+DijkstraRouter spent 3ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 144.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 60 queries and explored 149.18 edges on average.
+DijkstraRouter spent 30ms answering queries (0.50ms on average).
+DijkstraRouter answered 3 queries and explored 65.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 5 queries and explored 64.80 edges on average.
+DijkstraRouter spent 1ms answering queries (0.20ms on average).
+DijkstraRouter answered 1 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 29.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 141.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 5 queries and explored 256.60 edges on average.
+DijkstraRouter spent 4ms answering queries (0.80ms on average).
+DijkstraRouter answered 1 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 298.67 edges on average.
+DijkstraRouter spent 3ms answering queries (1.00ms on average).
+DijkstraRouter answered 11 queries and explored 169.27 edges on average.
+DijkstraRouter spent 6ms answering queries (0.55ms on average).
+DijkstraRouter answered 5 queries and explored 9.20 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 214.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 52.67 edges on average.
+DijkstraRouter spent 1ms answering queries (0.33ms on average).
+DijkstraRouter answered 1 queries and explored 194.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 4 queries and explored 83.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.25ms on average).
+DijkstraRouter answered 1 queries and explored 2.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 171.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 4 queries and explored 2.50 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 29 queries and explored 7.90 edges on average.
+DijkstraRouter spent 1ms answering queries (0.03ms on average).
+DijkstraRouter answered 10 queries and explored 3.30 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 1.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 118.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 3 queries and explored 117.33 edges on average.
+DijkstraRouter spent 1ms answering queries (0.33ms on average).
+DijkstraRouter answered 1 queries and explored 209.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 117.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 3 queries and explored 180.00 edges on average.
+DijkstraRouter spent 2ms answering queries (0.67ms on average).
+DijkstraRouter answered 1 queries and explored 253.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 3172 queries and explored 168.53 edges on average.
+DijkstraRouter spent 814ms answering queries (0.26ms on average).
+File: 300_0.0016_2000_10M SAVED CORRECTLY
+Warning: No connection between edge '138198236#0' and edge '141442622#1' found.
+Warning: No route for vehicle '2390' found.
+Warning: No connection between edge '138198236#0' and edge '14915133#8' found.
+Warning: No route for vehicle '2752' found.
+Warning: Vehicle '496' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=272.90.
+Warning: Vehicle '496' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=273.10.
+Warning: Vehicle '226' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=273.70.
+Warning: No connection between edge '138198236#0' and edge '14915133#8' found.
+Warning: No route for vehicle '2752' found.
+Warning: Vehicle '534' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=276.20.
+Warning: Vehicle '534' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=276.40.
+Warning: No connection between edge '138198236#0' and edge '-527640924#0' found.
+Warning: No route for vehicle '2860' found.
+Warning: No connection between edge '138198236#0' and edge '-527640924#0' found.
+Warning: No route for vehicle '2860' found.
+Simulation ended at time: 290.00
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 65710362ms
+ Real time factor: 0.00441331
+ UPS: 12.524509
+Vehicles: 
+ Inserted: 626 (Loaded: 4004)
+ Running: 300
+ Waiting: 2274
+Statistics (avg):
+ RouteLength: 662.44
+ Speed: 6.34
+ Duration: 122.02
+ WaitingTime: 42.99
+ TimeLoss: 74.34
+ DepartDelay: 29.41
+
+DijkstraRouter answered 2 queries and explored 250.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 1 queries and explored 49.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 205.50 edges on average.
+DijkstraRouter spent 2ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 185.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 2 queries and explored 246.00 edges on average.
+DijkstraRouter spent 2ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 8.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 294.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 1.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 177.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 2 queries and explored 170.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 2 queries and explored 31.50 edges on average.
+DijkstraRouter spent 2ms answering queries (1.00ms on average).
+DijkstraRouter answered 3 queries and explored 255.67 edges on average.
+DijkstraRouter spent 2ms answering queries (0.67ms on average).
+DijkstraRouter answered 59 queries and explored 156.95 edges on average.
+DijkstraRouter spent 33ms answering queries (0.56ms on average).
+DijkstraRouter answered 1 queries and explored 293.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 8.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 4 queries and explored 268.50 edges on average.
+DijkstraRouter spent 4ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 4 queries and explored 288.50 edges on average.
+DijkstraRouter spent 5ms answering queries (1.25ms on average).
+DijkstraRouter answered 8 queries and explored 221.38 edges on average.
+DijkstraRouter spent 5ms answering queries (0.62ms on average).
+DijkstraRouter answered 4 queries and explored 2.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 214.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 28.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 68.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 5 queries and explored 165.60 edges on average.
+DijkstraRouter spent 4ms answering queries (0.80ms on average).
+DijkstraRouter answered 4 queries and explored 5.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 326.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 118.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 230.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 9 queries and explored 154.11 edges on average.
+DijkstraRouter spent 3ms answering queries (0.33ms on average).
+DijkstraRouter answered 2 queries and explored 133.00 edges on average.
+DijkstraRouter spent 2ms answering queries (1.00ms on average).
+DijkstraRouter answered 3164 queries and explored 168.55 edges on average.
+DijkstraRouter spent 821ms answering queries (0.26ms on average).
+File: 300_0.001_2000_15M SAVED CORRECTLY
+Warning: Vehicle '210' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=235.10.
+Simulation ended at time: 290.00
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 68786504ms
+ Real time factor: 0.00421594
+ UPS: 11.964411
+Vehicles: 
+ Inserted: 630 (Loaded: 4004)
+ Running: 300
+ Waiting: 2270
+Statistics (avg):
+ RouteLength: 655.21
+ Speed: 6.28
+ Duration: 121.84
+ WaitingTime: 43.63
+ TimeLoss: 74.88
+ DepartDelay: 30.17
+
+DijkstraRouter answered 3 queries and explored 137.33 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 5 queries and explored 180.40 edges on average.
+DijkstraRouter spent 4ms answering queries (0.80ms on average).
+DijkstraRouter answered 1 queries and explored 28.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 126.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 1 queries and explored 20.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 23 queries and explored 18.13 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 235.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 2 queries and explored 111.00 edges on average.
+DijkstraRouter spent 2ms answering queries (1.00ms on average).
+DijkstraRouter answered 3 queries and explored 164.33 edges on average.
+DijkstraRouter spent 1ms answering queries (0.33ms on average).
+DijkstraRouter answered 5 queries and explored 20.20 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 12 queries and explored 111.00 edges on average.
+DijkstraRouter spent 2ms answering queries (0.17ms on average).
+DijkstraRouter answered 6 queries and explored 234.00 edges on average.
+DijkstraRouter spent 5ms answering queries (0.83ms on average).
+DijkstraRouter answered 6 queries and explored 104.33 edges on average.
+DijkstraRouter spent 2ms answering queries (0.33ms on average).
+DijkstraRouter answered 9 queries and explored 184.56 edges on average.
+DijkstraRouter spent 5ms answering queries (0.56ms on average).
+DijkstraRouter answered 3 queries and explored 174.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.33ms on average).
+DijkstraRouter answered 27 queries and explored 37.78 edges on average.
+DijkstraRouter spent 4ms answering queries (0.15ms on average).
+DijkstraRouter answered 5 queries and explored 172.80 edges on average.
+DijkstraRouter spent 2ms answering queries (0.40ms on average).
+DijkstraRouter answered 8 queries and explored 147.50 edges on average.
+DijkstraRouter spent 4ms answering queries (0.50ms on average).
+DijkstraRouter answered 1 queries and explored 225.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 110.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 271.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 55 queries and explored 157.85 edges on average.
+DijkstraRouter spent 35ms answering queries (0.64ms on average).
+DijkstraRouter answered 6 queries and explored 162.00 edges on average.
+DijkstraRouter spent 3ms answering queries (0.50ms on average).
+DijkstraRouter answered 2 queries and explored 154.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 5 queries and explored 10.40 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 6 queries and explored 174.83 edges on average.
+DijkstraRouter spent 2ms answering queries (0.33ms on average).
+DijkstraRouter answered 6 queries and explored 202.67 edges on average.
+DijkstraRouter spent 4ms answering queries (0.67ms on average).
+DijkstraRouter answered 5 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 6 queries and explored 212.00 edges on average.
+DijkstraRouter spent 2ms answering queries (0.33ms on average).
+DijkstraRouter answered 9 queries and explored 162.00 edges on average.
+DijkstraRouter spent 7ms answering queries (0.78ms on average).
+DijkstraRouter answered 5 queries and explored 195.40 edges on average.
+DijkstraRouter spent 3ms answering queries (0.60ms on average).
+DijkstraRouter answered 4 queries and explored 198.00 edges on average.
+DijkstraRouter spent 3ms answering queries (0.75ms on average).
+DijkstraRouter answered 2 queries and explored 45.50 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 8 queries and explored 124.62 edges on average.
+DijkstraRouter spent 5ms answering queries (0.62ms on average).
+DijkstraRouter answered 3 queries and explored 97.33 edges on average.
+DijkstraRouter spent 1ms answering queries (0.33ms on average).
+DijkstraRouter answered 2 queries and explored 34.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 3 queries and explored 327.00 edges on average.
+DijkstraRouter spent 3ms answering queries (1.00ms on average).
+DijkstraRouter answered 3 queries and explored 283.67 edges on average.
+DijkstraRouter spent 3ms answering queries (1.00ms on average).
+DijkstraRouter answered 4 queries and explored 23.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 8 queries and explored 221.00 edges on average.
+DijkstraRouter spent 5ms answering queries (0.62ms on average).
+DijkstraRouter answered 12 queries and explored 19.50 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 319.67 edges on average.
+DijkstraRouter spent 3ms answering queries (1.00ms on average).
+DijkstraRouter answered 3 queries and explored 98.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.33ms on average).
+DijkstraRouter answered 5 queries and explored 169.80 edges on average.
+DijkstraRouter spent 4ms answering queries (0.80ms on average).
+DijkstraRouter answered 4 queries and explored 109.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.25ms on average).
+DijkstraRouter answered 1 queries and explored 274.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 15 queries and explored 158.93 edges on average.
+DijkstraRouter spent 10ms answering queries (0.67ms on average).
+DijkstraRouter answered 2 queries and explored 286.00 edges on average.
+DijkstraRouter spent 2ms answering queries (1.00ms on average).
+DijkstraRouter answered 3174 queries and explored 168.70 edges on average.
+DijkstraRouter spent 922ms answering queries (0.29ms on average).
+File: 300_0.0016_1000_5M SAVED CORRECTLY
+Warning: No connection between edge '138198236#0' and edge '-527640924#0' found.
+Warning: No route for vehicle '2860' found.
+Simulation ended at time: 290.00
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 72292107ms
+ Real time factor: 0.0040115
+ UPS: 11.384230
+Vehicles: 
+ Inserted: 630 (Loaded: 4004)
+ Running: 300
+ Waiting: 2270
+Statistics (avg):
+ RouteLength: 660.11
+ Speed: 6.32
+ Duration: 121.79
+ WaitingTime: 43.03
+ TimeLoss: 74.35
+ DepartDelay: 30.09
+
+DijkstraRouter answered 4 queries and explored 212.00 edges on average.
+DijkstraRouter spent 3ms answering queries (0.75ms on average).
+DijkstraRouter answered 4 queries and explored 183.50 edges on average.
+DijkstraRouter spent 3ms answering queries (0.75ms on average).
+DijkstraRouter answered 4 queries and explored 242.75 edges on average.
+DijkstraRouter spent 4ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 293.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 294.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 211.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 1.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 4 queries and explored 328.00 edges on average.
+DijkstraRouter spent 3ms answering queries (0.75ms on average).
+DijkstraRouter answered 58 queries and explored 149.67 edges on average.
+DijkstraRouter spent 33ms answering queries (0.57ms on average).
+DijkstraRouter answered 3 queries and explored 186.67 edges on average.
+DijkstraRouter spent 3ms answering queries (1.00ms on average).
+DijkstraRouter answered 2 queries and explored 304.00 edges on average.
+DijkstraRouter spent 2ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 5 queries and explored 228.60 edges on average.
+DijkstraRouter spent 4ms answering queries (0.80ms on average).
+DijkstraRouter answered 10 queries and explored 160.50 edges on average.
+DijkstraRouter spent 5ms answering queries (0.50ms on average).
+DijkstraRouter answered 1 queries and explored 153.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 192.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 4.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 5 queries and explored 101.20 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 4 queries and explored 5.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 9.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 118.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 212.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 214.00 edges on average.
+DijkstraRouter spent 2ms answering queries (1.00ms on average).
+DijkstraRouter answered 6 queries and explored 157.33 edges on average.
+DijkstraRouter spent 3ms answering queries (0.50ms on average).
+DijkstraRouter answered 3170 queries and explored 168.51 edges on average.
+DijkstraRouter spent 881ms answering queries (0.28ms on average).
+File: 300_0.0008_2000_20M SAVED CORRECTLY
+Warning: Vehicle '183' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=266.60.
+Warning: Vehicle '183' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=267.20.
+Warning: No connection between edge '138198236#0' and edge '141442622#1' found.
+Warning: No route for vehicle '2390' found.
+Warning: Vehicle '210' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=234.90.
+Warning: No connection between edge '138198236#0' and edge '14915133#8' found.
+Warning: No route for vehicle '2752' found.
+Warning: No connection between edge '138198236#0' and edge '141442622#1' found.
+Warning: No route for vehicle '2390' found.
+Warning: No connection between edge '138198236#0' and edge '141442622#1' found.
+Warning: No route for vehicle '2390' found.
+Warning: No connection between edge '138198236#0' and edge '-527640924#0' found.
+Warning: No route for vehicle '2860' found.
+Simulation ended at time: 290.00
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 101710458ms
+ Real time factor: 0.00285123
+ UPS: 8.091498
+Vehicles: 
+ Inserted: 629 (Loaded: 4004)
+ Running: 300
+ Waiting: 2271
+Statistics (avg):
+ RouteLength: 661.24
+ Speed: 6.30
+ Duration: 122.65
+ WaitingTime: 43.77
+ TimeLoss: 75.13
+ DepartDelay: 29.50
+
+DijkstraRouter answered 1 queries and explored 39.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 8 queries and explored 78.50 edges on average.
+DijkstraRouter spent 3ms answering queries (0.38ms on average).
+DijkstraRouter answered 7 queries and explored 148.86 edges on average.
+DijkstraRouter spent 5ms answering queries (0.71ms on average).
+DijkstraRouter answered 2 queries and explored 116.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 1 queries and explored 200.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 205.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 20.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 7 queries and explored 181.14 edges on average.
+DijkstraRouter spent 5ms answering queries (0.71ms on average).
+DijkstraRouter answered 5 queries and explored 254.60 edges on average.
+DijkstraRouter spent 3ms answering queries (0.60ms on average).
+DijkstraRouter answered 2 queries and explored 136.50 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 293.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 2 queries and explored 147.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 4 queries and explored 99.25 edges on average.
+DijkstraRouter spent 3ms answering queries (0.75ms on average).
+DijkstraRouter answered 2 queries and explored 170.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 9 queries and explored 15.67 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 15 queries and explored 222.53 edges on average.
+DijkstraRouter spent 8ms answering queries (0.53ms on average).
+DijkstraRouter answered 60 queries and explored 152.32 edges on average.
+DijkstraRouter spent 31ms answering queries (0.52ms on average).
+DijkstraRouter answered 4 queries and explored 195.75 edges on average.
+DijkstraRouter spent 3ms answering queries (0.75ms on average).
+DijkstraRouter answered 1 queries and explored 10.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 29.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 282.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 2 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 4 queries and explored 281.00 edges on average.
+DijkstraRouter spent 4ms answering queries (1.00ms on average).
+DijkstraRouter answered 14 queries and explored 143.71 edges on average.
+DijkstraRouter spent 4ms answering queries (0.29ms on average).
+DijkstraRouter answered 4 queries and explored 2.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.25ms on average).
+DijkstraRouter answered 2 queries and explored 47.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 4 queries and explored 8.50 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 188.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 2 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 69.67 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 116.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 21 queries and explored 34.57 edges on average.
+DijkstraRouter spent 2ms answering queries (0.10ms on average).
+DijkstraRouter answered 1 queries and explored 5.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 185.00 edges on average.
+DijkstraRouter spent 2ms answering queries (0.67ms on average).
+DijkstraRouter answered 3 queries and explored 191.33 edges on average.
+DijkstraRouter spent 2ms answering queries (0.67ms on average).
+DijkstraRouter answered 2 queries and explored 4.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 16 queries and explored 137.00 edges on average.
+DijkstraRouter spent 4ms answering queries (0.25ms on average).
+DijkstraRouter answered 1 queries and explored 253.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 2 queries and explored 239.50 edges on average.
+DijkstraRouter spent 2ms answering queries (1.00ms on average).
+DijkstraRouter answered 3172 queries and explored 168.77 edges on average.
+DijkstraRouter spent 794ms answering queries (0.25ms on average).
+File: 300_0.0008_1000_10M SAVED CORRECTLY
+Warning: No connection between edge '138198236#0' and edge '14915133#8' found.
+Warning: No route for vehicle '2752' found.
+Warning: No connection between edge '138198236#0' and edge '14915133#8' found.
+Warning: No route for vehicle '2752' found.
+Warning: Vehicle '496' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=273.00.
+Warning: Vehicle '496' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=273.50.
+Warning: Vehicle '496' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=273.70.
+Warning: No connection between edge '138198236#0' and edge '14915133#8' found.
+Warning: No route for vehicle '2752' found.
+Warning: No connection between edge '138198236#0' and edge '-527640924#0' found.
+Warning: No route for vehicle '2860' found.
+Warning: No connection between edge '138198236#0' and edge '-527640924#0' found.
+Warning: No route for vehicle '2860' found.
+Warning: Vehicle '298' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=286.30.
+Warning: Vehicle '298' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=286.60.
+Simulation ended at time: 290.00
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 124912312ms
+ Real time factor: 0.00232163
+ UPS: 6.588542
+Vehicles: 
+ Inserted: 631 (Loaded: 4004)
+ Running: 300
+ Waiting: 2269
+Statistics (avg):
+ RouteLength: 659.48
+ Speed: 6.33
+ Duration: 121.48
+ WaitingTime: 42.81
+ TimeLoss: 73.97
+ DepartDelay: 30.82
+
+DijkstraRouter answered 2 queries and explored 202.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 3 queries and explored 139.67 edges on average.
+DijkstraRouter spent 1ms answering queries (0.33ms on average).
+DijkstraRouter answered 1 queries and explored 237.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 97.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 4 queries and explored 184.50 edges on average.
+DijkstraRouter spent 4ms answering queries (1.00ms on average).
+DijkstraRouter answered 4 queries and explored 243.00 edges on average.
+DijkstraRouter spent 4ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 293.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 2 queries and explored 147.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 1 queries and explored 314.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 211.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 3 queries and explored 89.67 edges on average.
+DijkstraRouter spent 1ms answering queries (0.33ms on average).
+DijkstraRouter answered 5 queries and explored 222.80 edges on average.
+DijkstraRouter spent 3ms answering queries (0.60ms on average).
+DijkstraRouter answered 60 queries and explored 149.30 edges on average.
+DijkstraRouter spent 35ms answering queries (0.58ms on average).
+DijkstraRouter answered 2 queries and explored 291.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 1 queries and explored 10.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 168.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 1 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 5 queries and explored 230.20 edges on average.
+DijkstraRouter spent 3ms answering queries (0.60ms on average).
+DijkstraRouter answered 8 queries and explored 226.75 edges on average.
+DijkstraRouter spent 7ms answering queries (0.88ms on average).
+DijkstraRouter answered 4 queries and explored 2.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 188.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 192.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 3 queries and explored 157.33 edges on average.
+DijkstraRouter spent 2ms answering queries (0.67ms on average).
+DijkstraRouter answered 2 queries and explored 5.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 118.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 289.67 edges on average.
+DijkstraRouter spent 1ms answering queries (0.33ms on average).
+DijkstraRouter answered 10 queries and explored 158.90 edges on average.
+DijkstraRouter spent 6ms answering queries (0.60ms on average).
+DijkstraRouter answered 1 queries and explored 13.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3168 queries and explored 168.47 edges on average.
+DijkstraRouter spent 805ms answering queries (0.25ms on average).
+File: 300_0.0005_1000_15M SAVED CORRECTLY
+Simulation ended at time: 290.00
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 125636716ms
+ Real time factor: 0.00230824
+ UPS: 6.550553
+Vehicles: 
+ Inserted: 629 (Loaded: 4004)
+ Running: 300
+ Waiting: 2271
+Statistics (avg):
+ RouteLength: 656.31
+ Speed: 6.25
+ Duration: 122.81
+ WaitingTime: 44.45
+ TimeLoss: 75.96
+ DepartDelay: 29.39
+
+DijkstraRouter answered 7 queries and explored 12.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 9 queries and explored 182.33 edges on average.
+DijkstraRouter spent 4ms answering queries (0.44ms on average).
+DijkstraRouter answered 2 queries and explored 169.50 edges on average.
+DijkstraRouter spent 2ms answering queries (1.00ms on average).
+DijkstraRouter answered 4 queries and explored 167.75 edges on average.
+DijkstraRouter spent 2ms answering queries (0.50ms on average).
+DijkstraRouter answered 18 queries and explored 77.17 edges on average.
+DijkstraRouter spent 5ms answering queries (0.28ms on average).
+DijkstraRouter answered 1 queries and explored 1.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 21 queries and explored 90.57 edges on average.
+DijkstraRouter spent 7ms answering queries (0.33ms on average).
+DijkstraRouter answered 1 queries and explored 138.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 285.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 5 queries and explored 28.20 edges on average.
+DijkstraRouter spent 1ms answering queries (0.20ms on average).
+DijkstraRouter answered 3 queries and explored 180.33 edges on average.
+DijkstraRouter spent 3ms answering queries (1.00ms on average).
+DijkstraRouter answered 6 queries and explored 100.50 edges on average.
+DijkstraRouter spent 2ms answering queries (0.33ms on average).
+DijkstraRouter answered 11 queries and explored 170.36 edges on average.
+DijkstraRouter spent 6ms answering queries (0.55ms on average).
+DijkstraRouter answered 8 queries and explored 178.88 edges on average.
+DijkstraRouter spent 5ms answering queries (0.62ms on average).
+DijkstraRouter answered 11 queries and explored 86.27 edges on average.
+DijkstraRouter spent 1ms answering queries (0.09ms on average).
+DijkstraRouter answered 1 queries and explored 309.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 6 queries and explored 120.17 edges on average.
+DijkstraRouter spent 1ms answering queries (0.17ms on average).
+DijkstraRouter answered 10 queries and explored 116.90 edges on average.
+DijkstraRouter spent 3ms answering queries (0.30ms on average).
+DijkstraRouter answered 5 queries and explored 100.40 edges on average.
+DijkstraRouter spent 4ms answering queries (0.80ms on average).
+DijkstraRouter answered 27 queries and explored 69.70 edges on average.
+DijkstraRouter spent 6ms answering queries (0.22ms on average).
+DijkstraRouter answered 7 queries and explored 150.43 edges on average.
+DijkstraRouter spent 4ms answering queries (0.57ms on average).
+DijkstraRouter answered 13 queries and explored 157.31 edges on average.
+DijkstraRouter spent 6ms answering queries (0.46ms on average).
+DijkstraRouter answered 6 queries and explored 123.67 edges on average.
+DijkstraRouter spent 4ms answering queries (0.67ms on average).
+DijkstraRouter answered 55 queries and explored 159.62 edges on average.
+DijkstraRouter spent 31ms answering queries (0.56ms on average).
+DijkstraRouter answered 7 queries and explored 112.57 edges on average.
+DijkstraRouter spent 4ms answering queries (0.57ms on average).
+DijkstraRouter answered 4 queries and explored 153.25 edges on average.
+DijkstraRouter spent 2ms answering queries (0.50ms on average).
+DijkstraRouter answered 12 queries and explored 10.33 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 159.33 edges on average.
+DijkstraRouter spent 2ms answering queries (0.67ms on average).
+DijkstraRouter answered 2 queries and explored 266.00 edges on average.
+DijkstraRouter spent 2ms answering queries (1.00ms on average).
+DijkstraRouter answered 2 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 5 queries and explored 187.60 edges on average.
+DijkstraRouter spent 3ms answering queries (0.60ms on average).
+DijkstraRouter answered 4 queries and explored 77.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.25ms on average).
+DijkstraRouter answered 3 queries and explored 9.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 311.00 edges on average.
+DijkstraRouter spent 3ms answering queries (1.00ms on average).
+DijkstraRouter answered 7 queries and explored 163.43 edges on average.
+DijkstraRouter spent 5ms answering queries (0.71ms on average).
+DijkstraRouter answered 5 queries and explored 19.60 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 169.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 3 queries and explored 105.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 195.50 edges on average.
+DijkstraRouter spent 2ms answering queries (1.00ms on average).
+DijkstraRouter answered 4 queries and explored 231.50 edges on average.
+DijkstraRouter spent 3ms answering queries (0.75ms on average).
+DijkstraRouter answered 4 queries and explored 201.00 edges on average.
+DijkstraRouter spent 2ms answering queries (0.50ms on average).
+DijkstraRouter answered 2 queries and explored 1.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 184.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 34.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 140.33 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 29.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 4 queries and explored 94.00 edges on average.
+DijkstraRouter spent 3ms answering queries (0.75ms on average).
+DijkstraRouter answered 2 queries and explored 14.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 10 queries and explored 186.30 edges on average.
+DijkstraRouter spent 6ms answering queries (0.60ms on average).
+DijkstraRouter answered 9 queries and explored 28.56 edges on average.
+DijkstraRouter spent 1ms answering queries (0.11ms on average).
+DijkstraRouter answered 14 queries and explored 56.86 edges on average.
+DijkstraRouter spent 4ms answering queries (0.29ms on average).
+DijkstraRouter answered 1 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 201.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 7 queries and explored 121.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.14ms on average).
+DijkstraRouter answered 10 queries and explored 153.40 edges on average.
+DijkstraRouter spent 5ms answering queries (0.50ms on average).
+DijkstraRouter answered 13 queries and explored 268.46 edges on average.
+DijkstraRouter spent 12ms answering queries (0.92ms on average).
+DijkstraRouter answered 3 queries and explored 253.33 edges on average.
+DijkstraRouter spent 3ms answering queries (1.00ms on average).
+DijkstraRouter answered 11 queries and explored 144.64 edges on average.
+DijkstraRouter spent 4ms answering queries (0.36ms on average).
+DijkstraRouter answered 3 queries and explored 28.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 57 queries and explored 5.37 edges on average.
+DijkstraRouter spent 1ms answering queries (0.02ms on average).
+DijkstraRouter answered 3172 queries and explored 168.63 edges on average.
+DijkstraRouter spent 884ms answering queries (0.28ms on average).
+File: 300_0.0008_500_5M SAVED CORRECTLY
+Warning: No connection between edge '138198236#0' and edge '-527640924#0' found.
+Warning: No route for vehicle '2860' found.
+Warning: Vehicle '558' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=267.40.
+Warning: Vehicle '558' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=267.60.
+Simulation ended at time: 290.00
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 135712603ms
+ Real time factor: 0.00213687
+ UPS: 6.064212
+Vehicles: 
+ Inserted: 631 (Loaded: 4004)
+ Running: 300
+ Waiting: 2269
+Statistics (avg):
+ RouteLength: 659.87
+ Speed: 6.29
+ Duration: 122.76
+ WaitingTime: 43.97
+ TimeLoss: 75.31
+ DepartDelay: 29.70
+
+DijkstraRouter answered 1 queries and explored 16.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 159.00 edges on average.
+DijkstraRouter spent 2ms answering queries (0.67ms on average).
+DijkstraRouter answered 4 queries and explored 185.00 edges on average.
+DijkstraRouter spent 3ms answering queries (0.75ms on average).
+DijkstraRouter answered 5 queries and explored 230.40 edges on average.
+DijkstraRouter spent 5ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 28.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 310.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 293.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 49.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 211.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 9 queries and explored 72.89 edges on average.
+DijkstraRouter spent 2ms answering queries (0.22ms on average).
+DijkstraRouter answered 5 queries and explored 224.80 edges on average.
+DijkstraRouter spent 4ms answering queries (0.80ms on average).
+DijkstraRouter answered 9 queries and explored 171.44 edges on average.
+DijkstraRouter spent 5ms answering queries (0.56ms on average).
+DijkstraRouter answered 58 queries and explored 162.98 edges on average.
+DijkstraRouter spent 29ms answering queries (0.50ms on average).
+DijkstraRouter answered 2 queries and explored 291.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 2 queries and explored 142.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 2 queries and explored 8.50 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 201.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.33ms on average).
+DijkstraRouter answered 1 queries and explored 137.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 2 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 6 queries and explored 250.00 edges on average.
+DijkstraRouter spent 5ms answering queries (0.83ms on average).
+DijkstraRouter answered 8 queries and explored 236.00 edges on average.
+DijkstraRouter spent 7ms answering queries (0.88ms on average).
+DijkstraRouter answered 1 queries and explored 39.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 202.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 30 queries and explored 8.20 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 5.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 118.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 5 queries and explored 106.60 edges on average.
+DijkstraRouter spent 2ms answering queries (0.40ms on average).
+DijkstraRouter answered 1 queries and explored 1.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 11 queries and explored 191.82 edges on average.
+DijkstraRouter spent 6ms answering queries (0.55ms on average).
+DijkstraRouter answered 3175 queries and explored 168.85 edges on average.
+DijkstraRouter spent 903ms answering queries (0.28ms on average).
+File: 300_0.0004_1000_20M SAVED CORRECTLY
+Warning: No connection between edge '138198236#0' and edge '14915133#8' found.
+Warning: No route for vehicle '2752' found.
+Warning: Vehicle '582' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=269.20.
+Warning: Vehicle '582' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=269.50.
+Warning: Vehicle '583' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=270.60.
+Warning: Vehicle '583' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=270.80.
+Warning: Vehicle '583' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=271.00.
+Warning: Vehicle '583' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=271.20.
+Warning: No connection between edge '138198236#0' and edge '-527640924#0' found.
+Warning: No route for vehicle '2860' found.
+Warning: Vehicle '574' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=287.60.
+Warning: No connection between edge '138198236#0' and edge '14915133#8' found.
+Warning: No route for vehicle '2752' found.
+Warning: No connection between edge '138198236#0' and edge '14915133#8' found.
+Warning: No route for vehicle '2752' found.
+Simulation ended at time: 290.00
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 180206661ms
+ Real time factor: 0.00160926
+ UPS: 4.566923
+Vehicles: 
+ Inserted: 631 (Loaded: 4004)
+ Running: 300
+ Waiting: 2269
+Statistics (avg):
+ RouteLength: 659.15
+ Speed: 6.31
+ Duration: 122.21
+ WaitingTime: 43.41
+ TimeLoss: 74.82
+ DepartDelay: 30.23
+
+DijkstraRouter answered 2 queries and explored 109.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 1 queries and explored 168.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 5 queries and explored 248.00 edges on average.
+DijkstraRouter spent 6ms answering queries (1.20ms on average).
+DijkstraRouter answered 8 queries and explored 58.12 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 11 queries and explored 124.00 edges on average.
+DijkstraRouter spent 6ms answering queries (0.55ms on average).
+DijkstraRouter answered 1 queries and explored 26.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 299.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 3 queries and explored 119.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.33ms on average).
+DijkstraRouter answered 10 queries and explored 222.40 edges on average.
+DijkstraRouter spent 7ms answering queries (0.70ms on average).
+DijkstraRouter answered 8 queries and explored 259.38 edges on average.
+DijkstraRouter spent 6ms answering queries (0.75ms on average).
+DijkstraRouter answered 1 queries and explored 24.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 293.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 147.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 10 queries and explored 41.40 edges on average.
+DijkstraRouter spent 1ms answering queries (0.10ms on average).
+DijkstraRouter answered 2 queries and explored 145.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 29 queries and explored 52.00 edges on average.
+DijkstraRouter spent 5ms answering queries (0.17ms on average).
+DijkstraRouter answered 1 queries and explored 226.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 2 queries and explored 64.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 60 queries and explored 152.00 edges on average.
+DijkstraRouter spent 26ms answering queries (0.43ms on average).
+DijkstraRouter answered 3 queries and explored 40.33 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 4 queries and explored 151.50 edges on average.
+DijkstraRouter spent 3ms answering queries (0.75ms on average).
+DijkstraRouter answered 2 queries and explored 11.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 38.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 1 queries and explored 1.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 324.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 2 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 4 queries and explored 304.00 edges on average.
+DijkstraRouter spent 4ms answering queries (1.00ms on average).
+DijkstraRouter answered 10 queries and explored 183.80 edges on average.
+DijkstraRouter spent 5ms answering queries (0.50ms on average).
+DijkstraRouter answered 5 queries and explored 2.20 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 121.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.33ms on average).
+DijkstraRouter answered 1 queries and explored 158.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 50.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 4 queries and explored 120.75 edges on average.
+DijkstraRouter spent 1ms answering queries (0.25ms on average).
+DijkstraRouter answered 2 queries and explored 157.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 2 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 7 queries and explored 75.71 edges on average.
+DijkstraRouter spent 1ms answering queries (0.14ms on average).
+DijkstraRouter answered 3 queries and explored 47.67 edges on average.
+DijkstraRouter spent 1ms answering queries (0.33ms on average).
+DijkstraRouter answered 1 queries and explored 327.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 4 queries and explored 197.75 edges on average.
+DijkstraRouter spent 3ms answering queries (0.75ms on average).
+DijkstraRouter answered 5 queries and explored 194.60 edges on average.
+DijkstraRouter spent 4ms answering queries (0.80ms on average).
+DijkstraRouter answered 1 queries and explored 1.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 12 queries and explored 165.00 edges on average.
+DijkstraRouter spent 5ms answering queries (0.42ms on average).
+DijkstraRouter answered 2 queries and explored 129.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 6 queries and explored 21.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.17ms on average).
+DijkstraRouter answered 3177 queries and explored 168.67 edges on average.
+DijkstraRouter spent 911ms answering queries (0.29ms on average).
+File: 300_0.0004_500_10M SAVED CORRECTLY
+Warning: No connection between edge '138198236#0' and edge '-527640924#0' found.
+Warning: No route for vehicle '2860' found.
+Warning: No connection between edge '138198236#0' and edge '-527640924#0' found.
+Warning: No route for vehicle '2860' found.
+Simulation ended at time: 290.00
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 212500183ms
+ Real time factor: 0.0013647
+ UPS: 3.872891
+Vehicles: 
+ Inserted: 638 (Loaded: 4004)
+ Running: 300
+ Waiting: 2262
+Statistics (avg):
+ RouteLength: 660.03
+ Speed: 6.26
+ Duration: 123.94
+ WaitingTime: 44.87
+ TimeLoss: 76.60
+ DepartDelay: 30.38
+
+DijkstraRouter answered 1 queries and explored 65.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 77.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 146.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 7 queries and explored 128.86 edges on average.
+DijkstraRouter spent 1ms answering queries (0.14ms on average).
+DijkstraRouter answered 7 queries and explored 133.14 edges on average.
+DijkstraRouter spent 5ms answering queries (0.71ms on average).
+DijkstraRouter answered 1 queries and explored 134.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 5 queries and explored 189.20 edges on average.
+DijkstraRouter spent 5ms answering queries (1.00ms on average).
+DijkstraRouter answered 6 queries and explored 217.50 edges on average.
+DijkstraRouter spent 3ms answering queries (0.50ms on average).
+DijkstraRouter answered 1 queries and explored 31.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 171.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 3 queries and explored 155.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.33ms on average).
+DijkstraRouter answered 3 queries and explored 142.67 edges on average.
+DijkstraRouter spent 2ms answering queries (0.67ms on average).
+DijkstraRouter answered 1 queries and explored 211.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 11 queries and explored 37.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.09ms on average).
+DijkstraRouter answered 1 queries and explored 246.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 41.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 59 queries and explored 154.22 edges on average.
+DijkstraRouter spent 29ms answering queries (0.49ms on average).
+DijkstraRouter answered 2 queries and explored 294.50 edges on average.
+DijkstraRouter spent 2ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 47.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 324.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 2 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 5.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 7 queries and explored 252.43 edges on average.
+DijkstraRouter spent 6ms answering queries (0.86ms on average).
+DijkstraRouter answered 9 queries and explored 199.89 edges on average.
+DijkstraRouter spent 5ms answering queries (0.56ms on average).
+DijkstraRouter answered 5 queries and explored 1.80 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 288.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 134.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 13.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 1.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 202.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 207.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 36.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 3 queries and explored 133.33 edges on average.
+DijkstraRouter spent 2ms answering queries (0.67ms on average).
+DijkstraRouter answered 1 queries and explored 5.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 118.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 5 queries and explored 93.80 edges on average.
+DijkstraRouter spent 3ms answering queries (0.60ms on average).
+DijkstraRouter answered 1 queries and explored 1.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 12 queries and explored 155.17 edges on average.
+DijkstraRouter spent 8ms answering queries (0.67ms on average).
+DijkstraRouter answered 2 queries and explored 115.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 3179 queries and explored 168.81 edges on average.
+DijkstraRouter spent 886ms answering queries (0.28ms on average).
+File: 300_0.00025_500_15M SAVED CORRECTLY
+Simulation ended at time: 290.00
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 215200174ms
+ Real time factor: 0.00134758
+ UPS: 3.824300
+Vehicles: 
+ Inserted: 633 (Loaded: 4004)
+ Running: 300
+ Waiting: 2267
+Statistics (avg):
+ RouteLength: 656.41
+ Speed: 6.31
+ Duration: 121.76
+ WaitingTime: 43.39
+ TimeLoss: 74.56
+ DepartDelay: 31.02
+
+DijkstraRouter answered 5 queries and explored 56.80 edges on average.
+DijkstraRouter spent 2ms answering queries (0.40ms on average).
+DijkstraRouter answered 4 queries and explored 111.00 edges on average.
+DijkstraRouter spent 2ms answering queries (0.50ms on average).
+DijkstraRouter answered 8 queries and explored 76.62 edges on average.
+DijkstraRouter spent 1ms answering queries (0.12ms on average).
+DijkstraRouter answered 7 queries and explored 135.86 edges on average.
+DijkstraRouter spent 3ms answering queries (0.43ms on average).
+DijkstraRouter answered 1 queries and explored 50.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 6 queries and explored 160.50 edges on average.
+DijkstraRouter spent 4ms answering queries (0.67ms on average).
+DijkstraRouter answered 5 queries and explored 248.80 edges on average.
+DijkstraRouter spent 4ms answering queries (0.80ms on average).
+DijkstraRouter answered 2 queries and explored 29.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 1 queries and explored 294.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 2 queries and explored 150.50 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 4 queries and explored 155.75 edges on average.
+DijkstraRouter spent 2ms answering queries (0.50ms on average).
+DijkstraRouter answered 2 queries and explored 108.50 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 7 queries and explored 68.14 edges on average.
+DijkstraRouter spent 1ms answering queries (0.14ms on average).
+DijkstraRouter answered 19 queries and explored 224.42 edges on average.
+DijkstraRouter spent 10ms answering queries (0.53ms on average).
+DijkstraRouter answered 1 queries and explored 27.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 4.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 61 queries and explored 154.15 edges on average.
+DijkstraRouter spent 36ms answering queries (0.59ms on average).
+DijkstraRouter answered 2 queries and explored 292.50 edges on average.
+DijkstraRouter spent 2ms answering queries (1.00ms on average).
+DijkstraRouter answered 3 queries and explored 10.67 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 244.33 edges on average.
+DijkstraRouter spent 3ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 324.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 1 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 5 queries and explored 244.00 edges on average.
+DijkstraRouter spent 3ms answering queries (0.60ms on average).
+DijkstraRouter answered 5 queries and explored 236.40 edges on average.
+DijkstraRouter spent 4ms answering queries (0.80ms on average).
+DijkstraRouter answered 6 queries and explored 43.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 2 queries and explored 224.50 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 1 queries and explored 205.00 edges on average.
+DijkstraRouter spent 1ms answering queries (1.00ms on average).
+DijkstraRouter answered 2 queries and explored 91.00 edges on average.
+DijkstraRouter spent 1ms answering queries (0.50ms on average).
+DijkstraRouter answered 24 queries and explored 68.92 edges on average.
+DijkstraRouter spent 4ms answering queries (0.17ms on average).
+DijkstraRouter answered 15 queries and explored 3.73 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3 queries and explored 198.33 edges on average.
+DijkstraRouter spent 2ms answering queries (0.67ms on average).
+DijkstraRouter answered 4 queries and explored 116.00 edges on average.
+DijkstraRouter spent 2ms answering queries (0.50ms on average).
+DijkstraRouter answered 2 queries and explored 283.50 edges on average.
+DijkstraRouter spent 2ms answering queries (1.00ms on average).
+DijkstraRouter answered 1 queries and explored 1.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 9 queries and explored 84.56 edges on average.
+DijkstraRouter spent 3ms answering queries (0.33ms on average).
+DijkstraRouter answered 1 queries and explored 13.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 9 queries and explored 4.44 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).
+DijkstraRouter answered 3176 queries and explored 168.52 edges on average.
+DijkstraRouter spent 906ms answering queries (0.29ms on average).
+File: 300_0.0002_500_20M SAVED CORRECTLY
