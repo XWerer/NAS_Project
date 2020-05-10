@@ -30,7 +30,7 @@ for vehicle in vehicles:
                     line = template.format(port, interval, size, vehicle, p, p, vehicle, size, interval, p, p, port)
                     #print(line)
                     if port != ports[-1]:
-                        line = line + "& \n"
+                        line = line + "& \nsleep 3 \n"
                     else:
                         line = line + "\n"    
                     myfile.write(line)
