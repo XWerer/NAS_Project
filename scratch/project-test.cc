@@ -13,7 +13,7 @@
 #include <functional>
 #include <stdlib.h>
 #include <cmath>
-#include <atomic>
+//#include <atomic>
 
 /* Programma di test per una simulazione di una rete vanet V2V
  * che va ad usare ns3 e sumo. 
@@ -26,8 +26,10 @@
 
 //data structur to print into a file
 std::map<double, std::map<int, std::vector<double>>> output;
-std::atomic<unsigned long long> total_send(0);
-std::atomic<unsigned long long> total_recv(0);
+//std::atomic<unsigned long long> total_send(0);
+//std::atomic<unsigned long long> total_recv(0);
+unsigned long long total_send = 0;
+unsigned long long total_recv = 0;
 
 //vado a creare le due classi che ci servono all'interno del namspace ns3
 namespace ns3 {
