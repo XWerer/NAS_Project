@@ -26,8 +26,8 @@
 
 //data structur to print into a file
 std::map<double, std::map<int, std::vector<double>>> output;
-std::atomic<int> total_send(0);
-std::atomic<int> total_recv(0);
+std::atomic<unsigned long long> total_send(0);
+std::atomic<unsigned long long> total_recv(0);
 
 //vado a creare le due classi che ci servono all'interno del namspace ns3
 namespace ns3 {
