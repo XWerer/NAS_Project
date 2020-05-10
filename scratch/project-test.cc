@@ -13,6 +13,7 @@
 #include <functional>
 #include <stdlib.h>
 #include <cmath>
+#include <atomic>
 
 /* Programma di test per una simulazione di una rete vanet V2V
  * che va ad usare ns3 e sumo. 
@@ -25,6 +26,8 @@
 
 //data structur to print into a file
 std::map<double, std::map<int, std::vector<double>>> output;
+std::atomic<int> total_send(0);
+std::atomic<int> total_recv(0);
 
 //vado a creare le due classi che ci servono all'interno del namspace ns3
 namespace ns3 {
@@ -243,6 +246,9 @@ namespace ns3 {
       //Send
       Ptr<Packet> packet = Create<Packet>((uint8_t*) msg.str().c_str(), msg.str().length());
       m_socket_2->Send(packet);
+
+      //count the packet for the total amount 
+      total_send += 1;
 /*      
       NS_LOG_INFO("Packet sent at time " << Simulator::Now().GetSeconds()
                   << "[veh:" << my_id << "]" 
@@ -564,6 +570,9 @@ namespace ns3 {
      */
     void HandleRead(Ptr<Socket> socket) {
       NS_LOG_FUNCTION(this << socket);
+
+      // count the total recv 
+      total_recv += 1;
 
       //boost separetor to tokenize the string/payload of the udp packet
       boost::char_separator<char> sep("*");
@@ -966,7 +975,8 @@ int main(int argc, char *argv[]) {
       fout << "\n";
     }
   }
-  fout.close();
+  fout << total_send << "\t" << total_recv << "\t" << (double) (total_recv / (total_send * n_v)) << "\n";
+  fout.close(); 
 
   std::cout << "File: " << file << " SAVED CORRECTLY\n";
 
