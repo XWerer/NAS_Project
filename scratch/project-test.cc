@@ -977,7 +977,7 @@ int main(int argc, char *argv[]) {
       fout << "\n";
     }
   }
-  fout << total_send << "\t" << total_recv << "\t" << (double) (total_recv / (total_send * n_v)) << "\n";
+  fout << total_send << "\t" << total_recv << "\t" << 1.0 * (total_recv) / (total_send * n_v) << "\n";
   fout.close(); 
 
   std::cout << "File: " << file << " SAVED CORRECTLY\n";
