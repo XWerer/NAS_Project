@@ -8,6 +8,7 @@
 #include "ns3/wave-module.h"
 #include "ns3/netanim-module.h"
 #include "ns3/mobility-model.h"
+#include "ns3/rng-seed-manager.h"
 #include <iostream>
 #include <boost/tokenizer.hpp>
 #include <functional>
@@ -820,8 +821,13 @@ using namespace ns3;
 NS_LOG_COMPONENT_DEFINE("ns3-project-test");
 
 int main(int argc, char *argv[]) {
+  //Get run number
+  //int run_number = ns3::RngSeedManager::GetRun();	
+  //std::cout << run_number << std::endl;
+
   //Opzioni di log in
   bool verbose = true;
+  int run_number = 3400;
   int port = 3400;
   Time interval(0.007);
   Time window(1.0);
@@ -836,6 +842,7 @@ int main(int argc, char *argv[]) {
   double sim_time = 90.0;
 
   CommandLine cmd;
+  cmd.AddValue("RngRun", "Run number.", run_number);
   cmd.AddValue("Port", "Port on which we send packets.", port);
   cmd.AddValue("Interval", "The time to wait between packets", interval);
   cmd.AddValue("Window", "The time between each stats calculation", window);
@@ -858,6 +865,13 @@ int main(int argc, char *argv[]) {
     LogComponentEnable("TraciClient", LOG_LEVEL_INFO);
     LogComponentEnable("TestProjectApplication", LOG_LEVEL_INFO);
   }
+
+  //Set run number
+  ns3::RngSeedManager::SetRun(run_number);
+  //std::cout << run_number << std::endl;
+  //Check
+  //int runs = ns3::RngSeedManager::GetRun();	
+  //std::cout << runs << std::endl;
 
   // Creazione di un pool di nodi perchè devono essere creati in precedenza per sumo
   ns3::Time simulationTime(ns3::Seconds(sim_time));
@@ -902,8 +916,9 @@ int main(int argc, char *argv[]) {
   mobility.Install(nodePool);
 
   // Setup del client per sumo
-  int seed = time(NULL); //Seed to randomized sumo
-  srand(seed);
+  //int seed = time(NULL); //Seed to randomized sumo
+  //srand(seed);
+  //NOW WE USE AS SEED/RUN_NUMBER THE NEW PASSED BY THE COMMAND LINE
   Ptr<TraciClient> sumoClient = CreateObject<TraciClient>();
   sumoClient->SetAttribute("SumoConfigPath", StringValue("maps/oklahoma_city_3/osm.sumocfg"));
   sumoClient->SetAttribute("SumoBinaryPath", StringValue(""));    // use system installation of sumo
@@ -914,7 +929,7 @@ int main(int argc, char *argv[]) {
   sumoClient->SetAttribute("PenetrationRate", DoubleValue(p_rate));  // portion of vehicles equipped with wifi
   sumoClient->SetAttribute("SumoLogFile", BooleanValue(true));
   sumoClient->SetAttribute("SumoStepLog", BooleanValue(false));
-  sumoClient->SetAttribute("SumoSeed", IntegerValue(seed));
+  sumoClient->SetAttribute("SumoSeed", IntegerValue(run_number));
   sumoClient->SetAttribute("SumoAdditionalCmdOptions", StringValue("--verbose true --max-num-vehicles " + std::to_string(n_v)));
   sumoClient->SetAttribute("SumoWaitForSocket", TimeValue(Seconds(3.0)));  
 
