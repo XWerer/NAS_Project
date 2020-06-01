@@ -924,7 +924,7 @@ int main(int argc, char *argv[]) {
   sumoClient->SetAttribute("SumoBinaryPath", StringValue(""));    // use system installation of sumo
   sumoClient->SetAttribute("SynchInterval", TimeValue(Seconds(0.1)));
   sumoClient->SetAttribute("StartTime", TimeValue(Seconds(200.0)));
-  sumoClient->SetAttribute("SumoGUI", BooleanValue(true));
+  sumoClient->SetAttribute("SumoGUI", BooleanValue(false));
   sumoClient->SetAttribute("SumoPort", UintegerValue(port));
   sumoClient->SetAttribute("PenetrationRate", DoubleValue(p_rate));  // portion of vehicles equipped with wifi
   sumoClient->SetAttribute("SumoLogFile", BooleanValue(true));

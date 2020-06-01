@@ -11,13 +11,13 @@ do
       do
         for run in $(seq 3400 1 3413)
         do
-          filename="${vh}_${pkt}_${i}_${prj}_${run} &"
+          filename="${vh}_${pkt}_${i}_${prj}_${run}"
           #echo $filename
-          ./waf --run "scratch/project-test --RngRun=$run --Port=$run --Interval=$i --Window=0.5 --PacketSize=$pkt --MaxVehicles=$vh --Project1=$p --Project2=$p --Filename=$filename --SimTime=90" &
+          ./waf --run "scratch/project-test --RngRun=$run --Port=$run --Interval=$i --Window=0.5 --PacketSize=$pkt --MaxVehicles=$vh --Project1=$prj --Project2=$prj --Filename=$filename --SimTime=90" &
         done
         filename="${vh}_${pkt}_${i}_${prj}_3414"
         #echo $filename
-        ./waf --run "scratch/project-test --RngRun=$run --Port=$run --Interval=$i --Window=0.5 --PacketSize=$pkt --MaxVehicles=$vh --Project1=$p --Project2=$p --Filename=$filename --SimTime=90" 
+        ./waf --run "scratch/project-test --RngRun=3414 --Port=3414 --Interval=$i --Window=0.5 --PacketSize=$pkt --MaxVehicles=$vh --Project1=$prj --Project2=$prj --Filename=$filename --SimTime=90" 
       done
     done
   done
